@@ -1,1 +1,6 @@
-div test
+.movie-list__heading Popular movies
+div.movie-list
+    ul
+        li(ng-repeat='movie in movies')
+            h1.movie__title {{movie.title}}
+            span.movie__rating {{movie.vote_average}}
