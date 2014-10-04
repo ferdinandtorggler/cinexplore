@@ -1,0 +1,7 @@
+ul.genres-list
+    li(ng-repeat="genre in genres")
+        a(href="#genres/{{genre.id}}")
+            div.gr-icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
+                svg.invisible
+                    use(xlink:href="{{svglink}}")
+            div.gr-name {{genre.name}}

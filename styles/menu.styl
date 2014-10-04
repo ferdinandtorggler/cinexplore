@@ -1,0 +1,74 @@
+menu
+    margin 0
+    padding 0
+    display block
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    overflow auto
+    background-color color-menu-item
+    -webkit-tap-highlight-color rgba(0,0,0,0)
+
+    .icon-logo
+        fill color-menu-item-font
+
+    span, .icon-logo
+        vertical-align middle
+
+menu ul
+
+    li 
+        a
+            display: flex
+            flex-wrap: nowrap
+            font-family main-font
+            text-transform uppercase
+            font-weight 600
+            font-size font-size-menu
+            color color-menu-item-font
+            text-decoration none
+
+        &:hover, &:active
+            
+            .gr-name
+                background-color color-primary
+                color white
+
+            .gr-icon
+                background-color darken(color-primary, 20%)
+                color white
+
+            &:hover, &:active
+                svg
+                    fill white
+
+
+    .gr-name
+        flex-grow: 1;
+        height height-menu-entry
+        line-height height-menu-entry
+        border-top 1px solid color-menu-item-border-top
+        border-bottom 1px solid color-menu-item-border-bottom
+        width 100%
+        padding 0 0 0 12px
+
+    .gr-icon
+        border-top 1px solid color-menu-item-dark-border-top
+        border-bottom 1px solid color-menu-item-dark-border-bottom
+        display inline-block
+        background-color color-menu-item-dark
+        min-width height-menu-entry
+        height height-menu-entry
+
+    svg
+        fill color-menu-item-font
+        padding 12px
+        height height-menu-entry
+        min-width @height
+        max-width @height
+        transition all .3s ease-out
+
+    svg.invisible
+        transform translateX(-200%)
