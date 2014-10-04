@@ -4,11 +4,13 @@ html
         meta(charset='UTF-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
         link(rel='stylesheet', href='stylesheets/style.css')
+        script(src='scripts/snap.min.js')
         script(src='scripts/angular.min.js')
         script(src='scripts/angular-route.min.js')
         script(src='scripts/app.js')
         title Cinexplore
     body(ng-app='Cinexplore')
-        include templates/header
-        main
-            movie-list
+        div(snap)
+            include templates/header
+            main
+                movie-list
