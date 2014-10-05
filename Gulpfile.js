@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var es = require('event-stream');
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
+var copy = require('gulp-copy');
 var livereload = require('gulp-livereload');
 var stylus = require('gulp-stylus');
 var cssmin = require('gulp-minify-css');
@@ -34,6 +35,11 @@ var templates = {
     dest: 'public/'
 };
 
+var fonts = {
+    all: 'fonts/**/*',
+    dest: 'public/'
+};
+
 var icons = {
     all: 'icons/**/*.svg',
     dest: 'public/icons/'
@@ -55,7 +61,12 @@ gulp.task('icons', function () {
                 }
             }))
             .pipe(gulp.dest(icons.dest))
-})
+});
+
+gulp.task('fonts', function () {
+    gulp.src(fonts.all)
+        .pipe(copy(fonts.dest));
+});
 
 gulp.task('styles', function () {
     var app = gulp.src(styles.app).pipe(stylus()).on('error', gutil.log);
@@ -101,9 +112,15 @@ gulp.task('watch', function () {
     });
 })
 
-gulp.task('default', ['styles', 'scripts', 'templates', 'icons', 'connect', 'watch'], function () {
-});
+gulp.task('default', [  'styles',
+                        'scripts',
+                        'templates',
+                        'icons',
+                        'fonts',
+                        'connect',
+                        'watch'
+                     ]);
 
 gulp.task('build', function () {
-    gulp.start('styles', 'scripts', 'templates', 'icons');
+    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts');
 });
