@@ -1,0 +1,49 @@
+//
+// THUMBNAILS
+//
+
+.thumbnail-list
+    li
+        display block
+        @extend .clearfix
+
+.round-thumbnail
+    float left
+    display inline-block
+    height 58px
+    width 58px
+    border-radius 50%
+    background-size cover
+    box-shadow 0 1px 2px rgba(black, .5)
+
+.thumbnail-text
+    float left
+    display inline-block
+    margin-top 12px
+    margin-left gutter-width
+
+    strong
+        display block
+        color color-font-dark
+        line-height 15px
+
+    sub
+        font-size font-size
+        line-height 15px
+
+//
+// IMAGE GRID
+//
+
+.image-grid
+    margin-left - gutter-width
+
+    .image-grid__item
+        display inline-block
+        margin-bottom 10px
+        width 33.33333%
+
+    .image-grid__image
+        margin-left gutter-width
+        padding-bottom 100%
+        background-size cover

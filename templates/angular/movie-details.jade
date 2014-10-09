@@ -20,5 +20,15 @@ tabs
                     .movie-details__similar(ng-repeat="similar in similarMovies")
                         .movie-details__similar__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                         h1 {{similar.title}}
-            .swiper-slide three
-            .swiper-slide four
+            .swiper-slide.movie-details__tab--cast
+                ul.thumbnail-list
+                    li.gutter-bottom(ng-repeat="person in cast")
+                        div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
+                        div.thumbnail-text
+                            strong {{person.name}}
+                            sub {{person.character}}
+            .swiper-slide
+                ul.image-grid
+                    li.image-grid__item(ng-repeat="image in images")
+                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
+                    
