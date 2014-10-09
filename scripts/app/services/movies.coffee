@@ -28,6 +28,7 @@ class Movies
     people:      (movie) -> @fetch "#{API_BASE}3/movie/#{movie}/credits"
     detail:         (id) -> @fetch "#{API_BASE}3/movie/#{id}"
     videos:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/videos"
+    similar:        (id) -> @fetch "#{API_BASE}3/movie/#{id}/similar"
     person:         (id) -> @fetch "#{API_BASE}3/person/#{id}"
     genres:           () -> @fetch "#{API_BASE}3/genre/movie/list"
     byGenre:        (id) -> @fetch "#{API_BASE}3/genre/#{id}/movies"

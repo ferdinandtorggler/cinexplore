@@ -3,4 +3,52 @@ movie-details
     background-color white
 
     .movie-details__content
-        padding 10px
+        height 200px // TODO: set to rest of viewport
+        overflow auto
+
+        .tabs-swiper > .swiper-wrapper > .swiper-slide
+            box-sizing border-box
+            padding 10px
+
+        .movie-details__tab--info
+            img
+                float left
+                display inline-block
+                width 30%
+
+            .text
+                float left
+                box-sizing border-box
+                display inline-block
+                padding-left 10px
+                width 70%
+
+        .movie-details__tab--similar
+            .movie-details__similar-holder
+                margin-left -10px
+
+            .movie-details__similar
+                position relative
+                box-sizing border-box
+                display inline-block
+                vertical-align top
+                margin-bottom 10px
+                padding-left 10px
+                width 33.333333%
+
+            .movie-details__similar__image
+                height 100%
+                padding-bottom 150%
+                background-size cover
+
+            h1
+                position absolute
+                left 0
+                right 0
+                bottom 0
+                padding-left 15px
+                line-height 25px
+                background-color rgba(white, .9)
+                text-overflow ellipsis
+                white-space nowrap
+                overflow hidden

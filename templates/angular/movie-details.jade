@@ -1,15 +1,24 @@
-div(snap-ignore="true")
-    tabs
-        ul
-            li Info
-            li Similar
-            li Cast
-            li Images
+tabs
+    ul
+        li Info
+        li Similar
+        li Cast
+        li Images
 
-    .movie-details__content
-        swiper.swiper-container
-            .swiper-wrapper
-                .swiper-slide one
-                .swiper-slide two
-                .swiper-slide three
-                .swiper-slide four
+.movie-details__content
+    swiper.tabs-swiper.swiper-container(options="{cssWidthAndHeight: false}", data-snap-ignore="true")
+        .swiper-wrapper
+            .swiper-slide.movie-details__tab--info
+                img(ng-src="{{movie.poster_path | imagePath:'500'}}")
+                div.text
+                    h1 Overview
+                    p {{movie.overview}}
+                    h1 Tagline
+                    p {{movie.tagline}}
+            .swiper-slide.movie-details__tab--similar
+                .movie-details__similar-holder
+                    .movie-details__similar(ng-repeat="similar in similarMovies")
+                        .movie-details__similar__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
+                        h1 {{similar.title}}
+            .swiper-slide three
+            .swiper-slide four

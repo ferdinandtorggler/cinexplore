@@ -3,5 +3,7 @@ angular.module('Cinexplore').directive 'movieDetails', (Movies) ->
     restrict: 'EA'
     templateUrl: 'movie-details.html'
     link: (scope, elem, attrs) ->
-        Movies.detail(187).success (data) ->
-            scope.movie = data.results
+        Movies.detail(100).success (movie) ->
+            scope.movie = movie
+        Movies.similar(100).success (data) ->
+            scope.similarMovies = data.results
