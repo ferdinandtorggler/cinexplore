@@ -3,11 +3,11 @@ angular.module('Cinexplore').directive 'movieDetails', (Movies) ->
     restrict: 'EA'
     templateUrl: 'movie-details.html'
     link: (scope, elem, attrs) ->
-        Movies.detail(100).success (movie) ->
+        Movies.detail(attrs.movieId).success (movie) ->
             scope.movie = movie
-        Movies.similar(100).success (data) ->
+        Movies.similar(attrs.movieId).success (data) ->
             scope.similarMovies = data.results
-        Movies.people(100).success (data) ->
+        Movies.people(attrs.movieId).success (data) ->
             scope.cast = data.cast
-        Movies.images(100).success (data) ->
+        Movies.images(attrs.movieId).success (data) ->
             scope.images = data.backdrops
