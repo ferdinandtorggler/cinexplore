@@ -21,15 +21,24 @@
     display inline-block
     margin-top 12px
     margin-left gutter-width
+    max-width calc(100% - 68px) // To fit thumbnail
 
     strong
         display block
         color color-font-dark
         line-height 15px
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
 
     sub
+        display inline-block
+        width 100%
         font-size font-size
-        line-height 15px
+        line-height 17px
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
 
 //
 // IMAGE GRID

@@ -1,2 +1,12 @@
-overlay(overlay-name='search')
-    | blabla
+overlay(overlay-name='search', search)
+    input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query')
+    tabs
+        ul
+            li Movies
+            li People
+    ul.thumbnail-list.search__results
+        li.gutter-bottom(ng-repeat="result in results", close-overlay, ng-click="$root.movieId = result.id")
+            div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
+            div.thumbnail-text
+                strong {{result.title}}
+                sub {{result.title}}
