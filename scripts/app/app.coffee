@@ -9,3 +9,4 @@ require './directives/swiper'
 require './directives/menu'
 
 require './filters/image-path'
+require './filters/youtube-url'

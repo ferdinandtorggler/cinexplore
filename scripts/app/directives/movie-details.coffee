@@ -11,3 +11,5 @@ angular.module('Cinexplore').directive 'movieDetails', (Movies) ->
             scope.cast = data.cast
         Movies.images(attrs.movieId).success (data) ->
             scope.images = data.backdrops
+        Movies.videos(attrs.movieId).success (data) ->
+            scope.videos = data.results
