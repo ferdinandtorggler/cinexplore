@@ -14,19 +14,24 @@ tabs
         li Cast
         li Images
 
+overlay(overlay-name='images', data-snap-ignore="true")
+    swiper.swiper-container.image-slider(options="{cssWidthAndHeight: false}")
+        .swiper-wrapper
+            .swiper-slide(ng-repeat='image in images')
+                .image-slider__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")
 .movie-details__content
     swiper.tabs-swiper.swiper-container(options="{cssWidthAndHeight: false}", data-snap-ignore="true")
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
                 img(ng-src="{{movie.poster_path | imagePath:'500'}}")
-                div.text
+                .text
                     h1 Overview
                     p {{movie.overview}}
                     h1 Tagline
                     p {{movie.tagline}}
             .swiper-slide.movie-details__tab--similar
                 .movie-details__similar-holder
-                    .movie-details__similar(ng-repeat="similar in similarMovies")
+                    .movie-details__similar(ng-repeat="similar in similarMovies", ng-click="$root.movieId = similar.id")
                         .movie-details__similar__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                         h1 {{similar.title}}
             .swiper-slide.movie-details__tab--cast
@@ -36,8 +41,7 @@ tabs
                         div.thumbnail-text
                             strong {{person.name}}
                             sub {{person.character}}
-            .swiper-slide
+            .swiper-slide.movie-details__tab--images
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in images")
+                    li.image-grid__item(ng-repeat="image in images", open-overlay='images')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
-                    

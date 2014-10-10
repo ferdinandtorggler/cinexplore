@@ -1,6 +1,6 @@
 movie-details
     position relative
-    display block
+    height 100%
     background-color white
 
     .toggle-trailer
@@ -41,8 +41,14 @@ movie-details
             outline none
 
     .movie-details__content
-        height 200px // TODO: set to rest of viewport
+        // 205 = movie header
+        // 46 = tab bar
+        // 48 = top bar
+        height calc(100vh - 205px - 46px - 48px)
         overflow auto
+
+        .swiper-slide
+            overflow auto
 
         .tabs-swiper > .swiper-wrapper > .swiper-slide
             box-sizing border-box

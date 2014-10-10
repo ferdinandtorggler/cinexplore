@@ -1,12 +1,12 @@
 overlay
     display block
-    position absolute
+    position fixed
     top 0
     left 0
     width 100%
     height 100%
     background-color color-overlay-bg
-    z-index 1
+    z-index 100
 
     [ng-transclude]
         height 100%
@@ -20,3 +20,4 @@ overlay
         width 20px
         height @width
         fill color-overlay-close
+        z-index 1
