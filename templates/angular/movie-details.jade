@@ -1,9 +1,9 @@
 button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-click="playing=!playing") Trailer
 
-.movie(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!playing')
-    .movie__info(ng-click="$root.movieId = movie.id")
-        h1.movie__title {{movie.title}}
-        span.movie__rating {{movie.vote_average}} / 10
+.teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!playing')
+    .teaser__content(ng-click="$root.movieId = movie.id")
+        h1.teaser__title {{movie.title}}
+        span.teaser__rating {{movie.vote_average}} / 10
 .trailer(ng-if='videos && videos.length && playing')
     iframe(allowfullscreen='1', ng-src='{{ videos[0].key | youtubeUrl }}')
 
