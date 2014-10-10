@@ -9,7 +9,7 @@ tabs
         li Photos
         li Bio
 
-.person-details__content
+.person-details__content.detail-container
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
@@ -20,6 +20,26 @@ tabs
                         p {{person.birthday | date:'dd.MM.yyyy'}}
                         h1 Place of birth
                         p {{person.place_of_birth}}
+
             .swiper-slide.person-details__tab--movies
+                .cover-grid
+                    .cover-grid__item(ng-repeat="movie in movies", ng-click="$root.movieId = movie.id")
+                        .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
+                        h1 {{movie.title}}
+
             .swiper-slide.person-details__tab--photos
+                ul.image-grid
+                    li.image-grid__item(ng-repeat="image in images", open-overlay='person-images', oo-data='{slide: {{$index}}}')
+                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
+
             .swiper-slide.person-details__tab--bio
+                .text
+                    h1 Biography
+                    p {{person.biography}}
+
+    overlay(overlay-name='person-images', data-snap-ignore="true")
+        .image-swiper(ng-if="overlay.visible")
+            swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
+                .swiper-wrapper
+                    .swiper-slide(ng-repeat='image in images')
+                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")

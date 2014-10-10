@@ -14,7 +14,7 @@ tabs
         li Cast
         li Images
 
-.movie-details__content
+.movie-details__content.detail-container
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
@@ -25,24 +25,27 @@ tabs
                         p {{movie.overview}}
                         h1 Tagline
                         p {{movie.tagline}}
+
             .swiper-slide.movie-details__tab--similar
-                .movie-details__similar-holder
-                    .movie-details__similar(ng-repeat="similar in similarMovies", ng-click="$root.movieId = similar.id")
-                        .movie-details__similar__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
+                .cover-grid
+                    .cover-grid__item(ng-repeat="similar in similarMovies", ng-click="$root.movieId = similar.id")
+                        .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                         h1 {{similar.title}}
+
             .swiper-slide.movie-details__tab--cast
                 ul.thumbnail-list
-                    li.gutter-bottom(ng-repeat="person in cast")
+                    li.gutter-bottom(ng-repeat="person in cast", ng-click="$root.personId = person.id")
                         div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
                         div.thumbnail-text
                             strong {{person.name}}
                             sub {{person.character}}
+
             .swiper-slide.movie-details__tab--images
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in images", open-overlay='images', oo-data='{slide: {{$index}}}')
+                    li.image-grid__item(ng-repeat="image in images", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
 
-    overlay(overlay-name='images', data-snap-ignore="true")
+    overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
             swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper

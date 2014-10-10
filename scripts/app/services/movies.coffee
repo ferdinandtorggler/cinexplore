@@ -34,6 +34,7 @@ class Movies
   genres:              -> @fetch "#{API_BASE}3/genre/movie/list"
   byGenre:        (id) -> @fetch "#{API_BASE}3/genre/#{id}/movies"
   moviesOfPerson: (id) -> @fetch "#{API_BASE}3/person/#{id}/movie_credits"
+  imagesOfPerson: (id) -> @fetch "#{API_BASE}3/person/#{id}/tagged_images"
 
   search: (query) ->
     query = encodeURIComponent query
