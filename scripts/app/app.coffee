@@ -1,5 +1,7 @@
 app = angular.module 'Cinexplore', ['ngRoute']
 
+require './controllers/navigation'
+
 require './services/movies'
 require './services/overlays'
 

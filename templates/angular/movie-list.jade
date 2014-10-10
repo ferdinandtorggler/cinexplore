@@ -2,6 +2,6 @@
 div.movie-list__wrapper
     ul
         li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
-            .teaser__content(ng-click="$root.movieId = movie.id")
+            .teaser__content(ng-click="navigation.toMovie(movie.id)")
                 h1.teaser__title {{movie.title}}
                 span.teaser__rating {{movie.vote_average}} / 10

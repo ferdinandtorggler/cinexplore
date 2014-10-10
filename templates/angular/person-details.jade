@@ -1,5 +1,5 @@
 .teaser(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
-    .teaser__content(ng-click="$root.personId = person.id")
+    .teaser__content
         h1.teaser__title {{person.name}}
 
 tabs
@@ -23,7 +23,7 @@ tabs
 
             .swiper-slide.person-details__tab--movies
                 .cover-grid
-                    .cover-grid__item(ng-repeat="movie in movies", ng-click="$root.movieId = movie.id")
+                    .cover-grid__item(ng-repeat="movie in movies", ng-click="navigation.toMovie(movie.id)")
                         .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
                         h1 {{movie.title}}
 

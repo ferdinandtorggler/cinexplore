@@ -1,7 +1,7 @@
 button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-click="playing=!playing") Trailer
 
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!playing')
-    .teaser__content(ng-click="$root.movieId = movie.id")
+    .teaser__content
         h1.teaser__title {{movie.title}}
         span.teaser__rating {{movie.vote_average}} / 10
 .trailer(ng-if='videos && videos.length && playing')
@@ -28,13 +28,13 @@ tabs
 
             .swiper-slide.movie-details__tab--similar
                 .cover-grid
-                    .cover-grid__item(ng-repeat="similar in similarMovies", ng-click="$root.movieId = similar.id")
+                    .cover-grid__item(ng-repeat="similar in similarMovies", ng-click="navigation.toMovie(similar.id)")
                         .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                         h1 {{similar.title}}
 
             .swiper-slide.movie-details__tab--cast
                 ul.thumbnail-list
-                    li.gutter-bottom(ng-repeat="person in cast", ng-click="$root.personId = person.id")
+                    li.gutter-bottom(ng-repeat="person in cast", ng-click="navigation.toPerson(person.id)")
                         div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
                         div.thumbnail-text
                             strong {{person.name}}
