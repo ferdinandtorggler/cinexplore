@@ -14,13 +14,8 @@ tabs
         li Cast
         li Images
 
-overlay(overlay-name='images', data-snap-ignore="true")
-    swiper.swiper-container.image-slider(options="{cssWidthAndHeight: false}")
-        .swiper-wrapper
-            .swiper-slide(ng-repeat='image in images')
-                .image-slider__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")
 .movie-details__content
-    swiper.tabs-swiper.swiper-container(options="{cssWidthAndHeight: false}", data-snap-ignore="true")
+    swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
                 img(ng-src="{{movie.poster_path | imagePath:'500'}}")
@@ -43,5 +38,12 @@ overlay(overlay-name='images', data-snap-ignore="true")
                             sub {{person.character}}
             .swiper-slide.movie-details__tab--images
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in images", open-overlay='images')
+                    li.image-grid__item(ng-repeat="image in images", open-overlay='images', oo-data='{slide: {{$index}}}')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
+
+    overlay(overlay-name='images', data-snap-ignore="true")
+        .image-swiper(ng-if="overlay.visible")
+            swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
+                .swiper-wrapper
+                    .swiper-slide(ng-repeat='image in images')
+                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")

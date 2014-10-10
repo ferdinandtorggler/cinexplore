@@ -1,6 +1,9 @@
-angular.module('Cinexplore').directive 'swiper', ($parse) ->
+angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
   restrict: 'EA'
   link: (scope, element, attrs) ->
-    options = $parse(attrs.options)() or {}
-    console.log options
-    scope.swiper = new Swiper element[0], options
+
+    createSlider = ->
+      options = $parse(attrs.sOptions)() or {}
+      scope.swiper = new Swiper element[0], options
+
+    $timeout createSlider, 100

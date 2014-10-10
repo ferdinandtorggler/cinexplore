@@ -9,9 +9,14 @@
 class Overlays
 
   current = off
+  currentData = off
 
-  open: (overlayName) -> current = overlayName
+  open: (name, data) ->
+    current = name
+    currentData = data
+    
   close: -> current = off
   current: -> current
+  currentData: -> currentData
 
 angular.module('Cinexplore').service 'Overlays', Overlays
