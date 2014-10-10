@@ -9,13 +9,13 @@
 
 angular.module('Cinexplore').filter 'imagePath', ->
 
-    IMAGE_BASE = 'http://image.tmdb.org/t/p/'
+  IMAGE_BASE = 'http://image.tmdb.org/t/p/'
 
-    (filename, size) ->
-        size = 185 if size is 'thumb'
-        if size and filename
-            "#{IMAGE_BASE}w#{size}#{filename}"
-        else if filename
-            "#{IMAGE_BASE}original#{filename}"
-        else
-            ""
+  (filename, size) ->
+    size = 185 if size is 'thumb'
+    if size and filename
+      "#{IMAGE_BASE}w#{size}#{filename}"
+    else if filename
+      "#{IMAGE_BASE}original#{filename}"
+    else
+      ""

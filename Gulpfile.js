@@ -16,6 +16,7 @@ var svgstore = require('gulp-svgstore');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var checkUnusedCss = require('gulp-check-unused-css');
+var coffeelint = require('gulp-coffeelint');
 
 
 var styles = {
@@ -93,6 +94,12 @@ gulp.task('scripts', function () {
       .pipe(gulp.dest(scripts.dest));
 });
 
+gulp.task('lint-coffeescript', function () {
+    gulp.src(scripts.all)
+        .pipe(coffeelint())
+        .pipe(coffeelint.reporter())
+});
+
 gulp.task('templates', function () {
     gulp.src(templates.all)
       .pipe(jade({}))
@@ -115,7 +122,7 @@ gulp.task('connect', function() {
 gulp.task('watch', function () {
     var server = livereload();
     gulp.watch(styles.watch, ['styles', 'check-unused-css']);
-    gulp.watch(scripts.all, ['scripts']);
+    gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
     gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
     gulp.watch('public/**').on('change', function (file) {
@@ -130,6 +137,7 @@ gulp.task('default', [  'styles',
                         'fonts',
                         'connect',
                         'check-unused-css',
+                        'lint-coffeescript',
                         'watch'
                      ]);
 
