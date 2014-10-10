@@ -5,7 +5,7 @@ overlay(overlay-name='search', search)
             li Movies
             li People
     ul.thumbnail-list.search__results
-        li.gutter-bottom(ng-repeat="result in results", close-overlay, ng-click="$root.movieId = result.id")
+        li.gutter-bottom(ng-repeat="result in results", close-overlay, ng-click="navigation.toMovie(result.id)")
             div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
             div.thumbnail-text
                 strong {{result.title}}

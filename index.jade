@@ -10,11 +10,11 @@ html
         script(src='scripts/angular-route.min.js')
         script(src='scripts/app.js')
         title Cinexplore
-    body(ng-app='Cinexplore')
+    body(ng-app='Cinexplore', ng-controller="NavigationCtrl")
         menu
         div(snap)
             include templates/header
-            main(ng-controller="NavigationCtrl")
+            main
                 movie-list(ng-if="navigation.view == 'list'")
                 movie-details(ng-if="navigation.view == 'movie'", movie-id="{{navigation.movieId}}")
                 person-details(ng-if="navigation.view == 'person'", person-id="{{navigation.personId}}")
