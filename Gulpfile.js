@@ -1,25 +1,29 @@
 var gulp = require('gulp');
+
 var es = require('event-stream');
 var gutil = require('gulp-util');
-var connect = require('gulp-connect');
+
 var copy = require('gulp-copy');
-var livereload = require('gulp-livereload');
 var stylus = require('gulp-stylus');
 var cssmin = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
-var shell = require('gulp-shell');
 var jade = require('gulp-jade');
 var svgstore = require('gulp-svgstore');
+
+var connect = require('gulp-connect');
+var livereload = require('gulp-livereload');
+var checkUnusedCss = require('gulp-check-unused-css');
 
 
 var styles = {
     app: 'styles/main.styl',
     watch: 'styles/*.styl',
     vendor: 'styles/vendor/*.css',
-    dest: 'public/stylesheets'
+    dest: 'public/stylesheets',
+    destFile: 'public/stylesheets/style.css'
 };
 
 var scripts = {
@@ -95,6 +99,13 @@ gulp.task('templates', function () {
       .pipe(gulp.dest(templates.dest));
 });
 
+gulp.task('check-unused-css', function () {
+    gulp.src(styles.destFile)
+      .pipe(checkUnusedCss({
+          files: 'public/*.html'
+      }));
+});
+
 gulp.task('connect', function() {
     connect.server({
         root: 'public/'
@@ -103,7 +114,7 @@ gulp.task('connect', function() {
 
 gulp.task('watch', function () {
     var server = livereload();
-    gulp.watch(styles.watch, ['styles']);
+    gulp.watch(styles.watch, ['styles', 'check-unused-css']);
     gulp.watch(scripts.all, ['scripts']);
     gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
@@ -118,6 +129,7 @@ gulp.task('default', [  'styles',
                         'icons',
                         'fonts',
                         'connect',
+                        'check-unused-css',
                         'watch'
                      ]);
 

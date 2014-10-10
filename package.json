@@ -18,6 +18,7 @@
     "gulp-jade": "^0.6.0",
     "gulp-svgstore": "^1.0.1",
     "gulp-connect": "^2.0.6",
-    "gulp-copy": "0.0.2"
+    "gulp-copy": "0.0.2",
+    "gulp-check-unused-css": "0.0.7"
   }
 }
