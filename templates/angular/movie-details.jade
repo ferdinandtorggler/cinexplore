@@ -1,3 +1,8 @@
+button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-click="playing=!playing") Trailer
+.movie(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
+    .movie__info(ng-click="$root.movieId = movie.id")
+        h1.movie__title {{movie.title}}
+        span.movie__rating {{movie.vote_average}} / 10
 tabs
     ul
         li Info

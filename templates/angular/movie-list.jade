@@ -1,8 +1,7 @@
 .movie-list__heading Popular movies
 div.movie-list__wrapper
     ul
-        li.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
-            .movie__info
+        li.movie.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
+            .movie__info(ng-click="$root.movieId = movie.id")
                 h1.movie__title {{movie.title}}
                 span.movie__rating {{movie.vote_average}} / 10
-            movie-details(ng-if="movie.id == 225886", movie-id="{{movie.id}}")

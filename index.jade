@@ -15,4 +15,5 @@ html
         div(snap)
             include templates/header
             main
-                movie-list
+                movie-list(ng-if="!$root.movieId")
+                movie-details(ng-if="$root.movieId", movie-id="{{$root.movieId}}")
