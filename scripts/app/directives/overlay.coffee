@@ -8,7 +8,6 @@ angular.module('Cinexplore').directive 'overlay', (Overlays) ->
 
     $scope.$watch Overlays.current, (currentOverlay) ->
       $scope.overlay.data = Overlays.currentData()
-      console.log $scope.overlay.data
       if currentOverlay is $attrs.overlayName
         $element.removeClass 'ng-hide'
         $scope.overlay.visible = yes
