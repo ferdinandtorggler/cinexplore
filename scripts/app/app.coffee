@@ -5,6 +5,7 @@ require './services/overlays'
 
 require './directives/movie-list'
 require './directives/movie-details'
+require './directives/person-details'
 require './directives/open-overlay'
 require './directives/close-overlay'
 require './directives/search'

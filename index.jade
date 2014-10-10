@@ -14,7 +14,8 @@ html
         menu
         div(snap)
             include templates/header
-            main
-                movie-list(ng-if="!$root.movieId")
+            main(ng-init="$root.personId = 191228")
+                movie-list(ng-if="!$root.movieId && !$root.personId")
                 movie-details(ng-if="$root.movieId", movie-id="{{$root.movieId}}")
+                person-details(ng-if="$root.personId", person-id="{{$root.personId}}")
         include templates/search

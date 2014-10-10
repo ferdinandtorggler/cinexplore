@@ -1,0 +1,25 @@
+.teaser(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
+    .teaser__content(ng-click="$root.personId = person.id")
+        h1.teaser__title {{person.name}}
+
+tabs
+    ul
+        li Info
+        li Movies
+        li Photos
+        li Bio
+
+.person-details__content
+    swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
+        .swiper-wrapper
+            .swiper-slide.person-details__tab--info
+                .info-card
+                    img(ng-src="{{person.profile_path | imagePath:'185'}}")
+                    .text
+                        h1 Birthday
+                        p {{person.birthday | date:'dd.MM.yyyy'}}
+                        h1 Place of birth
+                        p {{person.place_of_birth}}
+            .swiper-slide.person-details__tab--movies
+            .swiper-slide.person-details__tab--photos
+            .swiper-slide.person-details__tab--bio
