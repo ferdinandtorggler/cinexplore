@@ -1,4 +1,4 @@
-.movie-list__heading Popular movies
+.movie-list__heading {{title}} movies
 div.movie-list__wrapper
     ul
         li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')

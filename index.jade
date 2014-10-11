@@ -15,7 +15,10 @@ html
         div(snap)
             include templates/header
             main
-                movie-list(ng-if="navigation.view == 'list'", ml-category="{{navigation.category}}", ml-genre="{{navigation.genre}}")
+                movie-list(ng-if="navigation.view == 'list'",
+                            ml-category="{{navigation.category}}",
+                            ml-genre="{{navigation.genre}}",
+                            ml-genre-name="{{navigation.genreName}}")
                 movie-details(ng-if="navigation.view == 'movie'", movie-id="{{navigation.movieId}}")
                 person-details(ng-if="navigation.view == 'person'", person-id="{{navigation.personId}}")
         include templates/search

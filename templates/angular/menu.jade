@@ -1,6 +1,6 @@
 ul.genres-list
     li(ng-repeat="genre in genres")
-        a(href="", ng-click="navigation.toGenre(genre.id)", close-menu)
+        a(href="", ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
             .gr-icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
                 svg // TODO: Slide icons only when menu opens. (invisible class)
                     use(xlink:href="{{svglink}}")

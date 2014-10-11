@@ -10,8 +10,9 @@ angular.module('Cinexplore').controller 'NavigationCtrl', ($scope) ->
       @category = category
       @view = 'list'
 
-    toGenre: (id) ->
+    toGenre: (id, name) ->
       @genre = id
+      @genreName = name
       @toList 'genre'
 
     toPerson: (id) ->
