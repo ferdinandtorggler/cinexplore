@@ -2,9 +2,10 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
   restrict: 'EA'
   link: (scope, element, attrs) ->
 
+    tabNamespace = attrs.sTabs
     slideWidth = false
-    indicator = document.querySelector '.tabs__indicator'
-    tabs = document.querySelectorAll 'tabs .tabs__tab'
+    indicator = document.querySelector "#{tabNamespace} .tabs__indicator"
+    tabs = document.querySelectorAll "#{tabNamespace} .tabs__tab"
     offset = 0
     direction = 0
 
@@ -13,10 +14,12 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
     transitionOff = -> indicator.classList.remove 'tabs__indicator--transitioning'
     transitionOn = -> indicator.classList.add 'tabs__indicator--transitioning'
 
+    setIndicatorWidth = -> indicator.style.width = tabs[scope.swiper.activeIndex].offsetWidth + 'px'
+
     transitionToTab = ->
       transitionOn()
       indicator.style.transform = 'translateX(' + tabs[scope.swiper.activeIndex].offsetLeft + 'px)'
-      indicator.style.width = tabs[scope.swiper.activeIndex].offsetWidth + 'px'
+      setIndicatorWidth()
       $timeout transitionOff, 2500
       offset = 0
       direction = 0
@@ -44,21 +47,24 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
 
 
 
-    createSlider = ->
-      options = $parse(attrs.sOptions)() or {}
-
-      options.pagination = document.querySelector 'tabs .tabs__container'
+    initTabs = (options) ->
+      options.pagination = document.querySelector "#{tabNamespace} .tabs__container"
       options.paginationClickable = true
       options.paginationElementClass = 'tabs__tab'
       options.paginationActiveClass = 'tabs__tab--active'
       options.paginationVisibleClass = ''
       options.createPagination = false
-
       options.onTouchMove = synchronizeTabs
       options.onSlideChangeStart = transitionToTab
       options.onSlideReset = transitionToTab
 
+    createSlider = ->
+      options = $parse(attrs.sOptions)() or {}
+
+      initTabs options if tabNamespace
+
       scope.swiper = new Swiper element[0], options
       slideWidth = scope.swiper.getFirstSlide().offsetWidth
+      setIndicatorWidth() if tabNamespace
 
     $timeout createSlider, 100

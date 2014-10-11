@@ -2,7 +2,7 @@
     .teaser__content
         h1.teaser__title {{person.name}}
 
-tabs
+tabs.js-person-tabs
     .tabs__indicator
     .tabs__container
         .tabs__tab Info
@@ -11,7 +11,7 @@ tabs
         .tabs__tab Bio
 
 .person-details__content.detail-container
-    swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
+    swiper.tabs-swiper.swiper-container(data-snap-ignore="true", s-tabs='.js-person-tabs')
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
                 .info-card
