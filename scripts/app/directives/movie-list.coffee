@@ -3,5 +3,10 @@ angular.module('Cinexplore').directive 'movieList', (Movies) ->
   restrict: 'EA'
   templateUrl: 'movie-list.html'
   link: (scope, elem, attrs) ->
-    Movies.popular().success (data) ->
-      scope.movies = data.results
+
+    fetchMovies = (category = 'popular', genre) ->
+      Movies[category](attrs.mlGenre).success (data) ->
+        scope.movies = data.results
+
+    attrs.$observe 'mlGenre', (genre) -> fetchMovies 'genre', genre
+    attrs.$observe 'mlCategory', (category) -> fetchMovies category

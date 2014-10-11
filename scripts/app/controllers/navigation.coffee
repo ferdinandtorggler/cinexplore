@@ -2,13 +2,17 @@ angular.module('Cinexplore').controller 'NavigationCtrl', ($scope) ->
 
   $scope.navigation =
     view: 'list'
-    category: 'upcoming'
+    category: 'popular'
     movieId: off
     personId: off
 
     toList: (category) ->
       @category = category
       @view = 'list'
+
+    toGenre: (id) ->
+      @genre = id
+      @toList 'genre'
 
     toPerson: (id) ->
       @personId = id
