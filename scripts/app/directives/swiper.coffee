@@ -47,7 +47,7 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
     createSlider = ->
       options = $parse(attrs.sOptions)() or {}
 
-      options.pagination = document.querySelector('tabs .tabs__container')
+      options.pagination = document.querySelector 'tabs .tabs__container'
       options.paginationClickable = true
       options.paginationElementClass = 'tabs__tab'
       options.paginationActiveClass = 'tabs__tab--active'
