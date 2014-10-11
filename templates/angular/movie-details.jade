@@ -8,11 +8,12 @@ button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-click=
     iframe(allowfullscreen='1', ng-src='{{ videos[0].key | youtubeUrl }}')
 
 tabs
-    ul
-        li Info
-        li Similar
-        li Cast
-        li Images
+    .tabs__indicator
+    .tabs__container
+        .tabs__tab Info
+        .tabs__tab Similar
+        .tabs__tab Cast
+        .tabs__tab Images
 
 .movie-details__content.detail-container
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true")

@@ -1,8 +1,19 @@
 tabs
+    position relative
     display block
     border-bottom solid 2px color-tabs-border
     
-    ul li
+    .tabs__tab
         display inline-block
         padding 14px gutter-width
         color color-font-dark
+
+    .tabs__indicator
+        position absolute
+        bottom -2px
+        height 2px
+        width 50px
+        background-color color-primary
+
+        &--transitioning
+            transition all .25s ease-out

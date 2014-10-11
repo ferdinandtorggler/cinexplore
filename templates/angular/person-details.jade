@@ -3,11 +3,12 @@
         h1.teaser__title {{person.name}}
 
 tabs
-    ul
-        li Info
-        li Movies
-        li Photos
-        li Bio
+    .tabs__indicator
+    .tabs__container
+        .tabs__tab Info
+        .tabs__tab Movies
+        .tabs__tab Photos
+        .tabs__tab Bio
 
 .person-details__content.detail-container
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true")
