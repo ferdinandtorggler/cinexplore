@@ -1,12 +1,24 @@
-overlay(overlay-name='search', search)
-    input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query')
-    tabs
-        ul
-            li Movies
-            li People
-    ul.thumbnail-list.search__results
-        li.gutter-bottom(ng-repeat="result in results", close-overlay, ng-click="navigation.toMovie(result.id)")
-            div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
-            div.thumbnail-text
-                strong {{result.title}}
-                sub {{result.title}}
+overlay.search(overlay-name='search', search)
+    div(ng-if="overlay.visible")
+        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query')
+        tabs
+            .tabs__indicator
+            .tabs__container
+                .tabs__tab Movies
+                .tabs__tab People
+        swiper.swiper-container
+            .swiper-wrapper
+                .swiper-slide
+                    ul.thumbnail-list.search__results
+                        li.gutter-bottom(ng-repeat="result in movies", close-overlay, ng-click="navigation.toMovie(result.id)")
+                            div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
+                            div.thumbnail-text
+                                strong {{result.title}}
+                                sub.rating {{result.vote_average}}/10
+                .swiper-slide
+                    ul.thumbnail-list.search__results
+                        li.gutter-bottom(ng-repeat="result in people", close-overlay, ng-click="navigation.toPerson(result.id)")
+                            div.round-thumbnail(style="background-image: url({{result.profile_path | imagePath:'185'}})")
+                            div.thumbnail-text
+                                strong {{result.name}}
+                                sub.rating known for {{result.known_for[0].title}}
