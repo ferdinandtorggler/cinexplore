@@ -21,10 +21,9 @@ class Movies
     cache[url] = promise if shouldBeCached
     return promise
 
-  inTheaters:          -> @fetch "#{API_BASE}3/movie/now_playing"
+  current:             -> @fetch "#{API_BASE}3/movie/now_playing"
   upcoming:            -> @fetch "#{API_BASE}3/movie/upcoming"
   popular:             -> @fetch "#{API_BASE}3/movie/popular"
-  topRated:            -> @fetch "#{API_BASE}3/movie/top_rated"
   people:      (movie) -> @fetch "#{API_BASE}3/movie/#{movie}/credits"
   detail:         (id) -> @fetch "#{API_BASE}3/movie/#{id}"
   videos:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/videos"

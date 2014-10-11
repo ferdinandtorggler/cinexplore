@@ -1,6 +1,13 @@
-ul.genres-list
+ul
+    li
+        span(ng-click='navigation.toList("upcoming")', close-menu)
+            .gr-name Upcoming
+    li
+        span(ng-click='navigation.toList("popular")', close-menu)
+            .gr-name Popular
+ul
     li(ng-repeat="genre in genres")
-        a(href="", ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
+        span(ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
             .gr-icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
                 svg // TODO: Slide icons only when menu opens. (invisible class)
                     use(xlink:href="{{svglink}}")

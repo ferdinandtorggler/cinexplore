@@ -8,13 +8,19 @@ menu
     width 100%
     height 100%
     overflow auto
-    background-color color-menu-item
     -webkit-tap-highlight-color rgba(0,0,0,0)
+    background-color darken(color-menu-item, 20%)
 
 menu ul
+    margin-bottom 15px
+
+    &:last-child
+        margin-bottom 0
 
     li 
-        a
+        background-color color-menu-item
+
+        span
             display: flex
             flex-wrap: nowrap
 
