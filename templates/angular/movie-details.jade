@@ -1,4 +1,4 @@
-button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-click="toggleTrailer()") Trailer
+button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='videos && videos.length', ng-click="toggleTrailer()") Trailer
 
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
@@ -22,10 +22,12 @@ tabs.js-movie-tabs
                 .info-card
                     img(ng-src="{{movie.poster_path | imagePath:'500'}}")
                     .text
-                        h1 Overview
-                        p {{movie.overview}}
-                        h1 Tagline
-                        p {{movie.tagline}}
+                        span(ng-if='movie.tagline')
+                            h1 Tagline
+                            p {{movie.tagline}}
+                        span(ng-if='movie.overview')
+                            h1 Overview
+                            p {{movie.overview}}
 
             .swiper-slide.movie-details__tab--similar
                 .cover-grid

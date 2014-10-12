@@ -17,10 +17,12 @@ tabs.js-person-tabs
                 .info-card
                     img(ng-src="{{person.profile_path | imagePath:'185'}}")
                     .text
-                        h1 Birthday
-                        p {{person.birthday | date:'dd.MM.yyyy'}}
-                        h1 Place of birth
-                        p {{person.place_of_birth}}
+                        span(ng-if='person.birthday')
+                            h1 Birthday
+                            p {{person.birthday | date:'dd.MM.yyyy'}}
+                        span(ng-if='person.place_of_birth')
+                            h1 Place of birth
+                            p {{person.place_of_birth}}
 
             .swiper-slide.person-details__tab--movies
                 .cover-grid
