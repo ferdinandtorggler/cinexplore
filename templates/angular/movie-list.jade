@@ -1,5 +1,6 @@
 .movie-list__heading {{title}} movies
-div.movie-list__wrapper
+loading(ng-if="loading") movies
+.movie-list__wrapper
     ul
         li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
             .teaser__content(ng-click="navigation.toMovie(movie.id)")

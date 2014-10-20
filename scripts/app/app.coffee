@@ -17,6 +17,7 @@ require './directives/swiper'
 require './directives/menu'
 require './directives/close-menu'
 require './directives/open-menu'
+require './directives/loading'
 
 require './filters/image-path'
 require './filters/youtube-url'
