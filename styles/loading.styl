@@ -1,0 +1,22 @@
+@-webkit-keyframes animation-spin-360
+    from
+        transform rotate(0deg)
+    to
+        transform rotate(360deg)
+
+loading
+    display block
+    width 100%
+    height 100%
+    color color-font-light
+    text-align center
+    overflow auto
+
+    svg
+        display block
+        margin 50% auto 15px auto
+        width 50px
+        height @width
+        fill color-loading-indicator
+        -webkit-animation animation-spin-360 1.5s infinite
+        -webkit-animation-timing-function linear
