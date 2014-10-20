@@ -16,6 +16,7 @@ tabs.js-movie-tabs
         .tabs__tab Images
 
 .movie-details__content.detail-container
+    loading(ng-if='loading') movie
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true", s-tabs='.js-movie-tabs')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info

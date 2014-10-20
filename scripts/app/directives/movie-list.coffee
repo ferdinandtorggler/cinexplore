@@ -8,8 +8,10 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, Movies) ->
     setTitle = (title) -> scope.title = capitalize title
 
     fetchMovies = (category = 'popular', genre) ->
+      scope.loading = yes
       setTitle category
       Movies[category](attrs.mlGenre).success (data) ->
+        scope.loading = no
         scope.movies = data.results
 
     attrs.$observe 'mlCategory', (category) -> fetchMovies category
