@@ -5,7 +5,7 @@ angular.module('Cinexplore').directive 'snap', ($rootScope) ->
       disable: 'right'
       transitionSpeed: .15
       slideIntent: 40
-      addBodyClasses: yes
+      addBodyClasses: no
 
     $rootScope.$on 'menu-open', -> snapper.open 'left'
     $rootScope.$on 'menu-close', -> snapper.close 'left'
