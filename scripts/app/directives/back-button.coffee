@@ -1,4 +1,6 @@
-angular.module('Cinexplore').directive 'backButton', () ->
-    link: ->
+angular.module('Cinexplore').directive 'backButton', (Overlays) ->
+    link: (scope) ->
         document.addEventListener 'backbutton', ->
-            console.log 'back pressed'
+            scope.$apply ->
+                scope.$emit 'menu-close'
+                Overlays.close()
