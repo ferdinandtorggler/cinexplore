@@ -25,6 +25,7 @@ require './directives/close-menu'
 require './directives/open-menu'
 require './directives/loading'
 require './directives/back-button'
+require './directives/offline'
 
 require './filters/image-path'
 require './filters/youtube-url'
