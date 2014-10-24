@@ -1,5 +1,5 @@
 .movie-list__heading {{title}} movies
-loading(ng-if="loading") movies
+loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul
         li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')

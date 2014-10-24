@@ -1,10 +1,4 @@
-@-webkit-keyframes animation-spin-360
-    from
-        transform rotate(0deg)
-    to
-        transform rotate(360deg)
-
-loading
+.empty-screen
     position relative
     display block
     width 100%
@@ -13,7 +7,7 @@ loading
     text-align center
     overflow auto
 
-    .&__content
+    &__content
         position absolute
         top 40%
         left 0
@@ -24,6 +18,8 @@ loading
             margin 0 auto 15px auto
             width 50px
             height @width
-            fill color-loading-indicator
-            -webkit-animation animation-spin-360 1.5s infinite
-            -webkit-animation-timing-function linear
+            fill color-empty-screen-icon
+
+    &--loading svg
+        -webkit-animation spin-360 1.5s infinite
+        -webkit-animation-timing-function linear

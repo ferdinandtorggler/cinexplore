@@ -11,7 +11,7 @@ tabs.js-person-tabs
         .tabs__tab Bio
 
 .person-details__content.detail-container
-    loading(ng-if='loading') person
+    loading.empty-screen.empty-screen--loading(ng-if='loading') person
     swiper.tabs-swiper.swiper-container(data-snap-ignore="true", s-tabs='.js-person-tabs')
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
