@@ -28,16 +28,16 @@ tabs.js-person-tabs
 
             .swiper-slide.person-details__tab--movies
                 .cover-grid
-                    .cover-grid__item(ng-repeat="movie in movies", ng-click="navigation.toMovie(movie.id)")
+                    .cover-grid__item(ng-repeat="movie in person.movie_credits.cast", ng-click="navigation.toMovie(movie.id)")
                         .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
                         h1 {{movie.title}}
-                .no-data(ng-if='!movies || !movies.length') No data available.
+                .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in images", open-overlay='person-images', oo-data='{slide: {{$index}}}')
+                    li.image-grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
-                .no-data(ng-if='!images || !images.length') No data available.
+                .no-data(ng-if='!person.tagged_images.results.length') No data available.
 
             .swiper-slide.person-details__tab--bio
                 .text
@@ -49,5 +49,5 @@ tabs.js-person-tabs
         .image-swiper(ng-if="overlay.visible")
             swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
-                    .swiper-slide(ng-repeat='image in images')
+                    .swiper-slide(ng-repeat='image in person.tagged_images.results')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")

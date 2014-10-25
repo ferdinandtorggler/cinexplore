@@ -29,11 +29,9 @@ class Movies
   videos:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/videos"
   similar:        (id) -> @fetch "#{API_BASE}3/movie/#{id}/similar"
   images:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/images"
-  person:         (id) -> @fetch "#{API_BASE}3/person/#{id}"
+  person:         (id) -> @fetch "#{API_BASE}3/person/#{id}?append_to_response=movie_credits,tagged_images"
   genres:              -> @fetch "#{API_BASE}3/genre/movie/list"
   genre:          (id) -> @fetch "#{API_BASE}3/genre/#{id}/movies"
-  moviesOfPerson: (id) -> @fetch "#{API_BASE}3/person/#{id}/movie_credits"
-  imagesOfPerson: (id) -> @fetch "#{API_BASE}3/person/#{id}/tagged_images"
 
   search: (query, type = 'movie') ->
     query = encodeURIComponent query

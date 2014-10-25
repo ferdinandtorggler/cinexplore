@@ -57,5 +57,5 @@ tabs.js-movie-tabs
         .image-swiper(ng-if="overlay.visible")
             swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
-                    .swiper-slide(ng-repeat='image in images')
+                    .swiper-slide(ng-repeat='image in movie.images.backdrops')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")
