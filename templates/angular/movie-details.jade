@@ -1,11 +1,11 @@
-button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='videos && videos.length', ng-click="toggleTrailer()") Trailer
+button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()") Trailer
 
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
         h1.teaser__title {{movie.title}}
         span.rating.rating--teaser {{movie.vote_average}} / 10
-.trailer(ng-if='videos && videos.length && trailerVisible')
-    iframe(allowfullscreen='1', ng-src='{{ videos[0].key | youtubeUrl }}')
+.trailer(ng-if='movie.videos.results.length && trailerVisible')
+    iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
 tabs.js-movie-tabs
     .tabs__indicator
