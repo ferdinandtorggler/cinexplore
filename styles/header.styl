@@ -1,4 +1,4 @@
-header.app-header
+.header
     position absolute
     width 100%
     background color-primary
@@ -8,29 +8,29 @@ header.app-header
 
     font-family ArialMT
     font-size 20px
-    color color-font-lightest
+    color color-lightest
     line-height 23px
 
     box-shadow 0 2px 4px rgba(0,0,0,0.58)
 
-    svg
-        fill color-font-lightest
+    &__icon
+        fill color-lightest
         vertical-align middle
 
-    .menu
-        margin: 16px;
-        margin-left: -11px;
-        margin-right: 0;
-        width: 37px;
-        height: 21px;
+        &--menu
+            margin: 16px;
+            margin-left: -11px;
+            margin-right: 0;
+            width: 37px;
+            height: 21px;
 
-    .logo
-        margin 12px 5px 12px -10px
-        width 37px
-        height 28px
+        &--logo
+            margin 12px 5px 12px -10px
+            width 37px
+            height 28px
 
-    .search
-        float right
-        padding: 15px;
-        height: 56px;
-        width @height
+        &--search
+            float right
+            padding: 15px;
+            height: 56px;
+            width @height

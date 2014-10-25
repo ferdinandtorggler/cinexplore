@@ -1,7 +1,7 @@
-header.app-header
+header.header
     span(open-menu)
-        svg.menu: use(xlink:href='icons/svgstore.svg#icon-menu')
-        svg.logo: use(xlink:href='icons/svgstore.svg#icon-logo')
+        svg.header__icon.header__icon--menu: use(xlink:href='icons/svgstore.svg#icon-menu')
+        svg.header__icon.header__icon--logo: use(xlink:href='icons/svgstore.svg#icon-logo')
         | Cinexplore
-    svg.search(open-overlay='search', ng-hide='offline')
+    svg.header__icon.header__icon--search(open-overlay='search', ng-hide='offline')
         use(xlink:href='icons/svgstore.svg#icon-zoom')

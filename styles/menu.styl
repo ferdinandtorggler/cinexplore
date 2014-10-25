@@ -1,4 +1,4 @@
-menu
+.menu
     margin 0
     padding 0
     display block
@@ -11,35 +11,15 @@ menu
     -webkit-tap-highlight-color rgba(0,0,0,0)
     background-color darken(color-menu-item, 20%)
 
-menu ul
-    margin-bottom 15px
+    &__list
+        &--spacing-bottom
+            margin-bottom 15px
 
-    &:last-child
-        margin-bottom 0
-
-    li 
-        background-color color-menu-item
-
-        span
-            display: flex
-            flex-wrap: nowrap
-
-        &:hover, &:active
-            
-            .gr-name
-                background-color color-primary
-                color white
-
-            .gr-icon
-                background-color darken(color-primary, 20%)
-                color white
-
-            &:hover, &:active
-                svg
-                    fill white
-
-
-    .gr-name
+    &__item
+        display: flex
+        flex-wrap: nowrap
+        
+    &__label
         flex-grow: 1;
         height height-menu-entry
         line-height height-menu-entry
@@ -48,7 +28,7 @@ menu ul
         width 100%
         padding 0 0 0 12px
 
-    .gr-icon
+    &__icon
         border-top 1px solid color-menu-item-dark-border-top
         border-bottom 1px solid color-menu-item-dark-border-bottom
         display inline-block
@@ -56,13 +36,25 @@ menu ul
         min-width height-menu-entry
         height height-menu-entry
 
-    svg
-        fill color-menu-item-font
-        padding 12px
-        height height-menu-entry
-        min-width @height
-        max-width @height
-        transition all .3s ease-out
+        svg
+            fill color-menu-item-font
+            padding 12px
+            height height-menu-entry
+            min-width @height
+            max-width @height
+            transition all .3s ease-out
 
-    svg.invisible
-        transform translateX(-200%)
+    li 
+        background-color color-menu-item
+                    
+        &:active
+            color color-lightest
+
+            .menu__label
+                background-color color-primary
+            
+            .menu__icon
+                background-color darken(color-primary, 20%)
+                
+            svg
+                fill color-lightest

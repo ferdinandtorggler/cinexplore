@@ -1,4 +1,4 @@
-overlay
+.overlay
     display block
     position fixed
     top 0
@@ -8,11 +8,11 @@ overlay
     background-color color-overlay-bg
     z-index 100
 
-    [ng-transclude]
+    &__content
         width 100%
         height 100%
 
-    .overlay__close
+    &__close
         position absolute
         top 0
         right 0

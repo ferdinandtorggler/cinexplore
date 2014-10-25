@@ -2,7 +2,7 @@
     .teaser__content
         h1.teaser__title {{person.name}}
 
-tabs.js-person-tabs
+tabs.tabs.js-person-tabs
     .tabs__indicator
     .tabs__container
         .tabs__tab Info
@@ -12,7 +12,7 @@ tabs.js-person-tabs
 
 .person-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') person
-    swiper.tabs-swiper.swiper-container(data-snap-ignore="true", s-tabs='.js-person-tabs')
+    swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-person-tabs')
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
                 .info-card
@@ -45,9 +45,9 @@ tabs.js-person-tabs
                     p {{person.biography}}
                 .no-data(ng-if='!person.biography') No data available.
 
-    overlay(overlay-name='person-images', data-snap-ignore="true")
+    overlay.overlay(overlay-name='person-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
-            swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
+            swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
                     .swiper-slide(ng-repeat='image in person.tagged_images.results')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")

@@ -7,7 +7,7 @@ button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='mo
 .trailer(ng-if='movie.videos.results.length && trailerVisible')
     iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
-tabs.js-movie-tabs
+tabs.tabs.js-movie-tabs
     .tabs__indicator
     .tabs__container
         .tabs__tab Info
@@ -17,7 +17,7 @@ tabs.js-movie-tabs
 
 .movie-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') movie
-    swiper.tabs-swiper.swiper-container(data-snap-ignore="true", s-tabs='.js-movie-tabs')
+    swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
                 .info-card
@@ -53,9 +53,9 @@ tabs.js-movie-tabs
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
                 .no-data(ng-if='!movie.images.backdrops') No data available.
 
-    overlay(overlay-name='movie-images', data-snap-ignore="true")
+    overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
-            swiper.swiper-container(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
+            swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
                     .swiper-slide(ng-repeat='image in movie.images.backdrops')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")

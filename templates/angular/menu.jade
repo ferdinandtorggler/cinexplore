@@ -1,14 +1,13 @@
-ul
+ul.menu__list.menu__list--spacing-bottom
     li
-        span(ng-click='navigation.toList("upcoming")', close-menu)
-            .gr-name Upcoming
+        span.menu__item(ng-click='navigation.toList("upcoming")', close-menu)
+            .menu__label Upcoming
     li
-        span(ng-click='navigation.toList("popular")', close-menu)
-            .gr-name Popular
-ul
+        span.menu__item(ng-click='navigation.toList("popular")', close-menu)
+            .menu__label Popular
+ul.menu__list
     li(ng-repeat="genre in genres")
-        span(ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
-            .gr-icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
-                svg // TODO: Slide icons only when menu opens. (invisible class)
-                    use(xlink:href="{{svglink}}")
-            .gr-name {{genre.name}}
+        span.menu__item(ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
+            .menu__icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
+                svg: use(xlink:href="{{svglink}}")
+            .menu__label {{genre.name}}
