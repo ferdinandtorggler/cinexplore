@@ -1,10 +1,5 @@
-angular.module 'Cinexplore', ['ngRoute']
-deviceready = -> angular.bootstrap document, ['Cinexplore']
-
-if window.cordova
-  document.addEventListener 'deviceready', deviceready, no
-else
-  setTimeout deviceready
+initialize = require './initialize'
+initialize()
 
 require './controllers/navigation'
 
