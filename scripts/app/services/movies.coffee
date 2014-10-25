@@ -25,7 +25,7 @@ class Movies
   upcoming:            -> @fetch "#{API_BASE}3/movie/upcoming"
   popular:             -> @fetch "#{API_BASE}3/movie/popular"
   people:      (movie) -> @fetch "#{API_BASE}3/movie/#{movie}/credits"
-  detail:         (id) -> @fetch "#{API_BASE}3/movie/#{id}"
+  detail:         (id) -> @fetch "#{API_BASE}3/movie/#{id}?append_to_response=similar,images,credits,videos"
   videos:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/videos"
   similar:        (id) -> @fetch "#{API_BASE}3/movie/#{id}/similar"
   images:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/images"

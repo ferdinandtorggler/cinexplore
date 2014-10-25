@@ -33,25 +33,25 @@ tabs.js-movie-tabs
 
             .swiper-slide.movie-details__tab--similar
                 .cover-grid
-                    .cover-grid__item(ng-repeat="similar in similarMovies", ng-click="navigation.toMovie(similar.id)")
+                    .cover-grid__item(ng-repeat="similar in movie.similar.results", ng-click="navigation.toMovie(similar.id)")
                         .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                         h1 {{similar.title}}
-                .no-data(ng-if='!similarMovies || !similarMovies.length') No data available.
+                .no-data(ng-if='!movie.similar.results.length') No data available.
 
             .swiper-slide.movie-details__tab--cast
                 ul.thumbnail-list
-                    li.gutter-bottom(ng-repeat="person in cast", ng-click="navigation.toPerson(person.id)")
+                    li.gutter-bottom(ng-repeat="person in movie.credits.cast", ng-click="navigation.toPerson(person.id)")
                         div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
                         div.thumbnail-text
                             strong {{person.name}}
                             sub {{person.character}}
-                .no-data(ng-if='!cast || !cast.length') No data available.
+                .no-data(ng-if='!movie.credits.cast.length') No data available.
 
             .swiper-slide.movie-details__tab--images
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in images", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
+                    li.image-grid__item(ng-repeat="image in movie.images.backdrops", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
-                .no-data(ng-if='!images || !images.length') No data available.
+                .no-data(ng-if='!movie.images.backdrops') No data available.
 
     overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
