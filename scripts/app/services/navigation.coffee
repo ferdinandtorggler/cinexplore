@@ -9,7 +9,7 @@
 
 class Navigation
 
-  stack = [{view: 'list', data: null}]
+  stack = [{view: 'list', data: {category: 'popular'}}]
 
   current: -> stack[stack.length - 1]
   back: -> stack.pop()

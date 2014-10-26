@@ -10,17 +10,17 @@ html
         script(src='scripts/angular.min.js')
         script(src='scripts/app.js')
         title Cinexplore
-    body(back-button, offline, ng-controller="NavigationCtrl")
+    body(back-button, offline)
         menu.menu
         div(snap)
             include templates/header
             main
                 include templates/offline
-                movie-list.movie-list(ng-hide='offline', ng-if="navigation.view == 'list'",
-                            ml-category="{{navigation.category}}",
-                            ml-genre="{{navigation.genre}}",
-                            ml-genre-name="{{navigation.genreName}}")
-                movie-details(ng-hide='offline', ng-if="navigation.view == 'movie'", movie-id="{{navigation.movieId}}")
-                person-details(ng-hide='offline', ng-if="navigation.view == 'person'", person-id="{{navigation.personId}}")
+                movie-list.movie-list(ng-hide='offline', if-view='list',
+                            ml-category="{{viewData.category}}",
+                            ml-genre="{{viewData.genre.id}}",
+                            ml-genre-name="{{viewData.genre.name}}")
+                movie-details(ng-hide='offline', if-view='movie', movie-id="{{viewData}}")
+                person-details(ng-hide='offline', if-view='person', person-id="{{viewData}}")
                 include templates/about
             include templates/search

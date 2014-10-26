@@ -1,8 +1,6 @@
 initialize = require './initialize'
 initialize()
 
-require './controllers/navigation'
-
 require './services/movies'
 require './services/navigation'
 require './services/overlays'

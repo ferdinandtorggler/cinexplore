@@ -1,17 +1,17 @@
 ul.menu__list.menu__list--spacing-bottom
     li
-        span.menu__item(ng-click='navigation.toList("upcoming")', close-menu)
-            .menu__label Upcoming
-    li
-        span.menu__item(ng-click='navigation.toList("popular")', close-menu)
+        span.menu__item(navigate='list', n-data='{category: "popular"}', close-menu)
             .menu__label Popular
+    li
+        span.menu__item(navigate='list', n-data='{category: "upcoming"}' close-menu)
+            .menu__label Upcoming
 ul.menu__list.menu__list--spacing-bottom
     li(ng-repeat="genre in genres")
-        span.menu__item(ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
+        span.menu__item(navigate='list', n-data='{genre: {id: {{genre.id}}, name: "{{genre.name}}" }}', close-menu)
             .menu__icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
                 svg: use(xlink:href="{{svglink}}")
             .menu__label {{genre.name}}
 
 ul.menu__list
-    li: span.menu__item(ng-click='navigation.toAbout()', close-menu)
+    li: span.menu__item(navigate='about', close-menu)
         .menu__label About

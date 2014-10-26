@@ -28,7 +28,7 @@ tabs.tabs.js-person-tabs
 
             .swiper-slide.person-details__tab--movies
                 .cover-grid
-                    .cover-grid__item(ng-repeat="movie in person.movie_credits.cast", ng-click="navigation.toMovie(movie.id)")
+                    .cover-grid__item(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie.id}}')
                         .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
                         h1 {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
