@@ -8,7 +8,8 @@ angular.module('Cinexplore').directive 'ifView', (ngIfDirective, Navigation) ->
 
     attrs.ngIf = ->
       current = Navigation.current()
-      scope.viewData = current.data
-      current.view is view
+      if current
+        scope.viewData = current.data
+        current.view is view
       
     ngIfDirective[0].link.apply ngIfDirective[0], arguments

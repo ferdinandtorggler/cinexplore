@@ -12,11 +12,15 @@ class Navigation
   stack = [{view: 'list', data: {category: 'popular'}}]
 
   current: -> stack[stack.length - 1]
-  back: -> stack.pop()
-  navigate: (name, data) ->
+
+  back: ->
+    return false if stack.length is 1
+    stack.pop()
+
+  navigate: (name, data, clearHistory) ->
+    stack.length = 0 if clearHistory
     stack.push
         view: name
         data: data
-
-
+    
 angular.module('Cinexplore').service 'Navigation', Navigation
