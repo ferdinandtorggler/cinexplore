@@ -45,6 +45,11 @@ var fonts = {
     dest: 'public/'
 };
 
+var images = {
+    all: 'images/**/*',
+    dest: 'public/'
+};
+
 var icons = {
     all: 'icons/**/*.svg',
     dest: 'public/icons/'
@@ -71,6 +76,11 @@ gulp.task('icons', function () {
 gulp.task('fonts', function () {
     gulp.src(fonts.all)
         .pipe(copy(fonts.dest));
+});
+
+gulp.task('images', function () {
+    gulp.src(images.all)
+        .pipe(copy(images.dest));
 });
 
 gulp.task('styles', function () {
@@ -130,17 +140,13 @@ gulp.task('watch', function () {
     });
 })
 
-gulp.task('default', [  'styles',
-                        'scripts',
-                        'templates',
-                        'icons',
-                        'fonts',
+gulp.task('build', function () {
+    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts', 'images');
+});
+
+gulp.task('default', [  'build',
                         'connect',
                         'check-unused-css',
                         'lint-coffeescript',
                         'watch'
                      ]);
-
-gulp.task('build', function () {
-    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts');
-});
