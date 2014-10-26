@@ -5,9 +5,13 @@ ul.menu__list.menu__list--spacing-bottom
     li
         span.menu__item(ng-click='navigation.toList("popular")', close-menu)
             .menu__label Popular
-ul.menu__list
+ul.menu__list.menu__list--spacing-bottom
     li(ng-repeat="genre in genres")
         span.menu__item(ng-click="navigation.toGenre(genre.id, genre.name)", close-menu)
             .menu__icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
                 svg: use(xlink:href="{{svglink}}")
             .menu__label {{genre.name}}
+
+ul.menu__list
+    li: span.menu__item(ng-click='navigation.toAbout()', close-menu)
+        .menu__label About
