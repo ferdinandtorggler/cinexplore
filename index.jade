@@ -22,4 +22,5 @@ html
                             ml-genre-name="{{navigation.genreName}}")
                 movie-details(ng-hide='offline', ng-if="navigation.view == 'movie'", movie-id="{{navigation.movieId}}")
                 person-details(ng-hide='offline', ng-if="navigation.view == 'person'", person-id="{{navigation.personId}}")
+                include templates/about
             include templates/search
