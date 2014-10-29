@@ -5,32 +5,42 @@
     height height-header
     overflow hidden
     z-index 1
+    box-shadow 0 2px 4px rgbxa(0,0,0,0.58)
 
-    font-family ArialMT
-    font-size 20px
-    color color-lightest
-    line-height 23px
+    button
+        height height-header
+        line-height @height
+        padding 0
+        font-family Roboto
+        font-size 20px
+        color color-lightest
+    
+    button:active
+        background-color darken(color-primary, 7%)
 
-    box-shadow 0 2px 4px rgba(0,0,0,0.58)
+    span
+        padding 0 10px
 
     &__icon
         fill color-lightest
         vertical-align middle
 
         &--menu
-            margin: 16px;
+            margin: 1px 16px 0 16px;
             margin-left: -11px;
             margin-right: 0;
             width: 37px;
             height: 21px;
 
         &--logo
-            margin 12px 5px 12px -10px
+            margin -8px 0 0 -10px
             width 37px
             height 22px
 
         &--search
             float right
-            padding: 15px;
-            height: 56px;
-            width @height
+            
+            svg
+                padding: 10px 10px 5px 10px;
+                height: height-header;
+                width @height
