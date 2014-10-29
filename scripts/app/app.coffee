@@ -4,6 +4,7 @@ initialize()
 require './services/movies'
 require './services/navigation'
 require './services/overlays'
+require './services/menu'
 
 require './directives/movie-list'
 require './directives/movie-details'

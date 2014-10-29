@@ -1,7 +1,9 @@
-angular.module('Cinexplore').directive 'backButton', (Overlays, Navigation) ->
+angular.module('Cinexplore').directive 'backButton', (Overlays, Navigation, Menu) ->
   link: (scope) ->
     document.addEventListener 'backbutton', ->
       scope.$apply ->
-        scope.$emit 'menu-close'
-        Overlays.close()
-        navigator.app.exitApp() unless Navigation.back()
+        if Menu.status() or Overlays.current()
+          scope.$emit 'menu-close'
+          Overlays.close()
+        else
+          navigator.app.exitApp() unless Navigation.back()
