@@ -1,7 +1,7 @@
 header.header
-    button(open-menu)
+    div.header__icon.header__icon--search(open-overlay='search', ng-hide='offline')
+        svg: use(xlink:href='icons/svgstore.svg#icon-zoom')
+    div(open-menu)
         svg.header__icon.header__icon--menu: use(xlink:href='icons/svgstore.svg#icon-menu')
         svg.header__icon.header__icon--logo: use(xlink:href='icons/svgstore.svg#icon-logo')
         span Cinexplore
-    button.header__icon.header__icon--search(open-overlay='search', ng-hide='offline')
-        svg: use(xlink:href='icons/svgstore.svg#icon-zoom')
