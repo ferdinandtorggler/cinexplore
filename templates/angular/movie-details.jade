@@ -1,4 +1,4 @@
-button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()") Trailer
+button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()") {{trailerText}}
 
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
