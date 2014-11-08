@@ -1,4 +1,4 @@
-angular.module('Cinexplore').directive 'overlay', (Overlays) ->
+angular.module('Cinexplore').directive 'overlay', ($animate, Overlays) ->
   restrict: 'EA'
   transclude: on
   templateUrl: 'overlay.html'
@@ -6,10 +6,11 @@ angular.module('Cinexplore').directive 'overlay', (Overlays) ->
 
     $scope.overlay = {}
 
-    setVisibility = (visible) ->
-      $element[if visible then 'removeClass' else 'addClass'] 'ng-hide'
-      $scope.overlay.visible = visible
-      
+    setVisibility = (show) ->
+      $scope.overlay.visible = show
+      method = if show then 'addClass' else 'removeClass'
+      $animate[method] $element, 'overlay-visible'
+
     $scope.$watch Overlays.current, (currentOverlay) ->
       $scope.overlay.data = Overlays.currentData()
       setVisibility currentOverlay is $attrs.overlayName
