@@ -21,7 +21,7 @@ var coffeelint = require('gulp-coffeelint');
 
 var styles = {
     app: 'styles/main.styl',
-    watch: 'styles/*.styl',
+    watch: 'styles/**/*.styl',
     vendor: 'styles/vendor/*.css',
     dest: 'public/stylesheets',
     destFile: 'public/stylesheets/style.css'
