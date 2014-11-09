@@ -17,11 +17,11 @@ html
             include templates/header
             main
                 include templates/offline
-                movie-list.movie-list(ng-hide='offline', if-view='list',
+                movie-list.movie-list.fade(ng-hide='offline', if-view='list',
                             ml-category="{{viewData.category}}",
                             ml-genre="{{viewData.genre.id}}",
                             ml-genre-name="{{viewData.genre.name}}")
-                movie-details(ng-hide='offline', if-view='movie', movie-id="{{viewData}}")
-                person-details(ng-hide='offline', if-view='person', person-id="{{viewData}}")
+                movie-details.fade(ng-hide='offline', if-view='movie', movie-id="{{viewData}}")
+                person-details.fade(ng-hide='offline', if-view='person', person-id="{{viewData}}")
                 include templates/about
             include templates/search
