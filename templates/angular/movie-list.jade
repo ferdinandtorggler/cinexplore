@@ -2,7 +2,7 @@
 loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul
-        li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
-            .teaser__content(navigate='movie' n-data='{{movie.id}}')
+        li.teaser.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', navigate='movie' n-data='{{movie.id}}')
+            .teaser__content
                 h1.teaser__title {{movie.title}}
                 span.rating.rating--teaser {{movie.vote_average}} / 10
