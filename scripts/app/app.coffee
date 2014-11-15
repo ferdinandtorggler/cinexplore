@@ -23,6 +23,7 @@ require './directives/back-button'
 require './directives/offline'
 require './directives/navigate'
 require './directives/if-view'
+require './directives/gain-focus'
 
 require './filters/image-path'
 require './filters/youtube-url'

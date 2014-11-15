@@ -1,6 +1,6 @@
 overlay.overlay.search(overlay-name='search', search)
     div(ng-if="overlay.visible")
-        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query')
+        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query', gain-focus)
         tabs.tabs.js-search-tabs
             .tabs__indicator
             .tabs__container
@@ -10,7 +10,7 @@ overlay.overlay.search(overlay-name='search', search)
             .swiper-wrapper
                 .swiper-slide
                     ul.thumbnail-list.search__results
-                        li.gutter-bottom(ng-repeat="result in movies", close-overlay, navigate='movie' n-data='{{result.id}}')
+                        li.gutter-bottom(ng-repeat="result in movies",close-overlay, navigate='movie' n-data='{{result.id}}')
                             div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
                             div.thumbnail-text
                                 strong {{result.title}}
