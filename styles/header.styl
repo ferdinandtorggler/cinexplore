@@ -7,13 +7,13 @@
     height height-header
     overflow hidden
     z-index 1
-    box-shadow 0 2px 4px rgba(0,0,0,0.58)
+    box-shadow 0 1px 3px rgba(0,0,0,0.48);
 
     div
         height height-header
         line-height @height
         font-family Roboto
-        font-size 20px
+        font-size font-size-header
         color color-lightest
     
     div:active
@@ -27,12 +27,14 @@
         vertical-align middle
 
         &--menu
+            margin-top -4px
             margin-right: 10px;
-            width: 14px;
-            height: 14px;
+            width: 10px;
+            height: 12px;
 
         &--logo
             margin 0
+            margin-top -6px
             width 30px
             height 22px
 
