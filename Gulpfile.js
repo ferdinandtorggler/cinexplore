@@ -1,12 +1,16 @@
 var gulp = require('gulp');
 
 var es = require('event-stream');
+var argv = require('yargs').argv;
 var gutil = require('gulp-util');
 
 var copy = require('gulp-copy');
+var gulpif = require('gulp-if');
 var stylus = require('gulp-stylus');
 var cssmin = require('gulp-minify-css');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
 var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
@@ -101,6 +105,10 @@ gulp.task('scripts', function () {
         extensions: ['.coffee']
       })).on('error', gutil.log)
       .pipe(rename('app.js'))
+      .pipe(ngAnnotate({
+        add: true
+      }))
+      .pipe(gulpif(argv.production, uglify()))
       .pipe(gulp.dest(scripts.dest));
 });
 
