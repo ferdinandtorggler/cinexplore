@@ -3,7 +3,7 @@ button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='mo
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
         h1.teaser__title {{movie.title}}
-        span.rating.rating--teaser {{movie.vote_average}} / 10
+        span.rating.rating--teaser RATED {{movie.vote_average}} / 10
 .trailer(ng-if='movie.videos.results.length && trailerVisible')
     iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
