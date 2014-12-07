@@ -35,7 +35,7 @@ angular.module('Cinexplore').factory 'Movies', ($http) ->
 
     search: (query, type = 'movie') ->
       query = encodeURIComponent query
-      @$http.jsonp "#{API_BASE}/3/search/#{type}", params:
+      $http.jsonp "#{API_BASE}/3/search/#{type}", params:
         api_key: TMDB_API_KEY
         callback: 'JSON_CALLBACK'
         query: query
