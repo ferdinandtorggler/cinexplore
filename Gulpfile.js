@@ -158,3 +158,5 @@ gulp.task('default', [  'build',
                         'lint-coffeescript',
                         'watch'
                      ]);
+
+module.exports = gulp;
