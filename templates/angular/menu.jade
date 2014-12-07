@@ -6,7 +6,10 @@ ul.menu__list.menu__list--spacing-bottom
         span.menu__item(navigate='list', n-data='{category: "upcoming"}', n-clear-history='true', close-menu)
             .menu__label Upcoming
 ul.menu__list.menu__list--spacing-bottom
-    li(ng-repeat="genre in genres")
+    li
+        span.menu__item(ng-click='genresCollapsed = !genresCollapsed')
+            .menu__label Genres
+    li(ng-repeat="genre in genres", ng-if='!genresCollapsed')
         span.menu__item(navigate='list', n-data='{genre: {id: {{genre.id}}, name: "{{genre.name}}" }}', close-menu)
             .menu__icon(ng-init="svglink = 'icons/svgstore.svg#icon-' + genre.id")
                 svg: use(xlink:href="{{svglink}}")
