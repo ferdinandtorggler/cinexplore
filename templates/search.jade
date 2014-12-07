@@ -1,11 +1,11 @@
 overlay.overlay.search(overlay-name='search', search)
     div(ng-if="overlay.visible")
-        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query', gain-focus)
         tabs.tabs.js-search-tabs
             .tabs__indicator
             .tabs__container
                 .tabs__tab Movies
                 .tabs__tab People
+        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query', gain-focus)
         swiper.swiper-container.swiper-container--search(s-tabs=".js-search-tabs")
             .swiper-wrapper
                 .swiper-slide
