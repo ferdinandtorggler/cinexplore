@@ -7,7 +7,6 @@
     height height-header
     overflow hidden
     z-index 1
-    box-shadow 0 1px 3px rgba(0,0,0,0.48);
 
     div
         height height-header
@@ -19,30 +18,19 @@
     div:active
         background-color darken(color-primary, 7%)
 
-    span
-        padding 0 10px
-
     &__icon
-        fill color-lightest
         vertical-align middle
 
         &--menu
-            margin-top -4px
-            margin-right: 10px;
-            width: 10px;
-            height: 12px;
-
-        &--logo
-            margin 0
-            margin-top -6px
-            width 30px
-            height 22px
+            margin: -2px 39px 0 16px
+            width: 19px;
+            height: 13px;
 
         &--search
             float right
-            padding 14px
+            padding 19px
             
             svg
                 vertical-align top
-                height 20px
+                height 18px
                 width @height
