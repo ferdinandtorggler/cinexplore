@@ -19,15 +19,19 @@ tabs.tabs.js-movie-tabs
     swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
-                .info-card
-                    img(ng-src="{{movie.poster_path | imagePath:'500'}}")
-                    .text
-                        span(ng-if='movie.tagline')
-                            h1 Tagline
-                            p {{movie.tagline}}
-                        span(ng-if='movie.overview')
-                            h1 Overview
-                            p {{movie.overview}}
+                ul.list
+                    li(ng-if='movie.tagline')
+                        .list__icon
+                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            .list__text
+                                span.list__main-line Tagline
+                                sub.list__sub-line {{movie.tagline}}
+                    li(ng-if='movie.overview')
+                        .list__icon
+                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            .list__text
+                                span.list__main-line Overview
+                                sub.list__sub-line {{movie.overview}}
                 .no-data(ng-if='!movie.poster_path && !movie.tagline && !movie.overview') No data available.
 
             .swiper-slide.movie-details__tab--images
@@ -37,12 +41,12 @@ tabs.tabs.js-movie-tabs
                 .no-data(ng-if='!movie.images.backdrops') No data available.
 
             .swiper-slide.movie-details__tab--cast
-                ul.thumbnail-list
+                ul.list.list--dividers.list--ellipsis
                     li(ng-repeat="person in movie.credits.cast", navigate='person', n-data='{{person.id}}')
-                        div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
-                        div.thumbnail-text
-                            strong {{person.name}}
-                            sub {{person.character}}
+                        .list__thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
+                        .list__text
+                            span.list__main-line {{person.name}}
+                            sub.list__sub-line {{person.character}}
                 .no-data(ng-if='!movie.credits.cast.length') No data available.
 
             .swiper-slide.movie-details__tab--similar

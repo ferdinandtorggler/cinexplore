@@ -1,0 +1,54 @@
+.list
+    li
+        display block
+        @extend .clearfix
+
+    svg
+        width 20px
+        height 20px
+        margin 26px 34px 0 18px
+        float left
+
+    &--dividers .list__text
+        border-bottom 1px solid color-list-divider
+        
+    &--ellipsis .list__sub-line
+        white-space nowrap
+        text-overflow ellipsis
+
+    &__thumbnail
+        float left
+        margin gutter-width
+        display inline-block
+        height 40px
+        width 40px
+        border-radius 50%
+        background-size cover
+        background-color color-light
+
+    &__text
+        height 72px
+        padding gutter-width
+        padding-left 0
+        float left
+        display inline-block
+        width calc(100% - 72px) // To fit thumbnail
+
+    &__main-line
+        display block
+        color color-font-dark
+        line-height 19px
+        white-space nowrap
+        font-weight normal
+        overflow hidden
+        font-size 16px
+        text-overflow ellipsis
+
+    &__sub-line
+        display inline-block
+        width 100%
+        font-size font-size
+        line-height 16px
+        font-size 14px
+        margin-top 5px
+        overflow hidden
