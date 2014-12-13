@@ -8,14 +8,22 @@
         height 20px
         margin 26px 34px 0 18px
         float left
+        fill color-primary
 
+    &--spaced
+        margin-top 30px
+    
     &--dividers .list__text
         border-bottom 1px solid color-list-divider
         
-    &--ellipsis .list__sub-line
-        white-space nowrap
-        text-overflow ellipsis
+    &--ellipsis
+        .list__sub-line
+            white-space nowrap
+            text-overflow ellipsis
 
+        .list__text
+            height 72px
+        
     &__thumbnail
         float left
         margin gutter-width
@@ -27,7 +35,6 @@
         background-color color-light
 
     &__text
-        height 72px
         padding gutter-width
         padding-left 0
         float left

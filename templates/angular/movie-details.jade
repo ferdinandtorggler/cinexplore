@@ -17,7 +17,7 @@ tabs.tabs.js-movie-tabs
     swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
-                ul.list
+                ul.list.list--spaced
                     li(ng-if='movie.tagline')
                         .list__icon
                             svg: use(xlink:href='icons/svgstore.svg#icon-quote')
