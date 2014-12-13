@@ -1,26 +1,26 @@
 .toggle-trailer
     position absolute
     right gutter-width
-    top 155px
-    width 130px
-    height 38px
-    background-color color-primary-transparent
-    border-radius 5px
-    font-family font-main
-    color color-lightest
-    font-size font-size
-    transition all .3s ease-out
-    will-change position, background-color, top, right, width, height, color
+    bottom gutter-width
+    padding 0
+    width 56px
+    height 56px
+    border-radius 50%
+    background-color color-primary
+    box-shadow trailer-button-shadow
+    z-index 1
 
-    &--playing
-        position fixed
-        background-color color-lightest
-        top 10px
-        right 48px
-        width 96px
-        height 28px
-        color color-font-dark
-        z-index 2
+    svg
+        width 11px
+        height 14px
+        margin 21px
+        fill color-lightest
+
+    &:not(.toggle-trailer--playing) svg.icon-stop
+        display none
+
+    &--playing svg.icon-play
+        display none
 
 .trailer
     height height-teaser

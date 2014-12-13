@@ -1,5 +1,3 @@
-button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()") {{trailerText}}
-
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
         h1.teaser__title {{movie.title}}
@@ -56,6 +54,8 @@ tabs.tabs.js-movie-tabs
                             .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                             h1 {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
+    button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()")
+        svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
 
     overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
