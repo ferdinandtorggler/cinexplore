@@ -1,14 +1,20 @@
 .cover-grid
-    margin-left - gutter-width
+    padding gutter-small-width
+    margin-left - gutter-small-width
+    line-height 0
+
+    &__tile
+        padding-left gutter-small-width
+        display inline-block
+        width 50%
+        margin-bottom gutter-small-width
 
     &__item
         position relative
+        height 100%
+        width 100%
         box-sizing border-box
-        display inline-block
         vertical-align top
-        margin-bottom gutter-width
-        padding-left gutter-width
-        width 33.333333%
 
     &__image
         height 100%
@@ -20,9 +26,12 @@
         left 0
         right 0
         bottom 0
-        padding-left 15px
-        line-height 25px
-        background-color rgba(white, .9)
+        padding-left gutter-width
+        font-size 16px
+        line-height 48px
+        font-weight normal
         text-overflow ellipsis
         white-space nowrap
         overflow hidden
+        color color-lightest
+        background-color #455A64
