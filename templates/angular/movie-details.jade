@@ -38,7 +38,7 @@ tabs.tabs.js-movie-tabs
 
             .swiper-slide.movie-details__tab--cast
                 ul.thumbnail-list
-                    li.gutter-bottom(ng-repeat="person in movie.credits.cast", navigate='person', n-data='{{person.id}}')
+                    li(ng-repeat="person in movie.credits.cast", navigate='person', n-data='{{person.id}}')
                         div.round-thumbnail(style="background-image: url({{person.profile_path | imagePath:'185'}})")
                         div.thumbnail-text
                             strong {{person.name}}
