@@ -25,6 +25,7 @@ require './directives/navigate'
 require './directives/if-view'
 require './directives/gain-focus'
 require './directives/color-from-image'
+require './directives/ripple'
 
 require './filters/image-path'
 require './filters/youtube-url'

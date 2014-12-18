@@ -1,0 +1,18 @@
+[ripple]
+    overflow hidden
+    position relative
+
+    .ink 
+        display block
+        position absolute
+        background rgba(255,255,255,.5)
+        border-radius 100%
+        transform scale(0)
+
+    .ink.animate
+        animation ripple 0.65s linear
+
+@keyframes ripple 
+    100%
+        opacity 0
+        transform scale(2.5)
