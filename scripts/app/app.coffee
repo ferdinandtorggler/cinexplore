@@ -24,6 +24,7 @@ require './directives/offline'
 require './directives/navigate'
 require './directives/if-view'
 require './directives/gain-focus'
+require './directives/color-from-image'
 
 require './filters/image-path'
 require './filters/youtube-url'

@@ -52,7 +52,7 @@ tabs.tabs.js-movie-tabs
                     .cover-grid__tile(ng-repeat="similar in movie.similar.results", navigate='movie', n-data='{{similar.id}}')
                         .cover-grid__item
                             .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
-                            h1 {{similar.title}}
+                            h1(color-from-image='{{similar.poster_path | imagePath:"500"}}') {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
     button.toggle-trailer(ng-class="{'toggle-trailer--playing': playing}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()")
         svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
