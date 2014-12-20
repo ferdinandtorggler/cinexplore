@@ -1,5 +1,6 @@
 .teaser(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerVisible')
     .teaser__content
+        button.movie-details__close: svg: use(xlink:href='icons/svgstore.svg#icon-close')
         h1.teaser__title {{movie.title}}
 .trailer(ng-if='movie.videos.results.length && trailerVisible')
     iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
