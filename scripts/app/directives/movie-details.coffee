@@ -1,16 +1,22 @@
-angular.module('Cinexplore').directive 'movieDetails', ($timeout, Movies) ->
+angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies, Navigation) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-details.html'
   link: (scope, elem, attrs) ->
+    scope.loaded = no
 
-    scope.toggleTrailer = ->
-      scope.trailerPlaying = !scope.trailerPlaying
-          
+    applyBasicMovieInfos = (basicData) ->
+      scope.movie = $parse(basicData)()
+
     fetchInfos = ->
       scope.loading = yes
       Movies.detail(attrs.movieId).success (movie) ->
         scope.movie = movie
+        scope.loaded = yes
         scope.loading = no
 
+    scope.toggleTrailer = ->
+      scope.trailerPlaying = !scope.trailerPlaying
+
+    attrs.$observe 'movieBasicData', applyBasicMovieInfos
     attrs.$observe 'movieId', fetchInfos
