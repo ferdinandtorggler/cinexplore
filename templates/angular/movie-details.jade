@@ -11,7 +11,7 @@
     iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
 tabs.tabs.js-movie-tabs
-    .tabs__indicator
+    .tabs__indicator(style='background-color: {{dominantColor}}')
     .tabs__container
         .tabs__tab Info
         .tabs__tab Images
@@ -26,13 +26,13 @@ tabs.tabs.js-movie-tabs
                 ul.list.list--spaced
                     li(ng-if='movie.tagline')
                         .list__icon
-                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
                             .list__text
                                 span.list__main-line Tagline
                                 sub.list__sub-line {{movie.tagline}}
                     li(ng-if='movie.overview')
                         .list__icon
-                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
                             .list__text
                                 span.list__main-line Overview
                                 sub.list__sub-line {{movie.overview}}
@@ -60,7 +60,7 @@ tabs.tabs.js-movie-tabs
                             .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                             h1(color-from-image='{{similar.poster_path | imagePath:"500"}}') {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
-    button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", ng-if='movie.videos.results.length', ng-click="toggleTrailer()")
+    button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()")
         svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
 
     overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
