@@ -1,6 +1,4 @@
-angular.module('Cinexplore').directive 'colorFromImage', ($http) ->
+angular.module('Cinexplore').directive 'colorFromImage', (Colors) ->
   (scope, elem, attrs) ->
-    p = $http.jsonp "http://localhost:3000/api?image=#{attrs.colorFromImage}", params:
-      callback: 'JSON_CALLBACK'
-
+    p = Colors.fromImage attrs.colorFromImage
     p.success (res) -> elem[0].style.backgroundColor = "##{res.color}"
