@@ -1,5 +1,6 @@
 .teaser.teaser--large(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
     .teaser__content
+        button.detail-view__close: svg: use(xlink:href='icons/svgstore.svg#icon-close')
         h1.teaser__title {{person.name}}
 
 tabs.tabs.js-person-tabs
@@ -8,7 +9,7 @@ tabs.tabs.js-person-tabs
         .tabs__tab Info
         .tabs__tab Movies
         .tabs__tab Photos
-        .tabs__tab Bio
+        .tabs__tab About
 
 .person-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') person

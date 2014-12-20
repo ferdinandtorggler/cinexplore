@@ -23,6 +23,6 @@ html
                             ml-genre="{{viewData.genre.id}}",
                             ml-genre-name="{{viewData.genre.name}}")
                 include templates/about
-            movie-details.fade(ng-hide='offline', if-view='movie', movie-id="{{viewData}}")
-            person-details.fade(ng-hide='offline', if-view='person', person-id="{{viewData}}")
+            movie-details.detail-view.fade(ng-hide='offline', if-view='movie', movie-id="{{viewData}}")
+            person-details.detail-view.fade(ng-hide='offline', if-view='person', person-id="{{viewData}}")
             include templates/search
