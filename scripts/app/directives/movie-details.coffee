@@ -3,9 +3,9 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies
   restrict: 'EA'
   templateUrl: 'movie-details.html'
   link: (scope, elem, attrs) ->
-    scope.loaded = no
 
     applyBasicMovieInfos = (basicData) ->
+      scope.loaded = no
       scope.movie = $parse(basicData)()
 
     fetchInfos = ->
