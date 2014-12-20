@@ -4,23 +4,8 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, Movies) ->
   templateUrl: 'movie-details.html'
   link: (scope, elem, attrs) ->
 
-    closeTrailerText = 'Close Trailer'
-    openTrailerText = 'Watch Trailer'
-
-    scope.trailerText = openTrailerText
-
-    afterAnimating = (callback) ->
-      $timeout callback, 300
-
     scope.toggleTrailer = ->
-      if scope.playing
-        scope.playing = no
-        scope.trailerVisible = no
-        afterAnimating -> scope.trailerText = openTrailerText
-      else
-        scope.playing = yes
-        scope.trailerText = closeTrailerText
-        afterAnimating -> scope.trailerVisible = yes
+      scope.trailerPlaying = !scope.trailerPlaying
           
     fetchInfos = ->
       scope.loading = yes
