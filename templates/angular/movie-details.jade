@@ -1,4 +1,9 @@
 .teaser.teaser--large(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', ng-if='!trailerPlaying')
+    .teaser__slideshow(ng-if='loaded')
+        swiper.swiper-container(data-snap-ignore='true', s-options='{loop: true}')
+            .swiper-wrapper
+                .swiper-slide(ng-repeat='image in movie.images.backdrops')
+                    .teaser__slideshow__item(style='background-image: url({{image.file_path | imagePath:"780"}})')
     .teaser__content
         button.detail-view__close: svg: use(xlink:href='icons/svgstore.svg#icon-close')
         h1.teaser__title {{movie.title}}
@@ -36,7 +41,7 @@ tabs.tabs.js-movie-tabs
             .swiper-slide.movie-details__tab--images
                 ul.image-grid
                     li.image-grid__item(ng-repeat="image in movie.images.backdrops", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
-                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
+                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
                 .no-data(ng-if='!movie.images.backdrops') No data available.
 
             .swiper-slide.movie-details__tab--cast
@@ -63,4 +68,4 @@ tabs.tabs.js-movie-tabs
             swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
                     .swiper-slide(ng-repeat='image in movie.images.backdrops')
-                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")
+                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
