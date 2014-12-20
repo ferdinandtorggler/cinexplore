@@ -1,4 +1,4 @@
-.teaser(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
+.teaser.teaser--large(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
     .teaser__content
         h1.teaser__title {{person.name}}
 
@@ -15,22 +15,27 @@ tabs.tabs.js-person-tabs
     swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-person-tabs')
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
-                .info-card
-                    img(ng-src="{{person.profile_path | imagePath:'185'}}")
-                    .text
-                        span(ng-if='person.birthday')
-                            h1 Birthday
-                            p {{person.birthday | date:'dd.MM.yyyy'}}
-                        span(ng-if='person.place_of_birth')
-                            h1 Place of birth
-                            p {{person.place_of_birth}}
+                ul.list.list--spaced
+                    li(ng-if='person.birthday')
+                        .list__icon
+                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            .list__text
+                                span.list__main-line Birthday
+                                sub.list__sub-line {{person.birthday | date:'dd.MM.yyyy'}}
+                    li(ng-if='person.place_of_birth')
+                        .list__icon
+                            svg: use(xlink:href='icons/svgstore.svg#icon-quote')
+                            .list__text
+                                span.list__main-line Place of birth
+                                sub.list__sub-line {{person.place_of_birth}}
                 .no-data(ng-if='!person.profile_path && !person.birthday && !person.place_of_birth') No data available.
 
             .swiper-slide.person-details__tab--movies
                 .cover-grid
-                    .cover-grid__item(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie.id}}')
-                        .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
-                        h1 {{movie.title}}
+                    .cover-grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie.id}}')
+                        .cover-grid__item
+                            .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
+                            h1(color-from-image='{{movie.poster_path | imagePath:"500"}}') {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos
