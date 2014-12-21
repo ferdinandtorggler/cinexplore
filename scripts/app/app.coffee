@@ -30,3 +30,5 @@ require './directives/dominant-color'
 
 require './filters/image-path'
 require './filters/youtube-url'
+
+require './animations/expand-movie'
