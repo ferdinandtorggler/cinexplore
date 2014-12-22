@@ -60,7 +60,7 @@ tabs.tabs.js-movie-tabs
                             .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                             h1(color-from-image='{{similar.poster_path | imagePath:"500"}}') {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
-    button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()")
+    button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()", ripple)
         svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
 
     overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
