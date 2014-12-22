@@ -1,13 +1,16 @@
 angular.module('Cinexplore').directive 'ripple', ($window, $timeout) ->
+
+  inkClass = 'ripple__ink'
+
   (scope, elem, attrs) ->
 
     elem = elem[0]
     elem.addEventListener 'click', (e) ->
 
-      unless elem.querySelector '.ink'
-        elem.insertAdjacentHTML 'afterBegin', '<span class="ink"></span>'
+      unless elem.querySelector ".#{inkClass}"
+        elem.insertAdjacentHTML 'afterBegin', "<span class=#{inkClass}></span>"
             
-      ink = elem.querySelector '.ink'
+      ink = elem.querySelector ".#{inkClass}"
       ink.classList.remove 'animate'
         
       unless ink.innerHeight or ink.innerWidth

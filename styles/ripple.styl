@@ -2,14 +2,15 @@
     overflow hidden
     position relative
 
-    .ink 
-        display block
-        position absolute
-        background rgba(255,255,255,.5)
-        border-radius 100%
-        transform scale(0)
+.ripple__ink
+    display block
+    position absolute
+    background #FFFFFF
+    opacity .5
+    border-radius 100%
+    transform scale(0)
 
-    .ink.animate
+    &.animate
         animation ripple 0.65s linear
 
 @keyframes ripple 
