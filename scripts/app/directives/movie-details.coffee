@@ -10,6 +10,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies
 
     fetchInfos = ->
       scope.loading = yes
+      scope.swiper.swipeTo 0 if scope.swiper
       Movies.detail(attrs.movieId).success (movie) ->
         scope.movie = movie
         scope.loaded = yes

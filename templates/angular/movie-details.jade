@@ -20,7 +20,7 @@ tabs.tabs.js-movie-tabs
 
 .movie-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') movie
-    swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs')
+    swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs', s-var='swiper')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
                 ul.list.list--spaced.list--bottom-spaced

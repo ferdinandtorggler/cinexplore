@@ -4,7 +4,6 @@
 #   This service holds information about the currently
 #   open view and the history in order to provide the
 #   back-button functionality.
-#  
 #
 
 class Navigation
@@ -25,7 +24,7 @@ class Navigation
   navigate: (name, data, clearHistory) ->
     stack.length = 0 if clearHistory
     stack.push
-        view: name
-        data: data
+      view: name
+      data: data
     
 angular.module('Cinexplore').service 'Navigation', Navigation

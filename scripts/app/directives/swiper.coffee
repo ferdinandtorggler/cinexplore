@@ -14,12 +14,12 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
     transitionOff = -> indicator.classList.remove 'tabs__indicator--transitioning'
     transitionOn = -> indicator.classList.add 'tabs__indicator--transitioning'
 
-    setIndicatorWidth = -> indicator.style.width = tabs[scope.swiper.activeIndex].offsetWidth + 'px'
+    setIndicatorWidth = (swiper) -> indicator.style.width = tabs[swiper.activeIndex].offsetWidth + 'px'
 
-    transitionToTab = ->
+    transitionToTab = (swiper) ->
       transitionOn()
-      indicator.style.transform = 'translateX(' + tabs[scope.swiper.activeIndex].offsetLeft + 'px)'
-      setIndicatorWidth()
+      indicator.style.transform = 'translateX(' + tabs[swiper.activeIndex].offsetLeft + 'px)'
+      setIndicatorWidth swiper
       $timeout transitionOff, 2500
       offset = 0
       direction = 0
@@ -63,8 +63,10 @@ angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
 
       initTabs options if tabNamespace
 
-      scope.swiper = new Swiper element[0], options
-      slideWidth = scope.swiper.getFirstSlide().offsetWidth
-      setIndicatorWidth() if tabNamespace
+      swiper = new Swiper element[0], options
+      slideWidth = swiper.getFirstSlide().offsetWidth
+
+      scope[attrs.sVar] = swiper
+      setIndicatorWidth swiper if tabNamespace
 
     $timeout createSlider, 100
