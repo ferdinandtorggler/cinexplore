@@ -13,10 +13,10 @@
 tabs.tabs.js-movie-tabs
     .tabs__indicator(style='background-color: {{dominantColor}}')
     .tabs__container
-        .tabs__tab Info
-        .tabs__tab Images
-        .tabs__tab Cast
-        .tabs__tab Similar
+        .tabs__tab(ripple) Info
+        .tabs__tab(ripple) Images
+        .tabs__tab(ripple) Cast
+        .tabs__tab(ripple) Similar
 
 .movie-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') movie
