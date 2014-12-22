@@ -28,6 +28,7 @@ require './directives/gain-focus'
 require './directives/color-from-image'
 require './directives/ripple'
 require './directives/dominant-color'
+require './directives/close-detail'
 
 require './filters/image-path'
 require './filters/youtube-url'

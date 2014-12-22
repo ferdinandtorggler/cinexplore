@@ -11,7 +11,12 @@ class Navigation
 
   stack = [{view: 'list', data: {category: 'popular'}}]
 
+  findLastListView = ->
+    listViews = stack.filter (entry) -> entry.view is 'list'
+    listViews[listViews.length - 1]
+
   current: -> stack[stack.length - 1]
+  toList: -> stack.push findLastListView()
 
   back: ->
     return false if stack.length is 1
