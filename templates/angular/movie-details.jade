@@ -5,8 +5,8 @@
                 .swiper-slide(ng-repeat='image in movie.images.backdrops')
                     .teaser__slideshow__item(style='background-image: url({{image.file_path | imagePath:"780"}})')
     .teaser__content
-        button.detail-view__close: svg: use(xlink:href='icons/svgstore.svg#icon-close')
         h1.teaser__title {{movie.title}}
+    button.detail-view__close: svg: use(xlink:href='icons/svgstore.svg#icon-close')
 .trailer(ng-if='movie.videos.results.length && trailerPlaying')
     iframe(allowfullscreen='1', ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
