@@ -2,9 +2,14 @@ angular.module('Cinexplore').directive 'ripple', ($window, $timeout) ->
 
   inkClass = 'ripple__ink'
 
+  makeContainer = (element) ->
+    position = $window.getComputedStyle(element).position
+    element.style.position = 'relative' if position is 'static'
+
   (scope, elem, attrs) ->
 
     elem = elem[0]
+    makeContainer elem
     elem.addEventListener 'click', (e) ->
 
       unless elem.querySelector ".#{inkClass}"
