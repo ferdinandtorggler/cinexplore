@@ -16,7 +16,7 @@ tabs.tabs.js-person-tabs
     swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-person-tabs')
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
-                ul.list.list--spaced(ng-if='loaded')
+                ul.list.list--spaced
                     li(ng-if='person.birthday')
                         .list__icon
                             svg: use(xlink:href='icons/svgstore.svg#icon-calendar')

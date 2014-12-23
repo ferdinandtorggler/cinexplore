@@ -23,7 +23,7 @@ tabs.tabs.js-movie-tabs
     swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-movie-tabs', s-var='swiper')
         .swiper-wrapper
             .swiper-slide.movie-details__tab--info
-                ul.list.list--spaced.list--bottom-spaced
+                ul.list.list--spaced.list--bottom-spaced(ng-if='loaded')
                     li(ng-if='movie.tagline')
                         .list__icon
                             svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
