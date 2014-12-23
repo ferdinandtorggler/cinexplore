@@ -32,7 +32,7 @@ tabs.tabs.js-movie-tabs
                                 sub.list__sub-line {{movie.tagline}}
                     li(ng-if='movie.genres')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-tags')
                             .list__text
                                 span.list__main-line Genres
                                 sub.list__sub-line
@@ -40,25 +40,25 @@ tabs.tabs.js-movie-tabs
                                     span(ng-repeat='genre in movie.genres', ng-if='$index == movie.genres.length - 1') {{genre.name}}
                     li(ng-if='movie.release_date')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-calendar')
                             .list__text
                                 span.list__main-line Release Date
                                 sub.list__sub-line {{movie.release_date | date:'d MMMM yyyy'}}
                     li(ng-if='movie.vote_average')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-star')
                             .list__text
                                 span.list__main-line Rating
                                 sub.list__sub-line {{movie.vote_average}} / 10
                     li(ng-if='movie.overview')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-document')
                             .list__text
                                 span.list__main-line Synopsis
                                 sub.list__sub-line {{movie.overview}}
                     li(ng-if='movie.homepage')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-world')
                             .list__text
                                 span.list__main-line Website
                                 sub.list__sub-line {{movie.homepage}}
