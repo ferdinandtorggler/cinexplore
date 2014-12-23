@@ -67,9 +67,9 @@ tabs.tabs.js-movie-tabs
 
             .swiper-slide.movie-details__tab--images
                 ul.image-grid
-                    li.image-grid__item(ng-repeat="image in movie.images.backdrops", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
+                    li.image-grid__item(ng-repeat="image in movie.images.all", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
                         .image-grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
-                .no-data(ng-if='!movie.images.backdrops') No data available.
+                .no-data(ng-if='!movie.images.all') No data available.
 
             .swiper-slide.movie-details__tab--cast
                 ul.list.list--dividers.list--ellipsis
@@ -95,5 +95,5 @@ tabs.tabs.js-movie-tabs
         .image-swiper(ng-if="overlay.visible")
             swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
-                    .swiper-slide(ng-repeat='image in movie.images.backdrops')
+                    .swiper-slide(ng-repeat='image in movie.images.all')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'780'}})")

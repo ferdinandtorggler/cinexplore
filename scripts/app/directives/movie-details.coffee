@@ -13,6 +13,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies
       scope.swiper.swipeTo 0 if scope.swiper
       Movies.detail(attrs.movieId).success (movie) ->
         scope.movie = movie
+        scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
         scope.loaded = yes
         scope.loading = no
 
