@@ -5,7 +5,6 @@ angular.module('Cinexplore').directive 'snap', ($rootScope, Menu) ->
       disable: 'right'
       transitionSpeed: .15
       slideIntent: 40
-      addBodyClasses: no
 
     # use 'animated' callback since 'open' is not firing after dragging
     snapper.on 'animated', ->
