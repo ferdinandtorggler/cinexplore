@@ -42,7 +42,7 @@ tabs.tabs.js-person-tabs
             .swiper-slide.person-details__tab--photos
                 ul.image-grid
                     li.image-grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
-                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'300'}})")
+                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
                 .no-data(ng-if='!person.tagged_images.results.length') No data available.
 
             .swiper-slide.person-details__tab--bio
@@ -56,4 +56,4 @@ tabs.tabs.js-person-tabs
             swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
                 .swiper-wrapper
                     .swiper-slide(ng-repeat='image in person.tagged_images.results')
-                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'1280'}})")
+                        .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
