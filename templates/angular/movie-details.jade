@@ -89,6 +89,7 @@ tabs.tabs.js-movie-tabs
                 .no-data(ng-if='!movie.similar.results.length') No data available.
     button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()", ripple)
         svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
+        svg.icon-stop: use(xlink:href='icons/svgstore.svg#icon-close')
 
     overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")
