@@ -1,24 +1,23 @@
-overlay.overlay.search(overlay-name='search', search)
-    div(ng-if="overlay.visible")
-        tabs.tabs.js-search-tabs
-            .tabs__indicator
-            .tabs__container
-                .tabs__tab Movies
-                .tabs__tab People
-        input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query', gain-focus)
-        swiper.swiper-container.swiper-container--search(s-tabs=".js-search-tabs")
-            .swiper-wrapper
-                .swiper-slide
-                    ul.thumbnail-list.search__results
-                        li.gutter-bottom(ng-repeat="result in movies",close-overlay, navigate='movie' n-data='{{result}}')
-                            div.round-thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
-                            div.thumbnail-text
-                                strong {{result.title}}
-                                sub.rating {{result.vote_average}}/10
-                .swiper-slide
-                    ul.thumbnail-list.search__results
-                        li.gutter-bottom(ng-repeat="result in people", close-overlay, navigate='person' n-data='{{result}}')
-                            div.round-thumbnail(style="background-image: url({{result.profile_path | imagePath:'185'}})")
-                            div.thumbnail-text
-                                strong {{result.name}}
-                                sub.rating known for {{result.known_for[0].title}}
+search.search(if-view='search')
+    tabs.tabs.js-search-tabs
+        .tabs__indicator
+        .tabs__container
+            .tabs__tab Movies
+            .tabs__tab People
+    input.search__input(type='search', placeholder='Search movies or people', ng-model='search.query', gain-focus)
+    swiper.swiper-container.swiper-container--search(s-tabs=".js-search-tabs")
+        .swiper-wrapper
+            .swiper-slide
+                ul.list.list--dividers.list--ellipsis
+                    li(ng-repeat="result in movies", navigate='movie' n-data='{{result}}', ripple)
+                        .list__thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
+                        .list__text
+                            span.list__main-line {{result.title}}
+                            sub.list__sub-line {{result.release_date | date:'yyyy'}}
+            .swiper-slide
+                ul.list.list--dividers.list--ellipsis
+                    li(ng-repeat="result in people", navigate='person' n-data='{{result}}', ripple)
+                        .list__thumbnail(style="background-image: url({{result.profile_path | imagePath:'185'}})")
+                        .list__text
+                            span.list__main-line {{result.name}}
+                            sub.list__sub-line known for {{result.known_for[0].title}}
