@@ -1,22 +1,40 @@
-.cover-grid
+.grid
     padding gutter-small-width
     margin-left - gutter-small-width
+
+    &--bottom-spaced
+        padding-bottom 84px
+        
+
+.grid--image
+
+    & .grid__item
+        display inline-block
+        width 50%
+
+    & .grid__image
+        margin-left gutter-small-width
+        padding-bottom 100%
+        background-size cover
+        
+
+.grid--cover
     line-height 0
 
-    &__tile
+    & .grid__tile
         padding-left gutter-small-width
         display inline-block
         width 50%
         margin-bottom gutter-small-width
 
-    &__item
+    & .grid__item
         position relative
         height 100%
         width 100%
         box-sizing border-box
         vertical-align top
 
-    &__image
+    & .grid__image
         height 100%
         padding-bottom 125%
         background-size cover

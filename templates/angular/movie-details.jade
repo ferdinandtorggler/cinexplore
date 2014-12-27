@@ -66,9 +66,9 @@ tabs.tabs.js-movie-tabs
                 .no-data(ng-if='!movie.poster_path && !movie.tagline && !movie.overview') No data available.
 
             .swiper-slide.movie-details__tab--images
-                ul.image-grid
-                    li.image-grid__item(ng-repeat="image in movie.images.all", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
-                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
+                ul.grid.grid--image.grid--bottom-spaced
+                    li.grid__item(ng-repeat="image in movie.images.all", open-overlay='movie-images', oo-data='{slide: {{$index}}}')
+                        .grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
                 .no-data(ng-if='!movie.images.all') No data available.
 
             .swiper-slide.movie-details__tab--cast
@@ -81,10 +81,10 @@ tabs.tabs.js-movie-tabs
                 .no-data(ng-if='!movie.credits.cast.length') No data available.
 
             .swiper-slide.movie-details__tab--similar
-                .cover-grid
-                    .cover-grid__tile(ng-repeat="similar in movie.similar.results", navigate='movie', n-data='{{similar}}')
-                        .cover-grid__item
-                            .cover-grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
+                .grid.grid--cover.grid--bottom-spaced
+                    .grid__tile(ng-repeat="similar in movie.similar.results", navigate='movie', n-data='{{similar}}')
+                        .grid__item
+                            .grid__image(style="background-image: url({{similar.poster_path | imagePath:'500'}})")
                             h1(color-from-image='{{similar.poster_path | imagePath:"500"}}') {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
     button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()", ripple)
