@@ -32,17 +32,17 @@ tabs.tabs.js-person-tabs
                 .no-data(ng-if='!person.profile_path && !person.birthday && !person.place_of_birth') No data available.
 
             .swiper-slide.person-details__tab--movies
-                .cover-grid
-                    .cover-grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie}}')
-                        .cover-grid__item
-                            .cover-grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
+                .grid.grid--cover.grid--spacing-bottom
+                    .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie}}')
+                        .grid__item
+                            .grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
                             h1(color-from-image='{{movie.poster_path | imagePath:"500"}}') {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos
-                ul.image-grid
-                    li.image-grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
-                        .image-grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
+                ul.grid.grid--image.grid--spacing-bottom
+                    li.grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
+                        .grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
                 .no-data(ng-if='!person.tagged_images.results.length') No data available.
 
             .swiper-slide.person-details__tab--bio
