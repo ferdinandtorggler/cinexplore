@@ -35,14 +35,14 @@ tabs.tabs.js-person-tabs
                 .grid.grid--cover.grid--spacing-bottom
                     .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie}}')
                         .grid__item
-                            .grid__image(style="background-image: url({{movie.poster_path | imagePath:'500'}})")
+                            .grid__image(style='background-image: url({{movie.poster_path | imagePath:"500"}})', show-on-image-loaded='{{movie.poster_path | imagePath:"500"}}')
                             h1(color-from-image='{{movie.poster_path | imagePath:"500"}}') {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos
                 ul.grid.grid--image.grid--spacing-bottom
                     li.grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
-                        .grid__image(style="background-image: url({{image.file_path | imagePath:'780'}})")
+                        .grid__image(style='background-image: url({{image.file_path | imagePath:"780"}})', show-on-image-loaded='{{image.file_path | imagePath:"780"}}')
                 .no-data(ng-if='!person.tagged_images.results.length') No data available.
 
             .swiper-slide.person-details__tab--bio

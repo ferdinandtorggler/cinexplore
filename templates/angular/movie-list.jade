@@ -2,7 +2,8 @@
 loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul
-        li.teaser.teaser--list-item.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', navigate='movie' n-data='{{movie}}', ng-class='{"teaser--divider": !$last}')
-            .teaser__content
-                h1.teaser__title {{movie.title}}
-                svg.teaser__chevron: use(xlink:href='icons/svgstore.svg#icon-chevron')
+        li
+            .teaser.teaser--list-item.movie-list__item(ng-repeat='movie in movies', style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', navigate='movie' n-data='{{movie}}', ng-class='{"teaser--divider": !$last}', show-on-image-loaded='{{ movie.backdrop_path | imagePath:"780" }})')
+                .teaser__content
+                    h1.teaser__title {{movie.title}}
+                    svg.teaser__chevron: use(xlink:href='icons/svgstore.svg#icon-chevron')
