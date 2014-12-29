@@ -29,6 +29,7 @@ require './directives/color-from-image'
 require './directives/ripple'
 require './directives/dominant-color'
 require './directives/close-detail'
+require './directives/show-on-image-loaded'
 
 require './filters/image-path'
 require './filters/youtube-url'
