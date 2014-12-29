@@ -3,7 +3,7 @@
         h1.teaser__title {{person.name}}
     button.detail-view__close(close-detail, ripple): svg: use(xlink:href='icons/svgstore.svg#icon-close')
 
-tabs.tabs.js-person-tabs
+tabs.tabs.js-person-tabs(ng-hide='loading')
     .tabs__indicator
     .tabs__container
         .tabs__tab(ripple) Info

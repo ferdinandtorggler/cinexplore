@@ -10,7 +10,7 @@
 .trailer(ng-if='movie.videos.results.length && trailerPlaying')
     iframe(ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
-tabs.tabs.js-movie-tabs
+tabs.tabs.js-movie-tabs(ng-show='loaded')
     .tabs__indicator(style='background-color: {{dominantColor}}')
     .tabs__container
         .tabs__tab(ripple) Info
