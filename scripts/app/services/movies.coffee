@@ -13,17 +13,23 @@ angular.module('Cinexplore').factory 'Movies', ($http) ->
     API_BASE = 'https://api.themoviedb.org/'
     cache = {}
 
-    fetch: (url, shouldBeCached = yes) ->
-      return cache[url] if cache[url]
-      promise = $http.jsonp url, params:
+    fetch: (url, page) ->
+      cacheKey = url + page
+      return cache[cacheKey] if cache[cacheKey]
+
+      params =
         api_key: TMDB_API_KEY
         callback: 'JSON_CALLBACK'
-      cache[url] = promise if shouldBeCached
+      params.page = page if page
+
+      promise = $http.jsonp url, params: params
+        
+      cache[cacheKey] = promise
       return promise
 
-    current:             -> @fetch "#{API_BASE}3/movie/now_playing"
-    upcoming:            -> @fetch "#{API_BASE}3/movie/upcoming"
-    popular:             -> @fetch "#{API_BASE}3/movie/popular"
+    current:      (page) -> @fetch "#{API_BASE}3/movie/now_playing", page
+    upcoming:     (page) -> @fetch "#{API_BASE}3/movie/upcoming", page
+    popular:      (page) -> @fetch "#{API_BASE}3/movie/popular", page
     people:      (movie) -> @fetch "#{API_BASE}3/movie/#{movie}/credits"
     detail:         (id) -> @fetch "#{API_BASE}3/movie/#{id}?append_to_response=similar,images,credits,videos"
     videos:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/videos"
