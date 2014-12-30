@@ -30,6 +30,7 @@ require './directives/ripple'
 require './directives/dominant-color'
 require './directives/close-detail'
 require './directives/show-on-image-loaded'
+require './directives/on-scroll-end'
 
 require './filters/image-path'
 require './filters/youtube-url'

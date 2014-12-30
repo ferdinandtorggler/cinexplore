@@ -25,6 +25,8 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, Movies) ->
       else if category
         Movies[category](scope.page).success handleResult
 
+    scope.fetchMovies = fetchMovies
+
     attrs.$observe 'mlCategory', (category) ->
       resetView()
       fetchMovies category
