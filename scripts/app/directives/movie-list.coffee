@@ -1,3 +1,15 @@
+#
+# Movie List - Directive
+#
+# This directive renders the template for the movie list and the associated data.
+# Parameters are used to control the data feched by the directive.
+#
+# Parameters:
+#     ml-category:   {string} A movie category (e.g. popular)
+#     ml-genre:      {number} A genre ID
+#     ml-genre-name: {string} The name of the genre when a genre ID is provided.
+#
+
 angular.module('Cinexplore').directive 'movieList', ($timeout, Movies) ->
   scope: yes
   restrict: 'EA'

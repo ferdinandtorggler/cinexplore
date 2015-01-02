@@ -1,3 +1,15 @@
+#
+# On Scroll End - Directive
+#
+# This attribute directive triggers a given action by evaluating an expression
+# against the current scope when scrolling towards the end of the contents of its
+# element.
+# Useful for lazy-loading additional content.
+#
+# Parameters:
+#     on-scroll-end: {expression} The action to trigger.
+#
+
 angular.module('Cinexplore').directive 'onScrollEnd', ($timeout) ->
 
 

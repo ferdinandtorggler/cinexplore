@@ -1,3 +1,16 @@
+#
+# Show On Image Loaded - Directive
+#
+# This attribute directive hides its element until a given image
+# is loaded. The element will get two classes in order to enable
+# CSS transitions as well:
+#     'show-on-image-loaded'         - immediately added, stays
+#     'show-on-image-loaded--hidden' - immediately added, removed when image is loaded
+#
+# Parameters:
+#       show-on-image-loaded: {string} The image url to load.
+#
+
 angular.module('Cinexplore').directive 'showOnImageLoaded', ->
 
   directiveClass = 'show-on-image-loaded'

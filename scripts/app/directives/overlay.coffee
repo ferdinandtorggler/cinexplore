@@ -1,3 +1,12 @@
+#
+# Overlay - Directive
+#
+# This directive adds the overlay template and handles overlay-visibility.
+#
+# Parameters:
+#       overlay-name: {string} The name of the overlay
+#
+
 angular.module('Cinexplore').directive 'overlay', ($animate, Overlays) ->
   restrict: 'EA'
   transclude: on

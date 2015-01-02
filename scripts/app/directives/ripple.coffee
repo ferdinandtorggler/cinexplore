@@ -1,3 +1,11 @@
+#
+# Ripple - Directive
+#
+# This attribute directive adds a material design style click effect to its element.
+# The color of the effect can be overwritten in the stylesheet via the 'ripple__ink' class.
+#
+#
+
 angular.module('Cinexplore').directive 'ripple', ($window, $timeout) ->
 
   inkClass = 'ripple__ink'
@@ -6,7 +14,7 @@ angular.module('Cinexplore').directive 'ripple', ($window, $timeout) ->
     position = $window.getComputedStyle(element).position
     element.style.position = 'relative' if position is 'static'
 
-  (scope, elem, attrs) ->
+  (scope, elem) ->
 
     elem = elem[0]
     makeContainer elem

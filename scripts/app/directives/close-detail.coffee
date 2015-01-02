@@ -1,3 +1,11 @@
+#
+# Close Detail - Directive
+#
+# This attribute directive adds a click listener to its element which closes the
+# detail-view by navigating back to the last visited list view.
+#
+#
+
 angular.module('Cinexplore').directive 'closeDetail', ($parse, Navigation) ->
   restrict: 'A'
   link: (scope, element, attrs) ->

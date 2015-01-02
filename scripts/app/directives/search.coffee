@@ -1,3 +1,11 @@
+#
+# Search - Directive
+#
+# This directive is used for the search view. It listens to the search field input
+# and searches the API for movies and people.
+#
+#
+
 angular.module('Cinexplore').directive 'search', (Movies) ->
   restrict: 'EA'
   controller: ($scope) ->

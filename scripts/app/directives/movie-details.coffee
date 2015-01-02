@@ -1,3 +1,17 @@
+#
+# Movie Details - Directive
+#
+# This directive contains the logic for the movie detail view. The main purpose is
+# fetching movie information and rendering it to the page using the appropriate
+# template.
+# If part of a movie's data is already available it can be passed to the directive, so
+# that part of the content shows up immediately. That data will eventually be completed.
+#
+# Parameters:
+#     movie-id:         {number} The movie id
+#     movie-basic-data: {object} Basic movie data, which is probably available from a list.
+#
+
 angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies, Navigation) ->
   scope: yes
   restrict: 'EA'

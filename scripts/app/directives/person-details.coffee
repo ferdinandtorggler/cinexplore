@@ -1,3 +1,12 @@
+#
+# Person Details - Directive
+#
+# This directive contains the logic for the person detail view. The main purpose is
+# fetching a person's information and rendering it to the page using the appropriate
+# template.
+#
+#
+
 angular.module('Cinexplore').directive 'personDetails', (Movies) ->
   scope: yes
   restrict: 'EA'

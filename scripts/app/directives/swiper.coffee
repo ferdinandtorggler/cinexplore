@@ -1,3 +1,16 @@
+#
+# Swiper - Directive
+#
+# This directive provides an interface to the iDangero.us Swiper API to its element.
+# The swiper supports tabs which can be linked to swiper pages. For custom interaction
+# with the swiper this directive exposes a variable which contains the Swiper object.
+# 
+# Parameters:
+#     s-options: {json} iDangerou.us Swiper configuration object.
+#     s-tabs:    {string} CSS selector of tabs if available.
+#     s-var:     {string} Variable name to expose the swiper variable.
+#
+
 angular.module('Cinexplore').directive 'swiper', ($parse, $timeout) ->
   restrict: 'EA'
   link: (scope, element, attrs) ->

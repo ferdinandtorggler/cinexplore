@@ -1,3 +1,14 @@
+#
+# Snap - Directive
+#
+# This attribute directive enables Snap.js functionality. Add the directive
+# to the main content to make it swipable.
+# 
+# Events:
+#     menu-open: Opens the menu
+#     menu-close: Closes the menu
+#
+
 angular.module('Cinexplore').directive 'snap', ($rootScope, Menu) ->
   (scope, element) ->
     snapper = new Snap
