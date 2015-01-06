@@ -19,7 +19,7 @@ html
             include templates/header
             main
                 include templates/offline
-                movie-list.movie-list.fade(ng-hide='offline', if-view='list',
+                movie-list.movie-list.fade(ng-hide='offline', show-if-view='list',
                             ml-category="{{viewData.category}}",
                             ml-genre="{{viewData.genre.id}}",
                             ml-genre-name="{{viewData.genre.name}}")
