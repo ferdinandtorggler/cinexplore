@@ -1,4 +1,5 @@
 .teaser.teaser--large(style='background-image: url({{ person.profile_path | imagePath:"780" }})', ng-if='!playing')
+    .teaser__shade
     .teaser__content
         h1.teaser__title {{person.name}}
     button.detail-view__close(close-detail, ripple): svg: use(xlink:href='icons/svgstore.svg#icon-close')

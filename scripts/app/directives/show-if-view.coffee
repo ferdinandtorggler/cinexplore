@@ -9,7 +9,7 @@
 #     show-if-view: {string} The name of the view on which the element should be shown
 #
 
-angular.module('Cinexplore').directive 'showIfView', (ngShowDirective, Navigation) ->
+angular.module('Cinexplore').directive 'showIfView', (Navigation) ->
   link: (scope, element, attrs) ->
     view = attrs.showIfView
 

@@ -3,7 +3,10 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul(on-scroll-end='fetchMovies({{viewData.category}}, {{viewData.genre.id || false}})')
         li(ng-repeat='movie in movies track by movie.id')
-            .teaser.teaser--list-item.movie-list__item(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})', navigate='movie' n-data='{{movie}}', show-on-image-loaded='{{ movie.backdrop_path | imagePath:"780" }})')
+            .teaser.teaser--list-item.movie-list__item(navigate='movie' n-data='{{movie}}')
+                .teaser__image-container(show-on-image-loaded='{{ movie.backdrop_path | imagePath:"780" }})')
+                    .teaser__image(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
+                    .teaser__shade
                 .teaser__content
                     h1.teaser__title {{movie.title}}
                     svg.teaser__chevron: use(xlink:href='icons/svgstore.svg#icon-chevron')
