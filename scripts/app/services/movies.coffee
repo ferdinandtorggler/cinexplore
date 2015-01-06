@@ -37,7 +37,7 @@ angular.module('Cinexplore').factory 'Movies', ($http) ->
     images:         (id) -> @fetch "#{API_BASE}3/movie/#{id}/images"
     person:         (id) -> @fetch "#{API_BASE}3/person/#{id}?append_to_response=movie_credits,tagged_images"
     genres:              -> @fetch "#{API_BASE}3/genre/movie/list"
-    genre:          (id) -> @fetch "#{API_BASE}3/genre/#{id}/movies"
+    genre:    (id, page) -> @fetch "#{API_BASE}3/genre/#{id}/movies", page
 
     search: (query, type = 'movie') ->
       query = encodeURIComponent query

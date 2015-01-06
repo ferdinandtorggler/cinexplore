@@ -16,8 +16,4 @@ angular.module('Cinexplore').directive 'showIfView', (Navigation) ->
     scope.$watch Navigation.current, ->
       current = Navigation.current()
       scope.viewData = current.data
-      console.log current.view
-      console.log view
-      console.log element[0]
-      console.log if current.view is view then 'remove' else 'add'
       element[0].classList[if current.view is view then 'remove' else 'add'] 'ng-hide'
