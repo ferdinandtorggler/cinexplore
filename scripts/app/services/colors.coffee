@@ -15,3 +15,8 @@ angular.module('Cinexplore').factory 'Colors', ($http) ->
       $http.jsonp BASE_URL, params:
         image: url
         callback: 'JSON_CALLBACK'
+
+    fromImages: (urls) ->
+      $http.jsonp BASE_URL, params:
+        images: urls.join(',')
+        callback: 'JSON_CALLBACK'

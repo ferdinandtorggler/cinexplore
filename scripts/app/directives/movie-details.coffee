@@ -12,7 +12,7 @@
 #     movie-basic-data: {object} Basic movie data, which is probably available from a list.
 #
 
-angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies, Navigation) ->
+angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filter, Movies, Navigation, Colors) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-details.html'
@@ -30,6 +30,9 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, Movies
         scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
         scope.loaded = yes
         scope.loading = no
+
+        colors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.poster_path, 92)
+        colors.success (res) -> scope.coverColors = res.colors
 
     scope.toggleTrailer = ->
       scope.trailerPlaying = !scope.trailerPlaying

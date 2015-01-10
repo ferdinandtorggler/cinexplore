@@ -37,7 +37,7 @@ tabs.tabs.js-person-tabs(ng-hide='loading')
                     .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{movie}}')
                         .grid__item
                             .grid__image(style='background-image: url({{movie.poster_path | imagePath:"500"}})', show-on-image-loaded='{{movie.poster_path | imagePath:"500"}}')
-                            h1(color-from-image='{{movie.poster_path | imagePath:"500"}}') {{movie.title}}
+                            h1(style='background-color: {{"#" + coverColors[$index]}};') {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos

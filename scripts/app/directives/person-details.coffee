@@ -7,7 +7,7 @@
 #
 #
 
-angular.module('Cinexplore').directive 'personDetails', (Movies) ->
+angular.module('Cinexplore').directive 'personDetails', ($filter, Movies, Colors) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'person-details.html'
@@ -18,5 +18,8 @@ angular.module('Cinexplore').directive 'personDetails', (Movies) ->
       Movies.person(attrs.personId).success (person) ->
         scope.person = person
         scope.loading = no
+
+        colorsPromise = Colors.fromImages person.movie_credits.cast.map (item) -> $filter('imagePath')(item.poster_path, 92)
+        colorsPromise.success (res) -> scope.coverColors = res.colors
 
     attrs.$observe 'personId', fetchInfos
