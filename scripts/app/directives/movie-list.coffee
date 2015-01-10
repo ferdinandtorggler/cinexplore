@@ -10,7 +10,7 @@
 #     ml-genre-name: {string} The name of the genre when a genre ID is provided.
 #
 
-angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movies) ->
+angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movies, Navigation) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-list.html'
@@ -49,7 +49,10 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movie
 
     scope.fetchMovies = fetchMovies
 
+    lastCategory = off
     attrs.$observe 'mlCategory', (category) ->
+      return if lastCategory and category is lastCategory
+      lastCategory = category if category
       if category
         resetView()
         fetchMovies category
