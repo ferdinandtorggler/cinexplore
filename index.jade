@@ -13,10 +13,10 @@ html
         script(src='scripts/app.js')
         title Cinexplore
     body(back-button, offline)
+        include templates/header
         menu.menu
         div(snap, ng-cloak)
             close-menu
-            include templates/header
             main
                 include templates/offline
                 movie-list.movie-list.fade(ng-hide='offline', show-if-view='list',
@@ -25,5 +25,5 @@ html
                             ml-genre-name="{{viewData.genre.name}}")
                 include templates/about
                 include templates/search
-            movie-details.detail-view.fade(data-snap-ignore='true', ng-hide='offline', if-view='movie', movie-id="{{viewData.id}}", movie-basic-data='{{viewData}}', dominant-color dc-image-url='{{ movie.backdrop_path | imagePath:"92" }}', dc-var='dominantColor')
-            person-details.detail-view.fade(data-snap-ignore='true', ng-hide='offline', if-view='person', person-id="{{viewData.id}}")
+        movie-details.detail-view.fade(data-snap-ignore='true', ng-hide='offline', if-view='movie', movie-id="{{viewData.id}}", movie-basic-data='{{viewData}}', dominant-color dc-image-url='{{ movie.backdrop_path | imagePath:"92" }}', dc-var='dominantColor')
+        person-details.detail-view.fade(data-snap-ignore='true', ng-hide='offline', if-view='person', person-id="{{viewData.id}}")
