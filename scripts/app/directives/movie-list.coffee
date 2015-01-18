@@ -69,3 +69,8 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filt
         resetView()
         fetchMovies 'genre', genre
         $timeout -> setTitle attrs.mlGenreName # let name rendering happen first
+
+    scope.$on 'movie-list-fetch-more', ->
+      id = if scope.viewData?.genre?.id then scope.viewData.genre.id else null
+      category = if scope.viewData.category then scope.viewData.category else null
+      fetchMovies category, id

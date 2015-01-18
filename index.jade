@@ -23,7 +23,7 @@ html
 
         script(src='scripts/app.js')
 
-    body
+    body(broadcast-on-scroll-end='movie-list-fetch-more')
         include templates/header
         menu.menu
         div(snap, ng-cloak)
