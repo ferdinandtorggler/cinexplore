@@ -37,4 +37,5 @@ angular.module('Cinexplore').directive 'ripple', ($window, $timeout) ->
       ink.style.top = "#{y}px"
       ink.style.left = "#{x}px"
       ink.classList.add 'animate'
+      $timeout (-> ink.classList.remove 'animate'), 650
 
