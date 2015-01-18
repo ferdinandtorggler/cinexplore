@@ -14,6 +14,7 @@ angular.module('Cinexplore').directive 'personDetails', ($filter, Movies, Colors
   link: (scope, elem, attrs) ->
 
     fetchInfos = ->
+      Colors.resetUIColor()
       scope.loading = yes
       Movies.person(attrs.personId).success (person) ->
         scope.person = person

@@ -3,7 +3,7 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul(on-scroll-end='fetchMovies({{viewData.category || "null"}}, {{viewData.genre.id || false}})')
         li(ng-repeat='movie in movies track by movie.id')
-            .teaser.teaser--list-item.movie-list__item(navigate='movie' n-data='{{movie}}')
+            .teaser.teaser--list-item.movie-list__item(navigate='movie' n-data='{{ {movie: movie, color: "#"+colors[$index]} }}')
                 .teaser__image-container(show-on-image-loaded='{{ movie.backdrop_path | imagePath:"780" }})')
                     .teaser__image(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
                     .teaser__shade

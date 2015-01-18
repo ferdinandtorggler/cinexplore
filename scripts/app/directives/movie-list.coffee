@@ -10,13 +10,13 @@
 #     ml-genre-name: {string} The name of the genre when a genre ID is provided.
 #
 
-angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movies, Navigation) ->
+angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filter, Movies, Navigation, Colors) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-list.html'
   link: (scope, elem, attrs) ->
 
-
+    scope.colors = []
     capitalize = (string) -> string.charAt(0).toUpperCase() + string.slice 1
     setTitle = (title) -> scope.title = capitalize title
     fetching = no
@@ -27,6 +27,11 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movie
       else
         scope.loading = yes if scope.page is 1
 
+    extractColors = (movies) ->
+      return unless movies
+      promise = Colors.fromImages movies.map (item) -> $filter('imagePath')(item.backdrop_path, 300)
+      promise.success (res) -> scope.colors = res.colors
+
     resetView = ->
       scope.page = 1
       scope.movies = []
@@ -34,6 +39,7 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, Movie
     handleResult = (data) ->
       toggleLoadingIndicator()
       scope.movies = scope.movies.concat data.results
+      extractColors scope.movies
       scope.page = data.page + 1 if data.page
       fetching = no
 

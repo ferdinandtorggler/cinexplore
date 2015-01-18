@@ -18,11 +18,27 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
   templateUrl: 'movie-details.html'
   link: (scope, elem, attrs) ->
 
+    setUIColor = (color) ->
+      return unless Colors.isValidHex color
+      Colors.setUIColor color
+      scope.dominantColor = color
+
     applyBasicMovieInfos = (basicData) ->
       scope.loaded = no
       scope.movie = $parse(basicData)()
 
+    fetchUIColor = (movie) ->
+      uiColor = Colors.fromImage $filter('imagePath')(movie.backdrop_path, 300)
+      uiColor.success (res) -> setUIColor res.color
+
+    fetchSimilarMoviesColors = (movie) ->
+      coverColors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.poster_path, 92)
+      backdropColors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.backdrop_path, 300)
+      coverColors.success (res) -> scope.coverColors = res.colors
+      backdropColors.success (res) -> scope.backdropColors = res.colors
+
     fetchInfos = ->
+      setUIColor scope.viewData.color
       scope.loading = yes
       scope.swiper.swipeTo 0 if scope.swiper
       Movies.detail(attrs.movieId).success (movie) ->
@@ -30,9 +46,8 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
         scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
         scope.loaded = yes
         scope.loading = no
-
-        colors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.poster_path, 92)
-        colors.success (res) -> scope.coverColors = res.colors
+        fetchSimilarMoviesColors movie
+        fetchUIColor movie unless scope.dominantColor
 
     scope.toggleTrailer = ->
       scope.trailerPlaying = !scope.trailerPlaying

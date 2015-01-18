@@ -9,7 +9,7 @@ search.search(if-view='search')
         .swiper-wrapper
             .swiper-slide
                 ul.list.list--dividers.list--ellipsis
-                    li(ng-repeat="result in movies", navigate='movie', n-data='{{result}}', ripple)
+                    li(ng-repeat="result in movies", navigate='movie', n-data='{{ {movie: result} }}', ripple)
                         .list__thumbnail(style="background-image: url({{result.poster_path | imagePath:'185'}})")
                         .list__text
                             span.list__main-line {{result.title}}
