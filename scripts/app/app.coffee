@@ -1,5 +1,7 @@
-initialize = require './initialize'
-initialize()
+APP_NAME = 'Cinexplore'
+APP_DEPENDENCIES = ['ngAnimate']
+
+angular.module APP_NAME, APP_DEPENDENCIES
 
 require './services/movies'
 require './services/navigation'
@@ -20,8 +22,6 @@ require './directives/menu'
 require './directives/close-menu'
 require './directives/open-menu'
 require './directives/loading'
-require './directives/back-button'
-require './directives/offline'
 require './directives/navigate'
 require './directives/if-view'
 require './directives/show-if-view'

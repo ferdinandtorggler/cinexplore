@@ -1,7 +1,10 @@
 doctype
-html
+html(ng-app='Cinexplore')
     head
+        title Cinexplore
+
         meta(charset='UTF-8')
+
         meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
         meta(name='theme-color', content='{{uiColor}}')
 
@@ -10,13 +13,13 @@ html
 
         link(rel='icon', type='image/png', href='images/icon.png')
         link(rel='stylesheet', href='stylesheets/style.css')
-        script(src='cordova.js')
+
         script(src='scripts/idangerous.swiper.min.js')
         script(src='scripts/snap.min.js')
         script(src='scripts/angular.min.js')
         script(src='scripts/angular-animate.min.js')
         script(src='scripts/app.js')
-        title Cinexplore
+
     body(back-button, offline)
         include templates/header
         menu.menu
