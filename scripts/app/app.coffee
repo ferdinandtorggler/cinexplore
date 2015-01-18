@@ -1,7 +1,8 @@
 APP_NAME = 'Cinexplore'
-APP_DEPENDENCIES = ['ngAnimate']
+APP_DEPENDENCIES = ['ngAnimate', 'ngRoute']
 
 angular.module APP_NAME, APP_DEPENDENCIES
+setTimeout -> angular.bootstrap document, [APP_NAME]
 
 require './services/movies'
 require './services/navigation'
@@ -35,3 +36,4 @@ require './directives/on-scroll-end'
 
 require './filters/image-path'
 require './filters/youtube-url'
+
