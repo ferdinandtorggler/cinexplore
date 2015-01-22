@@ -3,7 +3,7 @@ APP_DEPENDENCIES = ['ngAnimate', 'ngRoute']
 
 angular.module APP_NAME, APP_DEPENDENCIES
 setTimeout ->
-    angular.bootstrap document, [APP_NAME]
+  angular.bootstrap document, [APP_NAME]
 
 require './router'
 
@@ -12,6 +12,7 @@ require './services/navigation'
 require './services/overlays'
 require './services/menu'
 require './services/colors'
+require './services/view'
 
 require './directives/movie-list'
 require './directives/movie-details'

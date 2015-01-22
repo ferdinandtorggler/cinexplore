@@ -12,7 +12,7 @@
 #     movie-basic-data: {object} Basic movie data, which is probably available from a list.
 #
 
-angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filter, Movies, Navigation, Colors) ->
+angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filter, Movies, View, Colors) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-details.html'
@@ -25,7 +25,8 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
 
     applyBasicMovieInfos = (basicData) ->
       scope.loaded = no
-      scope.movie = $parse(basicData)()
+      scope.movie = basicData.movie
+      setUIColor basicData.color if basicData.color
 
     fetchUIColor = (movie) ->
       uiColor = Colors.fromImage $filter('imagePath')(movie.backdrop_path, 300)
@@ -37,11 +38,10 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
       coverColors.success (res) -> scope.coverColors = res.colors
       backdropColors.success (res) -> scope.backdropColors = res.colors
 
-    fetchInfos = ->
-      setUIColor scope.viewData.color
+    fetchInfos = (id) ->
       scope.loading = yes
       scope.swiper.swipeTo 0 if scope.swiper
-      Movies.detail(attrs.movieId).success (movie) ->
+      Movies.detail(id).success (movie) ->
         scope.movie = movie
         scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
         scope.loaded = yes
@@ -52,5 +52,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
     scope.toggleTrailer = ->
       scope.trailerPlaying = !scope.trailerPlaying
 
-    attrs.$observe 'movieBasicData', applyBasicMovieInfos
-    attrs.$observe 'movieId', fetchInfos
+    scope.$watch View.params, (params) ->
+      scope.loaded = no
+      applyBasicMovieInfos View.getData()
+      fetchInfos params.id

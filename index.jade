@@ -26,15 +26,11 @@ html
     body(broadcast-on-scroll-end='movie-list-fetch-more')
         include templates/header
         ng-view
-        menu.menu
-        div(snap, ng-cloak)
+        div
             close-menu
             main
-                movie-list.movie-list.fade(show-if-view='list',
-                            ml-category="{{viewData.category}}",
-                            ml-genre="{{viewData.genre.id}}",
-                            ml-genre-name="{{viewData.genre.name}}")
+                movie-list.movie-list.fade(show-if-view='list')
                 include templates/about
                 include templates/search
-        movie-details.detail-view.fade(data-snap-ignore='true', if-view='movie', movie-id="{{viewData.movie.id}}", movie-basic-data='{{viewData.movie}}', movie-color='{{viewData.color}}')
-        person-details.detail-view.fade(data-snap-ignore='true', if-view='person', person-id="{{viewData.id}}")
+        movie-details.detail-view.fade(if-view='detail.movie')
+        person-details.detail-view.fade(if-view='detail.person')

@@ -10,7 +10,7 @@
 #     ml-genre-name: {string} The name of the genre when a genre ID is provided.
 #
 
-angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filter, Movies, Navigation, Colors) ->
+angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filter, Movies, View, Colors) ->
   scope: yes
   restrict: 'EA'
   templateUrl: 'movie-list.html'
@@ -18,7 +18,7 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filt
 
     scope.colors = []
     capitalize = (string) -> string.charAt(0).toUpperCase() + string.slice 1
-    setTitle = (title) -> scope.title = capitalize title
+    setTitle = (title) -> scope.title = capitalize title if title
     fetching = no
 
     toggleLoadingIndicator = ->
@@ -56,18 +56,21 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filt
     scope.fetchMovies = fetchMovies
 
     lastCategory = off
-    attrs.$observe 'mlCategory', (category) ->
-      return if lastCategory and category is lastCategory
-      lastCategory = category if category
-      if category
+    scope.$watch View.contentType, (contentType) ->
+      params = View.params()
+
+      if contentType is 'category'
+        category = params.category
+        console.log category
+        return if lastCategory and category is lastCategory
+        lastCategory = category if category
         resetView()
         fetchMovies category
         setTitle category
 
-    attrs.$observe 'mlGenre', (genre) ->
-      if genre
+      if contentType is 'genre'
         resetView()
-        fetchMovies 'genre', genre
+        fetchMovies 'genre', params.genreId
         $timeout -> setTitle attrs.mlGenreName # let name rendering happen first
 
     scope.$on 'movie-list-fetch-more', ->

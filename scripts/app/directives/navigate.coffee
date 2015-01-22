@@ -4,15 +4,14 @@
 # This attribute directive adds a click listener which navigates to a given view.
 #
 # Parameters:
-#     navigate:        {string} A view identifier.
-#     n-data:          {json} Data which can be accessed from the view as 'viewData'
-#     n-clear-history: {boolean} The navigation clears all history when 'true'.
-#                                Useful when navigating to the main view.
+#     navigate: {string} A route.
+#     n-data:   {json} Data which can be accessed using the View service as View.getData()
 #
 
-angular.module('Cinexplore').directive 'navigate', ($parse, Navigation) ->
+angular.module('Cinexplore').directive 'navigate', ($parse, $location, View) ->
   restrict: 'A'
   link: (scope, element, attrs) ->
     element[0].addEventListener 'click', ->
       scope.$apply ->
-        Navigation.navigate attrs.navigate, $parse(attrs.nData)(), $parse(attrs.nClearHistory)()
+        View.setData $parse(attrs.nData)()
+        $location.path attrs.navigate

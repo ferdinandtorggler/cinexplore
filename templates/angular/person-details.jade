@@ -34,7 +34,7 @@ tabs.tabs.js-person-tabs(ng-hide='loading')
 
             .swiper-slide.person-details__tab--movies
                 .grid.grid--cover.grid--spacing-bottom
-                    .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='movie', n-data='{{ {movie: movie} }}')
+                    .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='/movie/{{movie.id}}', n-data='{{ {movie: movie} }}')
                         .grid__item
                             .grid__image(style='background-image: url({{movie.poster_path | imagePath:"500"}})', show-on-image-loaded='{{movie.poster_path | imagePath:"500"}}')
                             h1(style='background-color: {{"#" + coverColors[$index]}};') {{movie.title}}

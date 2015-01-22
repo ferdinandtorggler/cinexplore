@@ -74,7 +74,7 @@ tabs.tabs.js-movie-tabs(ng-show='loaded')
 
             .swiper-slide.movie-details__tab--cast
                 ul.list.list--dividers.list--ellipsis
-                    li(ng-repeat="person in movie.credits.cast", navigate='person', n-data='{{person}}', ripple)
+                    li(ng-repeat="person in movie.credits.cast", navigate='/person/{{person.id}}', n-data='{{person}}', ripple)
                         .list__thumbnail(style='background-image: url({{person.profile_path | imagePath:"185"}})', show-on-image-loaded='{{person.profile_path | imagePath:"185"}}')
                         .list__text
                             span.list__main-line {{person.name}}
@@ -83,7 +83,7 @@ tabs.tabs.js-movie-tabs(ng-show='loaded')
 
             .swiper-slide.movie-details__tab--similar
                 .grid.grid--cover.grid--bottom-spaced
-                    .grid__tile(ng-repeat="similar in movie.similar.results", navigate='movie', n-data='{{ {movie: similar, color: "#" + backdropColors[$index]} }}')
+                    .grid__tile(ng-repeat="similar in movie.similar.results", navigate='/movie/{{similar.id}}', n-data='{{ {movie: similar, color: "#" + backdropColors[$index]} }}')
                         .grid__item
                             .grid__image(style='background-image: url({{similar.poster_path | imagePath:"500"}})', show-on-image-loaded='{{similar.poster_path | imagePath:"500"}}')
                             h1(style='background-color: {{"#" + coverColors[$index]}};') {{similar.title}}
