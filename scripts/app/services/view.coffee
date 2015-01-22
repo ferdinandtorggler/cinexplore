@@ -5,7 +5,7 @@
 #
 #
 
-angular.module('Cinexplore').factory 'View', ($routeParams, $route, $rootScope) ->
+angular.module('Cinexplore').factory 'View', ($routeParams, $route, $rootScope, $location) ->
 
   new class View
 
@@ -15,15 +15,19 @@ angular.module('Cinexplore').factory 'View', ($routeParams, $route, $rootScope) 
     viewData = off
     params = off
 
+    lastListRoute = '/'
+
     $rootScope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
 
-      fragments = $route.current.view?.split '.'
+      fragments = $route.current?.view?.split '.'
       overlay = $route.current.overlay
 
       params = $route.current.params
 
       type = fragments?[0]
       contentType = fragments?[1]
+
+      lastListRoute = $location.path() if type is 'list'
 
     type: -> type
     contentType: -> contentType
@@ -33,3 +37,5 @@ angular.module('Cinexplore').factory 'View', ($routeParams, $route, $rootScope) 
 
     getData: -> viewData
     setData: (data) -> viewData = data
+
+    toList: -> $location.path lastListRoute

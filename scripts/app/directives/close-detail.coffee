@@ -6,8 +6,8 @@
 #
 #
 
-angular.module('Cinexplore').directive 'closeDetail', ($parse, Navigation) ->
+angular.module('Cinexplore').directive 'closeDetail', ($parse, View) ->
   restrict: 'A'
   link: (scope, element, attrs) ->
     element[0].addEventListener 'click', ->
-      scope.$apply -> Navigation.toList()
+      scope.$apply -> View.toList()
