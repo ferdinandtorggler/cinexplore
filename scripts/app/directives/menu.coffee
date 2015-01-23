@@ -9,5 +9,9 @@
 angular.module('Cinexplore').directive 'menu', (Movies) ->
   restrict: 'EA'
   templateUrl: 'menu.html'
-  controller: ($scope) ->
+  controller: ($scope, $rootScope) ->
+
+    $rootScope.$on 'menu-open', -> $scope.open = true
+    $rootScope.$on 'menu-close', -> $scope.open = false
+
     Movies.genres().success (data) -> $scope.genres = data.genres

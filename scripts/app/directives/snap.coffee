@@ -23,6 +23,3 @@ angular.module('Cinexplore').directive 'snap', ($rootScope, Menu) ->
         Menu.open()
       else
         Menu.close()
-
-    $rootScope.$on 'menu-open', -> snapper.open 'left'
-    $rootScope.$on 'menu-close', -> snapper.close 'left'

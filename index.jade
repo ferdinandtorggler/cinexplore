@@ -24,8 +24,9 @@ html
         script(src='scripts/app.js')
 
     body(broadcast-on-scroll-end='movie-list-fetch-more')
-        include templates/header
         ng-view
+        include templates/header
+        menu.menu(ng-show='open')
         div
             close-menu
             main
