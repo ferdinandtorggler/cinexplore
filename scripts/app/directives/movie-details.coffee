@@ -30,9 +30,10 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
 
     fetchUIColor = (movie) ->
       uiColor = Colors.fromImage $filter('imagePath')(movie.backdrop_path, 300)
-      uiColor.success (res) -> setUIColor res.color
+      uiColor.success (res) -> setUIColor "##{res.color}"
 
     fetchSimilarMoviesColors = (movie) ->
+      return unless movie.similar.results.length
       coverColors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.poster_path, 92)
       backdropColors = Colors.fromImages movie.similar.results.map (item) -> $filter('imagePath')(item.backdrop_path, 300)
       coverColors.success (res) -> scope.coverColors = res.colors
