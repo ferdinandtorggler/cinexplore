@@ -53,3 +53,4 @@ angular.module('Cinexplore').config ($routeProvider) ->
   ]
 
   routes.forEach (routeConfig) -> $routeProvider.when routeConfig.route, routeConfig.data
+  $routeProvider.otherwise redirectTo: 'movies/category/popular'
