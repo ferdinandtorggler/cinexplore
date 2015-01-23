@@ -1,0 +1,19 @@
+.menu-expand-animation
+    transition all .15s linear
+    transform-origin 0 0
+
+    &.ng-hide-remove
+        transform scale(0)
+        opacity 0
+        
+    &.ng-hide-remove-active
+        transform scale(1)
+        opacity 1
+        
+    &.ng-hide-add
+        transform scale(1)
+        opacity 1
+        
+    &.ng-hide-add-active
+        transform scale(0)
+        opacity 0

@@ -26,7 +26,7 @@ html
     body(broadcast-on-scroll-end='movie-list-fetch-more')
         ng-view
         include templates/header
-        menu.menu.fade(ng-show='open')
+        menu.menu.menu-expand-animation(ng-show='open')
         div
             div.menu-background(ng-if='$root.menuOpen', close-menu)
             main
