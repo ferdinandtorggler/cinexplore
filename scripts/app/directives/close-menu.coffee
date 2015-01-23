@@ -9,5 +9,5 @@
 angular.module('Cinexplore').directive 'closeMenu', ->
   restrict: 'EA'
   link: (scope, element) ->
-    element[0].addEventListener 'click', ->
-      scope.$emit 'menu-close'
+    element.on 'click', ->
+      scope.$apply -> scope.$emit 'menu-close'
