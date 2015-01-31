@@ -9,7 +9,7 @@ angular.module('Cinexplore').factory 'Colors', ($http, $rootScope) ->
 
   BASE_URL = 'http://dominantcolor.herokuapp.com/api/'
   HEX_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
-  $rootScope.PRIMARY_COLOR = '#FFC026'
+  $rootScope.PRIMARY_COLOR = '#455A64'
   setUIToPrimaryColor = -> $rootScope.uiColor = $rootScope.PRIMARY_COLOR
   isValidHex = (color) -> HEX_COLOR_REGEX.test color
   setUIToPrimaryColor()
