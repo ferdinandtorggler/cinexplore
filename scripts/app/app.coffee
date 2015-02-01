@@ -1,5 +1,5 @@
 APP_NAME = 'Cinexplore'
-APP_DEPENDENCIES = ['ngAnimate', 'ngRoute']
+APP_DEPENDENCIES = ['ngAnimate', 'ngRoute', 'matchmedia-ng']
 
 angular.module APP_NAME, APP_DEPENDENCIES
 setTimeout ->
