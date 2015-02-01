@@ -6,6 +6,16 @@
     &--large
         height height-teaser-expanded
 
+        @media mq-restricted-height
+            height height-header
+
+            .teaser__title
+                top 0
+                left 57px
+                line-height @height
+                font-family Roboto
+                font-size font-size-header
+
     &__image
         position absolute
         top 0
