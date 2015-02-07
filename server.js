@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
     if (req.device.type === 'desktop') {
-        res.send('hi desktops');
+        res.render('desktop/index');
     } else {
         res.render('mobile/index');
     }

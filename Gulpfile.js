@@ -31,6 +31,7 @@ var coffeelint = require('gulp-coffeelint');
 var styles = {
     all: 'styles/**/*.styl',
     mobile: 'styles/app/mobile/main.styl',
+    desktop: 'styles/app/desktop/main.styl',
     vendor: 'styles/vendor/*.css',
     dest: 'public/stylesheets',
     destFile: 'public/stylesheets/style.css'
@@ -42,18 +43,19 @@ var scripts = {
       src: 'scripts/app/mobile/**/*.coffee',
       app: 'scripts/app/mobile/app.coffee'
     },
+    desktop: {
+      src: 'scripts/app/desktop/**/*.coffee',
+      app: 'scripts/app/desktop/app.coffee'
+    },
     vendor: 'scripts/vendor/**/*.js',
     dest: 'public/scripts/'
 };
 
 var templates = {
-    all: ['templates/mobile/**/*.jade', 'index.jade'],
-    watch: ['templates/**/*.jade', 'index.jade'],
-    dest: 'public/',
-    angular: {
-      mobile: 'templates/mobile/**/*.jade',
-      dest: 'public/templates/'
-    }
+    watch: 'templates/**/*.jade',
+    mobile: 'templates/mobile/**/*.jade',
+    desktop: 'templates/desktop/**/*.jade',
+    dest: 'public/templates/'
 };
 
 var fonts = {
@@ -72,6 +74,45 @@ var icons = {
 };
 
 console.log('USING ' + (argv.production ? 'PRODUCTION' : 'DEVELOPMENT') + ' SETTINGS')
+
+var processStyles = function (src, outputName) {
+    var mobile = gulp.src(src)
+        .pipe(stylus()).on('error', gutil.log);
+    var vendor = gulp.src(styles.vendor);
+    es.concat(vendor, mobile).on('error', gutil.log)
+        .pipe(concat(outputName))
+        .pipe(cssmin())
+        .pipe(autoprefix('last 1 version'))
+        .pipe(gulp.dest(styles.dest));
+};
+
+var processScripts = function (src, outputName) {
+    gulp.src(scripts.vendor)
+      .pipe(concat('vendor.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest(scripts.dest));
+
+    return gulp.src(src, { read: false })
+      .pipe(browserify({
+        transform: ['coffeeify'],
+        extensions: ['.coffee']
+      })).on('error', gutil.log)
+      .pipe(gulpif(!argv.production, sourcemaps.init() ))
+      .pipe(rename(outputName))
+      .pipe(ngAnnotate({
+        add: true
+      }))
+      .pipe(uglify())
+      .pipe(gulpif(!argv.production, sourcemaps.write() ))
+      .pipe(gulp.dest(scripts.dest));
+};
+
+var processTemplates = function (src, outputName) {
+  return gulp.src(src)
+      .pipe(jade())
+      .pipe(templateCache(outputName, {standalone: true}))
+      .pipe(gulp.dest(templates.dest));
+};
 
 gulp.task('clean', function () {
   return gulp.src('public', {read: false}).pipe(clean());
@@ -112,36 +153,13 @@ gulp.task('images', function () {
 });
 
 gulp.task('styles', function () {
-    var mobile = gulp.src(styles.mobile)
-        .pipe(stylus()).on('error', gutil.log);
-    var vendor = gulp.src(styles.vendor);
-    return es.concat(vendor, mobile).on('error', gutil.log)
-        .pipe(concat('mobile.css'))
-        .pipe(cssmin())
-        .pipe(autoprefix('last 1 version'))
-        .pipe(gulp.dest(styles.dest));
+    processStyles(styles.mobile, 'mobile.css');
+    processStyles(styles.desktop, 'desktop.css');
 });
 
 gulp.task('scripts', function () {
-
-    gulp.src(scripts.vendor)
-      .pipe(concat('vendor.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest(scripts.dest));
-
-    return gulp.src(scripts.mobile.app, { read: false })
-      .pipe(browserify({
-        transform: ['coffeeify'],
-        extensions: ['.coffee']
-      })).on('error', gutil.log)
-      .pipe(gulpif(!argv.production, sourcemaps.init() ))
-      .pipe(rename('mobile.js'))
-      .pipe(ngAnnotate({
-        add: true
-      }))
-      .pipe(uglify())
-      .pipe(gulpif(!argv.production, sourcemaps.write() ))
-      .pipe(gulp.dest(scripts.dest));
+    processScripts(scripts.mobile.app, 'mobile.js');
+    processScripts(scripts.desktop.app, 'desktop.js');
 });
 
 gulp.task('lint-coffeescript', function () {
@@ -151,16 +169,8 @@ gulp.task('lint-coffeescript', function () {
 });
 
 gulp.task('templates', function () {
-    return gulp.src(templates.all)
-      .pipe(jade({}))
-      .pipe(gulp.dest(templates.dest));
-});
-
-gulp.task('angular-templates', function () {
-  return gulp.src(templates.angular.mobile)
-      .pipe(jade())
-      .pipe(templateCache('mobile.js', {standalone: true}))
-      .pipe(gulp.dest(templates.angular.dest));
+  processTemplates(templates.mobile, 'mobile.js');
+  processTemplates(templates.desktop, 'desktop.js');
 });
 
 gulp.task('check-unused-css', function () {
@@ -180,7 +190,7 @@ gulp.task('watch', function () {
     var server = livereload();
     gulp.watch(styles.all, ['styles', 'check-unused-css']);
     gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
-    gulp.watch(templates.watch, ['angular-templates']);
+    gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
     gulp.watch('public/**').on('change', function (file) {
         server.changed(file.path);
@@ -188,7 +198,7 @@ gulp.task('watch', function () {
 })
 
 gulp.task('build', function () {
-    gulp.start('styles', 'scripts', 'angular-templates', 'icons', 'fonts', 'images');
+    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts', 'images');
 });
 
 gulp.task('default', [  'build',
