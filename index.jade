@@ -12,24 +12,24 @@ html
         meta(name='mobile-web-app-capable', content='yes')
 
         link(rel='icon', type='image/png', href='images/icon.png')
-        link(rel='stylesheet', href='stylesheets/style.css')
+        link(rel='stylesheet', href='stylesheets/mobile.css')
 
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js')
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-animate.min.js')
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.min.js')
 
         script(src='scripts/vendor.js')
-        script(src='scripts/app.js')
+        script(src='scripts/mobile.js')
 
     body(broadcast-on-scroll-end='movie-list-fetch-more')
         ng-view
-        include templates/header
+        include templates/mobile/header
         menu.menu.menu-expand-animation(ng-show='open')
         div
             div.menu-background(ng-if='$root.menuOpen', close-menu)
             main
                 movie-list.movie-list.fade(show-if-view='list')
-                include templates/about
-                include templates/search
+                include templates/mobile/about
+                include templates/mobile/search
         movie-details.detail-view.fade(if-view='detail.movie')
         person-details.detail-view.fade(if-view='detail.person')

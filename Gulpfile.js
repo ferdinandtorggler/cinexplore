@@ -27,8 +27,8 @@ var coffeelint = require('gulp-coffeelint');
 
 
 var styles = {
-    app: 'styles/main.styl',
-    watch: 'styles/**/*.styl',
+    all: 'styles/**/*.styl',
+    mobile: 'styles/app/mobile/main.styl',
     vendor: 'styles/vendor/*.css',
     dest: 'public/stylesheets',
     destFile: 'public/stylesheets/style.css'
@@ -36,13 +36,16 @@ var styles = {
 
 var scripts = {
     all: 'scripts/**/*.coffee',
+    mobile: {
+      src: 'scripts/app/mobile/**/*.coffee',
+      app: 'scripts/app/mobile/app.coffee'
+    },
     vendor: 'scripts/vendor/**/*.js',
-    app: 'scripts/app/app.coffee',
     dest: 'public/scripts/'
 };
 
 var templates = {
-    all: ['templates/angular/**/*.jade', 'index.jade'],
+    all: ['templates/mobile/angular/**/*.jade', 'index.jade'],
     watch: ['templates/**/*.jade', 'index.jade'],
     dest: 'public/'
 };
@@ -99,11 +102,11 @@ gulp.task('images', function () {
 });
 
 gulp.task('styles', function () {
-    var app = gulp.src(styles.app)
+    var mobile = gulp.src(styles.mobile)
         .pipe(stylus()).on('error', gutil.log);
     var vendor = gulp.src(styles.vendor);
-    return es.concat(vendor, app).on('error', gutil.log)
-        .pipe(concat('style.css'))
+    return es.concat(vendor, mobile).on('error', gutil.log)
+        .pipe(concat('mobile.css'))
         .pipe(cssmin())
         .pipe(autoprefix('last 1 version'))
         .pipe(gulp.dest(styles.dest));
@@ -116,13 +119,13 @@ gulp.task('scripts', function () {
       .pipe(uglify())
       .pipe(gulp.dest(scripts.dest));
 
-    gulp.src(scripts.app, { read: false })
+    gulp.src(scripts.mobile.app, { read: false })
       .pipe(browserify({
         transform: ['coffeeify'],
         extensions: ['.coffee']
       })).on('error', gutil.log)
       .pipe(gulpif(!argv.production, sourcemaps.init() ))
-      .pipe(rename('app.js'))
+      .pipe(rename('mobile.js'))
       .pipe(ngAnnotate({
         add: true
       }))
@@ -158,7 +161,7 @@ gulp.task('connect', function() {
 
 gulp.task('watch', function () {
     var server = livereload();
-    gulp.watch(styles.watch, ['styles', 'check-unused-css']);
+    gulp.watch(styles.all, ['styles', 'check-unused-css']);
     gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
     gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
