@@ -7,10 +7,15 @@ html
 
         link(rel='icon', type='image/png', href='images/icon.png')
         link(rel='stylesheet', href='stylesheets/desktop.css')
+        link(href='http://fonts.googleapis.com/css?family=Roboto:100', rel='stylesheet', type='text/css')
 
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js')
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-animate.min.js')
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.min.js')
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TimelineLite.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/CSSPlugin.min.js')
 
         script(src='scripts/vendor.js')
         script(src='templates/desktop.js')
@@ -18,4 +23,7 @@ html
 
     body
         ng-view
-        div
+        main-loading.main-loading.fade(ng-show='show')
+            div(ng-cloak)
+                include ../../icons/logo-hollow.svg
+                h1 Cinexplore
