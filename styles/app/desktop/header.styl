@@ -1,0 +1,50 @@
+.header
+    height header-height
+    background-color color-primary
+    
+    &--opaque
+        background none
+        background-image color-header-opaque
+
+    .header__logo, .header__logo-circle
+        position absolute
+        left 0
+        top 0
+
+    .header__logo
+        fill color-lightest
+        width 19px
+        height 14px
+        top 22px
+        left 10px
+        
+    .header__logo-circle
+        fill none
+        width 36px
+        height @width
+        top 12px
+        
+    .open-search
+        position absolute
+        top 0
+        right 0
+        width header-height
+        height @width
+        padding 18px
+        
+        svg
+            width 24px
+            height @width
+            fill color-lightest
+
+    ul
+        margin-left 68px
+        font-family 'Montserrat'
+        text-transform uppercase
+        color color-lightest
+        font-size 15px
+
+        li
+            display inline-block
+            padding 0 18px
+            line-height header-height
