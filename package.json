@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "express": "^4.11.2",
+    "express-device": "^0.3.11",
     "jade": "^1.9.2"
   }
 }
