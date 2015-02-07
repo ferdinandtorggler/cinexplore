@@ -5,6 +5,7 @@ var argv = require('yargs').argv;
 var gutil = require('gulp-util');
 
 var copy = require('gulp-copy');
+var clean = require('gulp-clean');
 var gulpif = require('gulp-if');
 var stylus = require('gulp-stylus');
 var cssmin = require('gulp-minify-css');
@@ -19,6 +20,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var svgstore = require('gulp-svgstore');
 var svgmin = require('gulp-svgmin');
 var imagemin = require('gulp-imagemin');
+var templateCache = require('gulp-angular-templatecache');
 
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
@@ -45,9 +47,13 @@ var scripts = {
 };
 
 var templates = {
-    all: ['templates/mobile/angular/**/*.jade', 'index.jade'],
+    all: ['templates/mobile/**/*.jade', 'index.jade'],
     watch: ['templates/**/*.jade', 'index.jade'],
-    dest: 'public/'
+    dest: 'public/',
+    angular: {
+      mobile: 'templates/mobile/**/*.jade',
+      dest: 'public/templates/'
+    }
 };
 
 var fonts = {
@@ -67,36 +73,40 @@ var icons = {
 
 console.log('USING ' + (argv.production ? 'PRODUCTION' : 'DEVELOPMENT') + ' SETTINGS')
 
+gulp.task('clean', function () {
+  return gulp.src('public', {read: false}).pipe(clean());
+});
+
 gulp.task('icons', function () {
-  var svgs = gulp.src(icons.all)
-            .pipe(svgstore({
-                prefix: 'icon-',
-                inlineSvg: true,
-                transformSvg: function (svg, cb) {
-                    svg.find('//*[@fill]').forEach(function (child) {
-                      child.attr('fill').remove();
-                    });
-                    svg.find('//*[@style]').forEach(function (child) {
-                        child.attr('style').remove()
-                    });
-                    cb(null);
-                }
-            }))
-            .pipe(svgmin({
-                plugins: [{
-                            cleanupIDs: false
-                        }]
-                }))
-            .pipe(gulp.dest(icons.dest))
+  return gulp.src(icons.all)
+      .pipe(svgstore({
+          prefix: 'icon-',
+          inlineSvg: true,
+          transformSvg: function (svg, cb) {
+              svg.find('//*[@fill]').forEach(function (child) {
+                child.attr('fill').remove();
+              });
+              svg.find('//*[@style]').forEach(function (child) {
+                  child.attr('style').remove()
+              });
+              cb(null);
+          }
+      }))
+      .pipe(svgmin({
+          plugins: [{
+                      cleanupIDs: false
+                  }]
+          }))
+      .pipe(gulp.dest(icons.dest))
 });
 
 gulp.task('fonts', function () {
-    gulp.src(fonts.all)
+    return gulp.src(fonts.all)
         .pipe(copy(fonts.dest));
 });
 
 gulp.task('images', function () {
-    gulp.src(images.all)
+    return gulp.src(images.all)
         .pipe(imagemin())
         .pipe(copy(images.dest));
 });
@@ -119,7 +129,7 @@ gulp.task('scripts', function () {
       .pipe(uglify())
       .pipe(gulp.dest(scripts.dest));
 
-    gulp.src(scripts.mobile.app, { read: false })
+    return gulp.src(scripts.mobile.app, { read: false })
       .pipe(browserify({
         transform: ['coffeeify'],
         extensions: ['.coffee']
@@ -135,19 +145,26 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('lint-coffeescript', function () {
-    gulp.src(scripts.all)
+    return gulp.src(scripts.all)
         .pipe(coffeelint())
         .pipe(coffeelint.reporter())
 });
 
 gulp.task('templates', function () {
-    gulp.src(templates.all)
+    return gulp.src(templates.all)
       .pipe(jade({}))
       .pipe(gulp.dest(templates.dest));
 });
 
+gulp.task('angular-templates', function () {
+  return gulp.src(templates.angular.mobile)
+      .pipe(jade())
+      .pipe(templateCache('mobile.js', {standalone: true}))
+      .pipe(gulp.dest(templates.angular.dest));
+});
+
 gulp.task('check-unused-css', function () {
-    gulp.src(styles.destFile)
+    return gulp.src(styles.destFile)
       .pipe(checkUnusedCss({
           files: 'public/*.html'
       }));
@@ -163,7 +180,7 @@ gulp.task('watch', function () {
     var server = livereload();
     gulp.watch(styles.all, ['styles', 'check-unused-css']);
     gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
-    gulp.watch(templates.watch, ['templates']);
+    gulp.watch(templates.watch, ['angular-templates']);
     gulp.watch(icons.all, ['icons']);
     gulp.watch('public/**').on('change', function (file) {
         server.changed(file.path);
@@ -171,7 +188,7 @@ gulp.task('watch', function () {
 })
 
 gulp.task('build', function () {
-    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts', 'images');
+    gulp.start('styles', 'scripts', 'angular-templates', 'icons', 'fonts', 'images');
 });
 
 gulp.task('default', [  'build',

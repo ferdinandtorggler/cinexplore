@@ -61,7 +61,6 @@ angular.module('Cinexplore').directive 'movieList', ($timeout, $rootScope, $filt
 
       if contentType is 'category'
         category = params.category
-        console.log category
         return if lastCategory and category is lastCategory
         lastCategory = category if category
         resetView()
