@@ -15,7 +15,10 @@ var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
 var jade = require('gulp-jade');
+var sourcemaps = require('gulp-sourcemaps');
 var svgstore = require('gulp-svgstore');
+var svgmin = require('gulp-svgmin');
+var imagemin = require('gulp-imagemin');
 
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
@@ -59,6 +62,8 @@ var icons = {
     dest: 'public/icons/'
 };
 
+console.log('USING ' + (argv.production ? 'PRODUCTION' : 'DEVELOPMENT') + ' SETTINGS')
+
 gulp.task('icons', function () {
   var svgs = gulp.src(icons.all)
             .pipe(svgstore({
@@ -74,6 +79,11 @@ gulp.task('icons', function () {
                     cb(null);
                 }
             }))
+            .pipe(svgmin({
+                plugins: [{
+                            cleanupIDs: false
+                        }]
+                }))
             .pipe(gulp.dest(icons.dest))
 });
 
@@ -84,11 +94,13 @@ gulp.task('fonts', function () {
 
 gulp.task('images', function () {
     gulp.src(images.all)
+        .pipe(imagemin())
         .pipe(copy(images.dest));
 });
 
 gulp.task('styles', function () {
-    var app = gulp.src(styles.app).pipe(stylus()).on('error', gutil.log);
+    var app = gulp.src(styles.app)
+        .pipe(stylus()).on('error', gutil.log);
     var vendor = gulp.src(styles.vendor);
     return es.concat(vendor, app).on('error', gutil.log)
         .pipe(concat('style.css'))
@@ -98,17 +110,24 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    gulp.src(scripts.vendor).pipe(gulp.dest(scripts.dest));
+
+    gulp.src(scripts.vendor)
+      .pipe(concat('vendor.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest(scripts.dest));
+
     gulp.src(scripts.app, { read: false })
       .pipe(browserify({
         transform: ['coffeeify'],
         extensions: ['.coffee']
       })).on('error', gutil.log)
+      .pipe(gulpif(!argv.production, sourcemaps.init() ))
       .pipe(rename('app.js'))
       .pipe(ngAnnotate({
         add: true
       }))
-      .pipe(gulpif(argv.production, uglify()))
+      .pipe(uglify())
+      .pipe(gulpif(!argv.production, sourcemaps.write() ))
       .pipe(gulp.dest(scripts.dest));
 });
 
