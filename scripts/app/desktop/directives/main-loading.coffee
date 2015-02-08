@@ -31,7 +31,7 @@ angular.module('Cinexplore').directive 'mainLoading', ->
 
     timeline = new TimelineLite()
     timeline.add prepareShape, 0
+    timeline.add (TweenLite.from (element[0].querySelector 'h1'), .5, opacity: 0, transform: 'translateY(10px)'), 0
     timeline.add drawShape, 1
-    timeline.add (TweenLite.from (element[0].querySelector 'h1'), .5, opacity: 0, transform: 'translateY(10px)'), 3
 
     timeline.add (-> scope.$apply -> scope.show = no), 4
