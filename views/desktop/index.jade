@@ -23,11 +23,13 @@ html
 
     body
         ng-view
+
+        .main-loading.fade
+                    div
+                        include ../../icons/logo-hollow.svg
+                        h1 Great things take time. Check out the mobile version for now.
+
         main-loading.main-loading.fade(ng-show='show')
             div(ng-cloak)
                 include ../../icons/logo-hollow.svg
                 h1 Cinexplore
-        include header
-        overlay.overlay(overlay-name='search')
-            .search
-                input(type='search', placeholder='Start typing')
