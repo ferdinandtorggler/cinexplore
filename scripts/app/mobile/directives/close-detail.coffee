@@ -6,8 +6,10 @@
 #
 #
 
-angular.module('Cinexplore').directive 'closeDetail', ($parse, View) ->
+angular.module('Cinexplore').directive 'closeDetail', ($parse, View, Colors) ->
   restrict: 'A'
   link: (scope, element, attrs) ->
     element[0].addEventListener 'click', ->
-      scope.$apply -> View.toList()
+      scope.$apply ->
+        Colors.resetUIColor()
+        View.toList()
