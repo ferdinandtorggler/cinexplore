@@ -1,0 +1,8 @@
+.detail-header
+    .detail-header__image(style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})')
+    .detail-header__image.detail-header__image--large(show-on-image-loaded='{{ movie.backdrop_path | imagePath }}', style='background-image: url({{ movie.backdrop_path | imagePath }})')
+    .detail-header__shade
+
+    .detail-header__infos
+        .detail-header__title {{movie.title}}
+        .detail-header__tagline {{movie.tagline}}
