@@ -1,5 +1,5 @@
 APP_NAME = 'Cinexplore'
-APP_DEPENDENCIES = ['templates', 'ngAnimate', 'ngRoute', 'matchmedia-ng']
+APP_DEPENDENCIES = ['templates', 'ngAnimate', 'ngRoute', 'matchmedia-ng', 'afkl.lazyImage']
 
 angular.module APP_NAME, APP_DEPENDENCIES
 setTimeout ->
