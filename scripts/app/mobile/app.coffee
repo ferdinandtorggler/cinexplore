@@ -8,11 +8,11 @@ setTimeout ->
 require './router'
 
 require '../common/services/overlays'
-require './services/movies'
+require '../common/services/movies'
+require '../common/services/colors'
+require '../common/services/view'
 require './services/navigation'
 require './services/menu'
-require './services/colors'
-require './services/view'
 
 require '../common/directives/overlay'
 require '../common/directives/open-overlay'
@@ -38,6 +38,6 @@ require './directives/close-detail'
 require './directives/show-on-image-loaded'
 require './directives/broadcast-on-scroll-end'
 
-require './filters/image-path'
-require './filters/youtube-url'
+require '../common/filters/image-path'
+require '../common/filters/youtube-url'
 
