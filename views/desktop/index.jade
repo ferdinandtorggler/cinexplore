@@ -21,7 +21,7 @@ html
         script(src='templates/desktop.js')
         script(src='scripts/desktop.js')
 
-    body
+    body(broadcast-on-scroll-end='movie-list-fetch-more')
         ng-view
         //- main-loading.main-loading.fade(ng-show='show')
         //-     div(ng-cloak)

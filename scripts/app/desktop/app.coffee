@@ -23,5 +23,6 @@ require '../common/directives/close-overlay'
 require '../common/directives/navigate'
 require '../common/directives/if-view'
 require '../common/directives/show-if-view'
+require '../common/directives/broadcast-on-scroll-end'
 
 require '../common/filters/image-path'
