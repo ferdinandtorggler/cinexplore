@@ -1,7 +1,12 @@
-.header
-    height header-height
-    background-color color-primary
+.header, .header-background
+    position fixed
+    left 0
+    right 0
+    height height-header
     
+.header
+    z-index 10
+
     &--opaque
         background none
         background-image color-header-opaque
@@ -28,7 +33,7 @@
         position absolute
         top 0
         right 0
-        width header-height
+        width height-header
         height @width
         padding 18px
         
@@ -47,4 +52,8 @@
         li
             display inline-block
             padding 0 18px
-            line-height header-height
+            line-height height-header
+
+.header-background
+    background-color color-primary
+    z-index 1

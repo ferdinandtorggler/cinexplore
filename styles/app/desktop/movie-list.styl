@@ -1,9 +1,9 @@
 .movie-list
-    background-color
+    font-size 0              // prevent spaces from breaking layout
 
     li
-        float left
         width 50%
+        display inline-block
         padding 25px
 
 .movie-list-item
@@ -39,3 +39,7 @@
         text-transform uppercase
         font-size 15px
         line-height 40px
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0 20px;
