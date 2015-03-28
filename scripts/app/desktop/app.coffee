@@ -5,6 +5,8 @@ angular.module APP_NAME, APP_DEPENDENCIES
 setTimeout ->
   angular.bootstrap document, [APP_NAME]
 
+require './animations/expand-movie'
+
 require '../common/services/overlays'
 require './directives/main-loading'
 

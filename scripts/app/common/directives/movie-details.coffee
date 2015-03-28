@@ -57,3 +57,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
       scope.loaded = no
       applyBasicMovieInfos View.getData()
       fetchInfos params.id
+
+    $timeout ->
+      if elem[0].classList.contains 'expand-movie-animation'
+        elem[0].classList.add 'expand-movie-animation--trigger'
