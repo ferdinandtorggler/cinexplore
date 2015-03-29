@@ -17,7 +17,7 @@ var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
 var jade = require('gulp-jade');
 var sourcemaps = require('gulp-sourcemaps');
-var svgstore = require('gulp-svgstore');
+var svgsprite = require('gulp-svg-sprite');
 var svgmin = require('gulp-svgmin');
 var imagemin = require('gulp-imagemin');
 var templateCache = require('gulp-angular-templatecache');
@@ -120,18 +120,10 @@ gulp.task('clean', function () {
 
 gulp.task('icons', function () {
   return gulp.src(icons.all)
-      .pipe(svgstore({
-          prefix: 'icon-',
-          inlineSvg: true,
-          transformSvg: function (svg, cb) {
-              svg.find('//*[@fill]').forEach(function (child) {
-                child.attr('fill').remove();
-              });
-              svg.find('//*[@style]').forEach(function (child) {
-                  child.attr('style').remove()
-              });
-              cb(null);
-          }
+      .pipe(svgsprite({
+        mode: {
+          symbol: true
+        }
       }))
       .pipe(svgmin({
           plugins: [{
@@ -197,9 +189,7 @@ gulp.task('watch', function () {
     });
 })
 
-gulp.task('build', function () {
-    gulp.start('styles', 'scripts', 'templates', 'icons', 'fonts', 'images');
-});
+gulp.task('build', ['styles', 'scripts', 'templates', 'icons', 'fonts', 'images']);
 
 gulp.task('default', [  'build',
                         'connect',

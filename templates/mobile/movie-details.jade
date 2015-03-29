@@ -7,7 +7,7 @@
     .teaser__shade
     .teaser__content
         h1.teaser__title {{movie.title}}
-    button.detail-view__close(close-detail, ripple): svg: use(xlink:href='icons/svgstore.svg#icon-close')
+    button.detail-view__close(close-detail, ripple): svg: use(xlink:href='{{icons + "#close"}}')
 .trailer(ng-if='movie.videos.results.length && trailerPlaying')
     iframe(ng-src='{{ movie.videos.results[0].key | youtubeUrl }}')
 
@@ -27,13 +27,13 @@ tabs.tabs.js-movie-tabs(ng-show='loaded')
                 ul.list.list--spaced.list--bottom-spaced(ng-if='loaded')
                     li(ng-if='movie.tagline')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-quote')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#quote"}}')
                             .list__text
                                 span.list__main-line Tagline
                                 sub.list__sub-line {{movie.tagline}}
                     li(ng-if='movie.genres')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-tags')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#tags"}}')
                             .list__text
                                 span.list__main-line Genres
                                 sub.list__sub-line
@@ -41,25 +41,25 @@ tabs.tabs.js-movie-tabs(ng-show='loaded')
                                     span(ng-repeat='genre in movie.genres', ng-if='$index == movie.genres.length - 1') {{genre.name}}
                     li(ng-if='movie.release_date')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-calendar')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#calendar"}}')
                             .list__text
                                 span.list__main-line Release Date
                                 sub.list__sub-line {{movie.release_date | date:'d MMMM yyyy'}}
                     li(ng-if='movie.vote_average')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-star')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#star"}}')
                             .list__text
                                 span.list__main-line Rating
                                 sub.list__sub-line {{movie.vote_average}} / 10
                     li(ng-if='movie.overview')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-document')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#document"}}')
                             .list__text
                                 span.list__main-line Synopsis
                                 sub.list__sub-line {{movie.overview}}
                     li(ng-if='movie.homepage')
                         .list__icon
-                            svg(style='fill: {{dominantColor}}'): use(xlink:href='icons/svgstore.svg#icon-world')
+                            svg(style='fill: {{dominantColor}}'): use(xlink:href='{{icons + "#world"}}')
                             .list__text
                                 span.list__main-line Website
                                 sub.list__sub-line {{movie.homepage}}
@@ -85,12 +85,12 @@ tabs.tabs.js-movie-tabs(ng-show='loaded')
                 .grid.grid--cover.grid--bottom-spaced
                     .grid__tile(ng-repeat="similar in movie.similar.results", navigate='/movie/{{similar.id}}', n-data='{{ {movie: similar, color: "#" + backdropColors[$index]} }}')
                         .grid__item
-                            .grid__image(style='background-image: url({{similar.poster_path | imagePath:"500"}})', show-on-image-loaded='{{similar.poster_path | imagePath:"500"}}')
+                            .grid__image(afkl-lazy-image='{{similar.poster_path | imagePath:"500"}}', afkl-lazy-image-options='{"background": true}', show-on-image-loaded='{{similar.poster_path | imagePath:"500"}}')
                             h1(style='background-color: {{"#" + coverColors[$index]}};') {{similar.title}}
                 .no-data(ng-if='!movie.similar.results.length') No data available.
     button.toggle-trailer(ng-class="{'toggle-trailer--playing': trailerPlaying}", style='background-color: {{dominantColor}}', ng-if='movie.videos.results.length', ng-click="toggleTrailer()", ripple)
-        svg.icon-play: use(xlink:href='icons/svgstore.svg#icon-play')
-        svg.icon-stop: use(xlink:href='icons/svgstore.svg#icon-close')
+        svg.icon-play: use(xlink:href='{{icons + "#play"}}')
+        svg.icon-stop: use(xlink:href='{{icons + "#close"}}')
 
     overlay.overlay(overlay-name='movie-images', data-snap-ignore="true")
         .image-swiper(ng-if="overlay.visible")

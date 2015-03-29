@@ -9,4 +9,4 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
                     .teaser__shade
                 .teaser__content
                     h1.teaser__title {{movie.title}}
-                    svg.teaser__chevron: use(xlink:href='icons/svgstore.svg#icon-chevron')
+                    svg.teaser__chevron: use(xlink:href='{{icons + "#chevron"}}')
