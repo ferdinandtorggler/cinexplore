@@ -32,11 +32,13 @@
     "gulp-shell": "^0.4.0",
     "gulp-sourcemaps": "^1.5.1",
     "gulp-stylus": "^2.0.1",
+    "gulp-svg-sprite": "^1.0.20",
     "gulp-svgmin": "^1.1.1",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "jade": "^1.9.2",
     "newrelic": "^1.18.0",
+    "vinyl": "^0.4.6",
     "yargs": "^3.6.0"
   }
 }
