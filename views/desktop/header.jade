@@ -1,10 +1,12 @@
 .header
     .container
-        svg.header__logo: use(xlink:href='icons/svgstore.svg#icon-logo')
-        svg.header__logo-circle: use(xlink:href='icons/svgstore.svg#icon-circle')
+        svg.header__logo: use(xlink:href='{{icons + "#logo"}}')
+        svg.header__logo-circle: use(xlink:href='{{icons + "#circle"}}')
         ul
             li Popular
             li Upcoming
             li Genres
         button.open-search(open-overlay='search')
-            svg: use(xlink:href='icons/svgstore.svg#icon-search')
+            svg: use(xlink:href='{{icons + "#search"}}')
+
+.header-background

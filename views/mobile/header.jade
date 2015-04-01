@@ -1,6 +1,6 @@
 header.header(ripple)
     div.header__icon.header__icon--search(navigate='/search')
-        svg: use(xlink:href='icons/svgstore.svg#icon-search')
+        svg: use(xlink:href='{{icons + "#search"}}')
     div(open-menu)
-        svg.header__icon.header__icon--menu: use(xlink:href='icons/svgstore.svg#icon-menu')
+        svg.header__icon.header__icon--menu: use(xlink:href='{{icons + "#menu"}}')
         span Cinexplore

@@ -1,8 +1,16 @@
 html, body
     background-color #F6F6F6
-    height 100%
+    min-height 100%
+    overflow auto
 
 .container
     position relative
     width 960px
     margin auto
+
+    &--movie-list
+        margin-top height-header + 25
+        width 960px + 50px
+
+*
+    box-sizing inherit

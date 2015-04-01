@@ -2,7 +2,7 @@
     .teaser__shade
     .teaser__content
         h1.teaser__title {{person.name}}
-    button.detail-view__close(close-detail, ripple): svg: use(xlink:href='icons/svgstore.svg#icon-close')
+    button.detail-view__close(close-detail, ripple): svg: use(xlink:href='{{icons + "#close"}}')
 
 tabs.tabs.js-person-tabs(ng-hide='loading')
     .tabs__indicator
@@ -20,13 +20,13 @@ tabs.tabs.js-person-tabs(ng-hide='loading')
                 ul.list.list--spaced
                     li(ng-if='person.birthday')
                         .list__icon
-                            svg: use(xlink:href='icons/svgstore.svg#icon-calendar')
+                            svg: use(xlink:href='{{icons + "#calendar"}}')
                             .list__text
                                 span.list__main-line Birthday
                                 sub.list__sub-line {{person.birthday | date:'dd.MM.yyyy'}}
                     li(ng-if='person.place_of_birth')
                         .list__icon
-                            svg: use(xlink:href='icons/svgstore.svg#icon-location')
+                            svg: use(xlink:href='{{icons + "#location"}}')
                             .list__text
                                 span.list__main-line Place of birth
                                 sub.list__sub-line {{person.place_of_birth}}

@@ -1,0 +1,56 @@
+.detail-view
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background color-lightest
+    z-index 5
+    
+
+.detail-header
+    position relative
+    height 80%
+
+    &__image
+        width 100%
+        height 100%
+        background-position center
+        background-size cover
+        
+        &--large
+            position absolute
+            top 0
+            right 0
+            left 0
+            bottom 0
+            
+    &__shade
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        background color-shade-dark
+
+    &__infos
+        position absolute
+        top 28%
+        left 0
+        right 0
+        margin auto
+        width 960px
+        color color-lightest
+        
+    &__title
+        font-size 50px
+        font-family 'Montserrat', sans-serif
+        text-transform uppercase
+        text-shadow rgba(0,0,0,.5) 0 2 4px
+
+    &__tagline
+        margin-top 10px
+        font-family 'Roboto', sans-serif
+        font-style italic
+        font-weight 400
+        font-size 20px
