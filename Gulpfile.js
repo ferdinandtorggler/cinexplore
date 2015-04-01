@@ -83,7 +83,8 @@ var processStyles = function (src, outputName) {
         .pipe(concat(outputName))
         .pipe(cssmin())
         .pipe(autoprefix('last 1 version'))
-        .pipe(gulp.dest(styles.dest));
+        .pipe(gulp.dest(styles.dest))
+        .pipe(livereload());
 };
 
 var processScripts = function (src, outputName) {
@@ -104,14 +105,16 @@ var processScripts = function (src, outputName) {
       }))
       .pipe(uglify())
       .pipe(gulpif(!argv.production, sourcemaps.write() ))
-      .pipe(gulp.dest(scripts.dest));
+      .pipe(gulp.dest(scripts.dest))
+      .pipe(livereload());
 };
 
 var processTemplates = function (src, outputName) {
   return gulp.src(src)
       .pipe(jade())
       .pipe(templateCache(outputName, {standalone: true}))
-      .pipe(gulp.dest(templates.dest));
+      .pipe(gulp.dest(templates.dest))
+      .pipe(livereload());
 };
 
 gulp.task('clean', function () {
@@ -131,17 +134,20 @@ gulp.task('icons', function () {
                   }]
           }))
       .pipe(gulp.dest(icons.dest))
+      .pipe(livereload());
 });
 
 gulp.task('fonts', function () {
     return gulp.src(fonts.all)
-        .pipe(copy(fonts.dest));
+        .pipe(copy(fonts.dest))
+        .pipe(livereload());
 });
 
 gulp.task('images', function () {
     return gulp.src(images.all)
         .pipe(imagemin())
-        .pipe(copy(images.dest));
+        .pipe(copy(images.dest))
+        .pipe(livereload());
 });
 
 gulp.task('styles', function () {
@@ -179,14 +185,11 @@ gulp.task('connect', function() {
 });
 
 gulp.task('watch', function () {
-    var server = livereload();
+    var server = livereload({ start: true });
     gulp.watch(styles.all, ['styles', 'check-unused-css']);
     gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
     gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
-    gulp.watch('public/**').on('change', function (file) {
-        server.changed(file.path);
-    });
 })
 
 gulp.task('build', ['styles', 'scripts', 'templates', 'icons', 'fonts', 'images']);
