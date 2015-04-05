@@ -2,8 +2,14 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul
         li(ng-repeat='movie in movies track by movie.id')
-            .movie-list-item(navigate='/movie/{{movie.id}}' n-data='{{ {movie: movie, color: "#"+colors[$index]} }}')
+            .movie-list-item(
+            	navigate='/movie/{{movie.id}}'
+            	n-data='{{ {movie: movie, color: "#"+colors[$index]} }}'
+        	)
                 .movie-list-item__image-container
-                    .movie-list-item__image(afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}', afkl-lazy-image-options='{"background": true, "offset": 500}')
+                    .movie-list-item__image(
+                    	afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}'
+                    	afkl-lazy-image-options='{"background": true, "offset": 500}'
+                    )
                     .movie-list-item__shade
                 h1 {{movie.title}}

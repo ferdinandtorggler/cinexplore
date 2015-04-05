@@ -14,36 +14,56 @@ tabs.tabs.js-person-tabs(ng-hide='loading')
 
 .person-details__content.detail-container
     loading.empty-screen.empty-screen--loading(ng-if='loading') person
-    swiper.tabs-swiper.swiper-container.swiper-container--tabs(data-snap-ignore="true", s-tabs='.js-person-tabs')
+    swiper.tabs-swiper.swiper-container.swiper-container--tabs(
+        data-snap-ignore="true"
+        s-tabs='.js-person-tabs'
+    )
         .swiper-wrapper
             .swiper-slide.person-details__tab--info
                 ul.list.list--spaced
+
                     li(ng-if='person.birthday')
                         .list__icon
                             svg: use(xlink:href='{{icons + "#calendar"}}')
                             .list__text
                                 span.list__main-line Birthday
                                 sub.list__sub-line {{person.birthday | date:'dd.MM.yyyy'}}
+
                     li(ng-if='person.place_of_birth')
                         .list__icon
                             svg: use(xlink:href='{{icons + "#location"}}')
                             .list__text
                                 span.list__main-line Place of birth
                                 sub.list__sub-line {{person.place_of_birth}}
+
                 .no-data(ng-if='!person.profile_path && !person.birthday && !person.place_of_birth') No data available.
 
             .swiper-slide.person-details__tab--movies
                 .grid.grid--cover.grid--spacing-bottom
-                    .grid__tile(ng-repeat="movie in person.movie_credits.cast", navigate='/movie/{{movie.id}}', n-data='{{ {movie: movie} }}')
+                    .grid__tile(
+                        ng-repeat="movie in person.movie_credits.cast"
+                        navigate='/movie/{{movie.id}}'
+                        n-data='{{ {movie: movie} }}'
+                    )
                         .grid__item
-                            .grid__image(style='background-image: url({{movie.poster_path | imagePath:"500"}})', show-on-image-loaded='{{movie.poster_path | imagePath:"500"}}')
+                            .grid__image(
+                                style='background-image: url({{movie.poster_path | imagePath:"500"}})'
+                                show-on-image-loaded='{{movie.poster_path | imagePath:"500"}}'
+                            )
                             h1(style='background-color: {{"#" + coverColors[$index]}};') {{movie.title}}
                 .no-data(ng-if='!person.movie_credits.cast') No data available.
 
             .swiper-slide.person-details__tab--photos
                 ul.grid.grid--image.grid--spacing-bottom
-                    li.grid__item(ng-repeat="image in person.tagged_images.results", open-overlay='person-images', oo-data='{slide: {{$index}}}')
-                        .grid__image(style='background-image: url({{image.file_path | imagePath:"780"}})', show-on-image-loaded='{{image.file_path | imagePath:"780"}}')
+                    li.grid__item(
+                        ng-repeat="image in person.tagged_images.results"
+                        open-overlay='person-images'
+                        oo-data='{slide: {{$index}}}'
+                    )
+                        .grid__image(
+                            style='background-image: url({{image.file_path | imagePath:"780"}})'
+                            show-on-image-loaded='{{image.file_path | imagePath:"780"}}'
+                        )
                 .no-data(ng-if='!person.tagged_images.results.length') No data available.
 
             .swiper-slide.person-details__tab--bio
@@ -52,9 +72,15 @@ tabs.tabs.js-person-tabs(ng-hide='loading')
                     p {{person.biography}}
                 .no-data(ng-if='!person.biography') No data available.
 
-    overlay.overlay(overlay-name='person-images', data-snap-ignore="true")
+    overlay.overlay(
+        overlay-name='person-images'
+        data-snap-ignore="true"
+    )
         .image-swiper(ng-if="overlay.visible")
-            swiper.swiper-container.swiper-container--images(data-snap-ignore="true", s-options="{initialSlide: {{overlay.data.slide}}}")
+            swiper.swiper-container.swiper-container--images(
+                data-snap-ignore="true"
+                s-options="{initialSlide: {{overlay.data.slide}}}"
+            )
                 .swiper-wrapper
                     .swiper-slide(ng-repeat='image in person.tagged_images.results')
                         .image-swiper__image(style="background-image: url({{image.file_path | imagePath:'780'}})")

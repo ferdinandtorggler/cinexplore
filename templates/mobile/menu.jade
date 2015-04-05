@@ -1,18 +1,33 @@
 ul.menu__list
     li(ripple)
-        span.menu__item(navigate='/movies/cateogry/popular', n-data='{category: "popular"}', close-menu)
+        span.menu__item(
+            navigate='/movies/cateogry/popular'
+            n-data='{category: "popular"}'
+            close-menu
+        )
             .menu__label Popular
     li(ripple)
-        span.menu__item(navigate='/movies/cateogry/upcoming', n-data='{category: "upcoming"}', close-menu)
+        span.menu__item(
+            navigate='/movies/cateogry/upcoming'
+            n-data='{category: "upcoming"}'
+            close-menu
+        )
             .menu__label Upcoming
             
 ul.menu__list
     li(ng-repeat="genre in genres", ng-if='!genresCollapsed', ripple)
-        span.menu__item(navigate='/movies/genre/{{genre.id}}', n-data='{genre: {id: {{genre.id}}, name: "{{genre.name}}" }}', close-menu)
+        span.menu__item(
+            navigate='/movies/genre/{{genre.id}}'
+            n-data='{genre: {id: {{genre.id}}, name: "{{genre.name}}" }}'
+            close-menu
+        )
             .menu__icon(ng-init='svglink = icons + "#" + genre.id')
                 svg: use(xlink:href="{{svglink}}")
             .menu__label {{genre.name}}
 
 ul.menu__list
-    li(ripple): span.menu__item(navigate='/about', close-menu)
+    li(ripple): span.menu__item(
+        navigate='/about'
+        close-menu
+    )
         .menu__label About

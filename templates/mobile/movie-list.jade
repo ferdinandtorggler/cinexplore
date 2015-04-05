@@ -3,10 +3,18 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
 .movie-list__wrapper
     ul
         li(ng-repeat='movie in movies track by movie.id')
-            .teaser.teaser--list-item.movie-list__item(navigate='/movie/{{movie.id}}' n-data='{{ {movie: movie, color: "#"+colors[$index]} }}')
+            .teaser.teaser--list-item.movie-list__item(
+                navigate='/movie/{{movie.id}}'
+                n-data='{{ {movie: movie, color: "#"+colors[$index]} }}'
+            )
                 .teaser__image-container
-                    .teaser__image(afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}', afkl-lazy-image-options='{"background": true}')
+                    .teaser__image(
+                        afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}'
+                        afkl-lazy-image-options='{"background": true}'
+                    )
                     .teaser__shade
+                        
                 .teaser__content
                     h1.teaser__title {{movie.title}}
-                    svg.teaser__chevron: use(xlink:href='{{icons + "#chevron"}}')
+                    svg.teaser__chevron
+                        use(xlink:href='{{icons + "#chevron"}}')
