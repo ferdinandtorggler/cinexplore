@@ -21,6 +21,7 @@ var svgsprite = require('gulp-svg-sprite');
 var svgmin = require('gulp-svgmin');
 var imagemin = require('gulp-imagemin');
 var templateCache = require('gulp-angular-templatecache');
+var rsp = require('remove-svg-properties').stream;
 
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
@@ -123,6 +124,9 @@ gulp.task('clean', function () {
 
 gulp.task('icons', function () {
   return gulp.src(icons.all)
+      .pipe(rsp.remove({
+        properties: [rsp.PROPS_FILL]
+      }))
       .pipe(svgsprite({
         mode: {
           symbol: true

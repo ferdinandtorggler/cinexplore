@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.4",
     "jade": "^1.9.2",
     "newrelic": "^1.18.0",
+    "remove-svg-properties": "^0.2.0",
     "vinyl": "^0.4.6",
     "yargs": "^3.6.0"
   }
