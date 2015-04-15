@@ -1,9 +1,32 @@
-.detail-header
+.detail-header(ng-class='{"detail-header--trailer":trailerPlaying}')
+
+    .trailer(ng-if='movie.videos.trailers.length && trailerPlaying')
+
+        iframe(ng-src='{{ movie.videos.trailers[0].key | youtubeUrl }}', autoplay="1")
     .detail-header__image(
-        style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})'
+        style='background-image: url({{ movie.backdrop_path | imagePath }})'
     )
-    .detail-header__shade
 
     .detail-header__infos
-        .detail-header__title {{movie.title}}
+        .detail-header__headline {{movie.title}} 
+            span.detail-header__date {{movie.release_date | date:'yyyy'}}
         .detail-header__tagline {{movie.tagline}}
+
+    ul.detail-header__icons
+        li: button
+            svg: use(xlink:href='{{icons + "#details-info"}}')
+            div Info
+        li(ng-show='movie.videos.trailers.length')
+            button(ng-click='trailerPlaying = true')
+                svg: use(xlink:href='{{icons + "#details-trailer"}}')
+                div Trailer
+        li: button
+            svg: use(xlink:href='{{icons + "#details-images"}}')
+            div Gallery
+        li: button
+            svg: use(xlink:href='{{icons + "#details-actors"}}')
+            div Actors
+
+ul
+    li(ng-repeat='image in movie.images.all')
+        img(ng-src='{{image.file_path | imagePath:"500" }}')

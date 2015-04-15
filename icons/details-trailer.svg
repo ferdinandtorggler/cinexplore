@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="35px" height="20px" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>details-trailer</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-[Web]" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Movie-Detail-3" sketch:type="MSArtboardGroup" transform="translate(-625.000000, -691.000000)" fill="#FFFFFF">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(546.000000, 690.000000)">
+                <g id="details-trailer-+-Images-2" transform="translate(79.000000, 1.000000)" sketch:type="MSShapeGroup">
+                    <g id="details-trailer">
+                        <path d="M17.5,0.327272727 C6.01889474,0.327272727 0,8.67636364 0,10 C0,11.324 6.01889474,19.6727273 17.5,19.6727273 C28.9803684,19.6727273 35,11.324 35,10 C35,8.67636364 28.9803684,0.327272727 17.5,0.327272727 L17.5,0.327272727 Z M17.5,17.4407273 C13.2045789,17.4407273 9.72189474,14.1094545 9.72189474,10 C9.72189474,5.89054545 13.2045789,2.55927273 17.5,2.55927273 C21.7954211,2.55927273 25.2777368,5.89054545 25.2777368,10 C25.2777368,14.1094545 21.7954211,17.4407273 17.5,17.4407273 L17.5,17.4407273 Z M21.3886842,10 C21.3886842,12.0545455 19.6471579,13.7207273 17.5,13.7207273 C15.3521053,13.7207273 13.6113158,12.0545455 13.6113158,10 C13.6113158,7.94545455 15.3521053,6.27963636 17.5,6.27963636 C18.6605263,6.27963636 16.7878421,9.228 17.5,10 C18.1053158,10.6556364 21.3886842,9.05636364 21.3886842,10 L21.3886842,10 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -45,6 +45,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
       Movies.detail(id).success (movie) ->
         scope.movie = movie
         scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
+        scope.movie.videos.trailers = scope.movie.videos.results.filter (video) -> video.type is 'Trailer'
         scope.loaded = yes
         scope.loading = no
         fetchSimilarMoviesColors movie

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>details-images</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-[Web]" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Movie-Detail-3" sketch:type="MSArtboardGroup" transform="translate(-550.000000, -690.000000)" fill="#FFFFFF">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(546.000000, 690.000000)">
+                <g id="details-images-+-Images" sketch:type="MSShapeGroup">
+                    <g id="details-images" transform="translate(4.000000, 0.000000)">
+                        <g id="Group">
+                            <rect id="Rectangle-path" x="0" y="0" width="11.4285714" height="11.4285714"></rect>
+                            <rect id="Rectangle-path" x="13.5714286" y="0" width="11.4285714" height="11.4285714"></rect>
+                            <rect id="Rectangle-path" x="0" y="13.5714286" width="11.4285714" height="11.4285714"></rect>
+                            <rect id="Rectangle-path" x="13.5714286" y="13.5714286" width="11.4285714" height="11.4285714"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

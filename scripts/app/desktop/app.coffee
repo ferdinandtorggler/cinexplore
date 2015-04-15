@@ -31,3 +31,4 @@ require '../common/directives/show-if-view'
 require '../common/directives/broadcast-on-scroll-end'
 
 require '../common/filters/image-path'
+require '../common/filters/youtube-url'

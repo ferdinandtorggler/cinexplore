@@ -10,6 +10,6 @@ angular.module('Cinexplore').filter 'youtubeUrl', ($sce) ->
 
   (youtubeID) ->
     if youtubeID
-      $sce.trustAsResourceUrl "http://www.youtube.com/embed/#{youtubeID}?autohide=1&modestbranding=1&enablejsapi=1"
+      $sce.trustAsResourceUrl "http://www.youtube.com/embed/#{youtubeID}?autohide=1&rel=0&modestbranding=1&enablejsapi=1&showinfo=0&controls=0&iv_load_policy=3&autoplay=1"
     else
       ""
