@@ -27,6 +27,14 @@
             svg: use(xlink:href='{{icons + "#details-actors"}}')
             div Actors
 
-ul
-    li(ng-repeat='image in movie.images.all')
-        img(ng-src='{{image.file_path | imagePath:"500" }}')
+
+.gallery
+    swiper.image-swiper.swiper-container(s-var='swiper', s-options='{loop: true}')
+        ul.swiper-wrapper
+            li.swiper-slide(
+                ng-repeat='image in movie.images.backdrops'
+                style='background-image: url({{image.file_path | imagePath }})'
+            )
+
+    button.gallery__control.gallery__control--prev(swiper-control='swiper', sc-action='prev')
+    button.gallery__control.gallery__control--next(swiper-control='swiper', sc-action='next')

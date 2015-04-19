@@ -99,3 +99,28 @@
             fill white
             margin-bottom 10px
             transition transform .1s ease-out
+            
+.gallery
+    height 100%
+    position relative
+    
+    &__control
+        position: absolute
+        transform translateY(-50%)
+        top 50%
+        width 120px
+        height @width
+        border-radius 50%
+        background-color black
+        opacity .3
+        z-index 2 // idangrous sets z-index to 1
+        transition opacity .3s
+        
+        &:hover
+            opacity .5
+
+        &--next
+            right 30px
+
+        &--prev
+            left 30px
