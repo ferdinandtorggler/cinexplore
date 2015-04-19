@@ -20,9 +20,12 @@ require './directives/add-class-on-load'
 require '../common/directives/movie-list'
 require '../common/directives/movie-details'
 require '../common/directives/show-on-image-loaded'
+require '../common/directives/color-from-image'
+
 require '../common/services/movies'
 require '../common/services/view'
 require '../common/services/colors'
+require '../common/services/utils'
 
 require '../common/router'
 

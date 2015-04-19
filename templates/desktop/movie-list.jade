@@ -6,12 +6,14 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
             	navigate='/movie/{{movie.id}}'
             	n-data='{{ {movie: movie, color: "#"+colors[$index]} }}'
             )
-                .movie-list-item__image-container
+                .movie-list-item__image-container(color-from-image='{{ movie.backdrop_path | imagePath:"780" }}')
                     .movie-list-item__image(
                     	afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}'
                     	afkl-lazy-image-options='{"background": true, "offset": 500}'
-                        add-class-on-load='movie-list-item__image--loaded'
+                        add-class-on-load='movie-list-item--loaded'
                         acol-src='{{ movie.backdrop_path | imagePath:"780" }}'
+                        acol-target='.movie-list-item'
+                        acol-closest-target='true'
                     )
                     .movie-list-item__shade
                 h1 {{movie.title}}
