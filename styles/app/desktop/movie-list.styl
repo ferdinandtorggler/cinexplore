@@ -33,7 +33,12 @@
         background-size cover
         background-position center
         height 100%
-    
+        opacity 0
+        transition opacity .5s
+
+        &--loaded
+            opacity 1
+        
     h1
         text-align center
         font-family 'Montserrat', sans-serif

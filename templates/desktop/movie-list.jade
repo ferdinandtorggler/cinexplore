@@ -10,6 +10,8 @@ loading.empty-screen.empty-screen--loading(ng-if="loading") movies
                     .movie-list-item__image(
                     	afkl-lazy-image='{{ movie.backdrop_path | imagePath:"780" }}'
                     	afkl-lazy-image-options='{"background": true, "offset": 500}'
+                        add-class-on-load='movie-list-item__image--loaded'
+                        acol-src='{{ movie.backdrop_path | imagePath:"780" }}'
                     )
                     .movie-list-item__shade
                 h1 {{movie.title}}
