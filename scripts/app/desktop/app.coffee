@@ -15,6 +15,7 @@ require '../common/services/overlays'
 require './directives/main-loading'
 require './directives/swiper'
 require './directives/swiper-control'
+require './directives/add-class-on-load'
 
 require '../common/directives/movie-list'
 require '../common/directives/movie-details'

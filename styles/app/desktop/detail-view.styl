@@ -34,14 +34,22 @@
         opacity .35
         background-position center
         background-size cover
-        transition opacity 1s ease-out, filter .4s ease-out
-        
-        &--large
+        transition opacity 1s linear, filter .4s ease-out
+
+        .detail-header--hi-res-loaded &
+            opacity 0
+
+        &--hi-res
             position absolute
             top 0
             right 0
             left 0
             bottom 0
+            opacity 0
+            transition opacity 1s linear, filter .4s ease-out
+
+            .detail-header--hi-res-loaded &
+                opacity .35
             
     &__infos
         position absolute

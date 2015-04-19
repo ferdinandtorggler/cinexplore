@@ -4,7 +4,13 @@
 
         iframe(ng-src='{{ movie.videos.trailers[0].key | youtubeUrl }}', autoplay="1")
     .detail-header__image(
+        style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})'
+    )
+    .detail-header__image.detail-header__image--hi-res(
         style='background-image: url({{ movie.backdrop_path | imagePath }})'
+        add-class-on-load='detail-header--hi-res-loaded'
+        acol-target='.detail-header'
+        acol-src='{{ movie.backdrop_path | imagePath }}'
     )
 
     .detail-header__infos
@@ -33,6 +39,7 @@
         ul.swiper-wrapper
             li.swiper-slide(
                 ng-repeat='image in movie.images.backdrops'
+                ng-hide='$first'
                 style='background-image: url({{image.file_path | imagePath }})'
             )
 
