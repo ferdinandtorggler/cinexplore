@@ -1,7 +1,6 @@
 angular.module('Cinexplore').animation '.expand-movie-animation', ->
   
   initialPosition = 0
-  console.log 'wat'
 
   addClass: (elem, className, done) ->
 

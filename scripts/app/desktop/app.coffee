@@ -16,6 +16,7 @@ require './directives/main-loading'
 require './directives/swiper'
 require './directives/swiper-control'
 require './directives/add-class-on-load'
+require './directives/animation-sequence'
 
 require '../common/directives/movie-list'
 require '../common/directives/movie-details'
@@ -26,6 +27,8 @@ require '../common/services/movies'
 require '../common/services/view'
 require '../common/services/colors'
 require '../common/services/utils'
+
+require './services/timeline'
 
 require '../common/router'
 

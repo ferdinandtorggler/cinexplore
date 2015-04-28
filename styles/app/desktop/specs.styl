@@ -1,0 +1,59 @@
+.specs
+    position absolute
+    bottom: 30%
+    right 0
+    left 0
+    margin auto
+    width 425px
+    height 326px
+    color white
+    font-family 'Roboto', sans-serif
+    text-align center
+    display: none
+
+    .animation-sequence-specs &
+        display: block
+
+    svg
+        position: absolute
+        top 0
+        left 0
+        fill none
+        stroke white
+        stroke-width 5px
+        stroke-linecap round
+        
+    &__rating-container
+        position: absolute;
+        bottom: 70px;
+        width: 100%;
+
+    &__rating
+        font-size 60px
+        
+    &__rating-path--whole,
+    &__revenue--whole
+        opacity .2
+        
+    &__rating-label
+        text-transform uppercase
+        font-size 15px
+        
+
+    &__duration-container,
+    &__revenue-container
+        position: absolute
+        bottom 0
+        width 200px
+        
+    &__duration-container
+        right -200px
+        text-align left
+        
+    &__revenue-container
+        left -200px
+        text-align right
+
+    &__label
+        opacity .25
+        text-transform uppercase

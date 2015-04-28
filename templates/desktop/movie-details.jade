@@ -6,32 +6,58 @@
     .detail-header__image(
         style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})'
     )
-    .detail-header__image.detail-header__image--hi-res(
+    .detail-header__image.detail-header__image--hi-res.js-background-image(
         style='background-image: url({{ movie.backdrop_path | imagePath }})'
         add-class-on-load='detail-header--hi-res-loaded'
         acol-target='.detail-header'
         acol-src='{{ movie.backdrop_path | imagePath }}'
     )
 
-    .detail-header__infos
-        .detail-header__headline {{movie.title}} 
+    .detail-header__infos.js-header
+        .detail-header__headline.js-headline {{movie.title}} 
             //- span.detail-header__date {{movie.release_date | date:'yyyy'}}
-        .detail-header__tagline {{movie.tagline}}
+        .detail-header__tagline.js-tagline {{movie.tagline}}
 
-    ul.detail-header__icons
-        li: button
-            svg: use(xlink:href='{{icons + "#details-info"}}')
-            div Info
-        li(ng-show='movie.videos.trailers.length')
-            button(ng-click='trailerPlaying = true')
-                svg: use(xlink:href='{{icons + "#details-trailer"}}')
-                div Trailer
-        li: button
-            svg: use(xlink:href='{{icons + "#details-images"}}')
-            div Gallery
-        li: button
-            svg: use(xlink:href='{{icons + "#details-actors"}}')
-            div Actors
+    //- ul.detail-header__icons
+    //-     li: button
+    //-         svg: use(xlink:href='{{icons + "#details-info"}}')
+    //-         div Info
+    //-     li(ng-show='movie.videos.trailers.length')
+    //-         button(ng-click='trailerPlaying = true')
+    //-             svg: use(xlink:href='{{icons + "#details-trailer"}}')
+    //-             div Trailer
+    //-     li: button
+    //-         svg: use(xlink:href='{{icons + "#details-images"}}')
+    //-         div Gallery
+    //-     li: button
+    //-         svg: use(xlink:href='{{icons + "#details-actors"}}')
+    //-         div Actors
+
+
+.specs
+
+    svg(width='425px', height='326px', viewbox='0 0 425 326')
+      g(transform='translate(-471, -232)')
+        g(transform='translate(474, 235)')
+          path.specs__rating-path.specs__rating-path--whole.js-rating-whole(d='M209,320 C270.303607,320 320,270.303607 320,209 C320,147.696393 270.303607,98 209,98 C147.696393,98 98,147.696393 98,209 C98,270.303607 147.696393,320 209,320 Z', fill-opacity='0', fill='#FFFFFF')
+          path.specs__rating-path.specs__rating-path--part.js-rating-part(d='M209,320 C270.303607,320 320,270.303607 320,209 C320,147.696393 270.303607,98 209,98 C147.696393,98 98,147.696393 98,209 C98,270.303607 147.696393,320 209,320 Z', fill-opacity='0', fill='#FFFFFF')
+          path.specs__duration-path(d='M388.131582,319.014556 C407.709802,287.148122 419,249.642544 419,209.5 C419,93.7963449 325.203655,0 209.5,0')
+          path.specs__revenue-path.specs__revenue-path--whole(d='M80.5104174,44.4066377 C31.5006191,82.752768 0,142.447702 0,209.5 C0,249.894423 11.4323253,287.618683 31.2379324,319.613737')
+          path.specs__revenue-path.specs__revenue-path--part(d='M80.5104174,44.4066377 C31.5006191,82.752768 0,142.447702 0,209.5 C0,249.894423 11.4323253,287.618683 31.2379324,319.613737')
+
+    .specs__rating-container
+        .specs__rating {{movie.vote_average}}
+        .specs__rating-label Rating
+
+    .specs__duration-container
+        .specs__label.specs__label--duration Duration
+        .specs__duration {{movie.runtime}}
+
+    .specs__revenue-container
+        .specs__label.specs__label--revenue Revenue
+        .specs__revenue {{movie.revenue | currency:$:0}}
+
+
 
 
 .gallery

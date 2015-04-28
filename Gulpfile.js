@@ -99,13 +99,13 @@ var processScripts = function (src, outputName) {
         transform: ['coffeeify'],
         extensions: ['.coffee']
       })).on('error', gutil.log)
-      .pipe(gulpif(!argv.production, sourcemaps.init() ))
+      // .pipe(gulpif(!argv.production, sourcemaps.init() ))
       .pipe(rename(outputName))
       .pipe(ngAnnotate({
         add: true
       }))
       .pipe(uglify())
-      .pipe(gulpif(!argv.production, sourcemaps.write() ))
+      // .pipe(gulpif(!argv.production, sourcemaps.write() ))
       .pipe(gulp.dest(scripts.dest))
       .pipe(livereload());
 };
