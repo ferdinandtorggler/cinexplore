@@ -1,0 +1,42 @@
+.vertical-nav
+    position absolute
+    top 50%
+    transform translateY(-50%)
+    right 20px
+    
+    li
+        overflow hidden
+        width 200px
+        cursor: pointer
+        
+        &:hover
+            .vertical-nav__dot
+                width 5px
+                height @width
+                margin 8px
+
+            .vertical-nav__label
+                display block
+
+    &__label
+        position absolute
+        right 30px
+        padding 4px 6px
+        border-radius 2px
+        color white
+        background rgba(white, .23)
+        font-size 11px
+        font-family 'Roboto', sans-serif
+        display none
+
+    &__dot
+        margin 9px
+        width 3px
+        float: right
+        height @width
+        opacity .3
+        border-radius 50%
+        background white
+        
+        .vertical-nav__active &
+            opacity 1

@@ -18,22 +18,6 @@
             //- span.detail-header__date {{movie.release_date | date:'yyyy'}}
         .detail-header__tagline.js-tagline {{movie.tagline}}
 
-    //- ul.detail-header__icons
-    //-     li: button
-    //-         svg: use(xlink:href='{{icons + "#details-info"}}')
-    //-         div Info
-    //-     li(ng-show='movie.videos.trailers.length')
-    //-         button(ng-click='trailerPlaying = true')
-    //-             svg: use(xlink:href='{{icons + "#details-trailer"}}')
-    //-             div Trailer
-    //-     li: button
-    //-         svg: use(xlink:href='{{icons + "#details-images"}}')
-    //-         div Gallery
-    //-     li: button
-    //-         svg: use(xlink:href='{{icons + "#details-actors"}}')
-    //-         div Actors
-
-
 .specs
 
     svg(width='425px', height='326px', viewbox='0 0 425 326')
@@ -71,3 +55,12 @@
 
     button.gallery__control.gallery__control--prev(swiper-control='swiper', sc-action='prev')
     button.gallery__control.gallery__control--next(swiper-control='swiper', sc-action='next')
+
+vertical-nav.vertical-nav
+    ul
+        li(vn-target='home', ng-class='{"vertical-nav__active": verticalNav.active == "home"}')
+            .vertical-nav__label Home
+            .vertical-nav__dot
+        li(vn-target='specs', ng-class='{"vertical-nav__active": verticalNav.active == "specs"}')
+            .vertical-nav__label Info
+            .vertical-nav__dot

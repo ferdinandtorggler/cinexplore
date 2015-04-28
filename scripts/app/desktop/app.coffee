@@ -17,6 +17,7 @@ require './directives/swiper'
 require './directives/swiper-control'
 require './directives/add-class-on-load'
 require './directives/animation-sequence'
+require './directives/vertical-nav'
 
 require '../common/directives/movie-list'
 require '../common/directives/movie-details'

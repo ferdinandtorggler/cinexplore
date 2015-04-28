@@ -1,5 +1,3 @@
-
-
 angular.module('Cinexplore').directive 'animationSequence', (Timeline) ->
 
   controller: ($scope, $element, $attrs) ->
@@ -51,6 +49,7 @@ angular.module('Cinexplore').directive 'animationSequence', (Timeline) ->
     specsEnter.to header.element, .5, header.up
     specsEnter.to 
 
+
     tl.to element, 0.1, className: '+=animation-sequence-home'
     tl.add 'before-home'
     tl.add homeEnter
@@ -67,5 +66,7 @@ angular.module('Cinexplore').directive 'animationSequence', (Timeline) ->
     tl.add 'after-specs'
     # tl.to element, 0.1, className: '-=animation-sequence-specs'
 
+    $scope.$on 'vertical-nav', (event, data) -> tl.tweenTo data.target
+    tl.tweenTo 'home'
 
     window.tl = tl
