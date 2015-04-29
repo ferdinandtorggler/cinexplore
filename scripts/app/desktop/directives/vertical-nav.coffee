@@ -38,18 +38,21 @@ angular.module('Cinexplore').directive 'verticalNav', ->
 
     lock = off
     handle = (e) ->
-      unless lock
+      $scope.$apply ->
+        unless lock
 
-        if e.wheelDelta < 0
-          navTo nextTarget()
-        else 
-          navTo prevTarget()
+          if e.wheelDelta < 0
+            navTo nextTarget()
+          else 
+            navTo prevTarget()
 
 
-        setTimeout (-> lock = off), 500
+          setTimeout (-> lock = off), 500
 
-      lock = on
+        lock = on
       return false
 
+    $scope.$on '$destroy', ->
+      window.onmousewheel = -> {}
 
     window.onmousewheel = handle
