@@ -190,18 +190,20 @@ gulp.task('connect', function() {
 
 gulp.task('watch', function () {
     var server = livereload({ start: true });
-    gulp.watch(styles.all, ['styles', 'check-unused-css']);
-    gulp.watch(scripts.all, ['scripts', 'lint-coffeescript']);
+    gulp.watch(styles.all, ['styles']);
+    gulp.watch(scripts.all, ['scripts']);
     gulp.watch(templates.watch, ['templates']);
     gulp.watch(icons.all, ['icons']);
 })
 
 gulp.task('build', ['styles', 'scripts', 'templates', 'icons', 'fonts', 'images']);
 
-gulp.task('default', [  'build',
-                        'connect',
+gulp.task('quality', [
                         'check-unused-css',
                         'lint-coffeescript',
+                    ])
+gulp.task('default', [  'build',
+                        'connect',
                         'watch'
                      ]);
 
