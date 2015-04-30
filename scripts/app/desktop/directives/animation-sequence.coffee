@@ -17,6 +17,8 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
 
     header =
       element: document.querySelector '.js-header'
+      in:
+        opacity: 1
       up:
         top: '25%'
 
@@ -40,15 +42,15 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
     duration = 
       part: document.querySelector '.js-duration-part'
       text: document.querySelector '.js-duration-container'
-      from:
-        opacity: 0
+      to:
+        opacity: 1
 
     revenue = 
       whole: document.querySelector '.js-revenue-whole'
       part: document.querySelector '.js-revenue-part'
       text: document.querySelector '.js-revenue-container'
-      from:
-        opacity: 0
+      to:
+        opacity: 1
 
     preparePath = (path, fillAmount = 1, reverse) ->
       length = path.getTotalLength()
@@ -72,30 +74,33 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         preparePath revenue.part, 1 - $scope.movie.budget / $scope.movie.revenue, yes
         preparePath revenue.whole, 1, yes
 
-        tl = new Timeline()
+        tl = new Timeline();
 
-        homeEnter = new Timeline()
-        homeLeave = new Timeline()
-        specsEnter = new Timeline()
-        specsLeave = new Timeline()
+        homeEnter = new Timeline();
+        homeLeave = new Timeline();
+        specsEnter = new Timeline();
+        specsLeave = new Timeline();
 
+        homeEnter.set header.element, header.in
         homeEnter.from headline.element, 1, headline.from, .75
-        homeEnter.from tagline.element, 0.5, tagline.from, '-=0.5'
+        homeEnter.from tagline.element, .5, tagline.from, '-=0.5'
 
-        homeLeave.to backgroundImage.element, 2, backgroundImage.to, 0
-        homeLeave.to tagline.element, .5, tagline.fadeOut, 0
+        homeLeave.to tagline.element, .25, tagline.fadeOut, 0
 
-        specsEnter.to header.element, .5, header.up
+        specsEnter.to backgroundImage.element, 1, backgroundImage.to, 0
+        specsEnter.to header.element, .5, header.up, 0
         specsEnter.from rating.text, .3, rating.from
-        specsEnter.from rating.whole, .3, rating.from, '-=.2'
+        specsEnter.from rating.whole, .3, rating.from, '-=.3'
         specsEnter.to rating.part, 1, css: strokeDashoffset: rating.part.getAttribute 'data-fill-length'
+
         if $scope.movie.runtime
           specsEnter.to duration.part, 1, {css: strokeDashoffset: duration.part.getAttribute 'data-fill-length'}, '-=0.75'
-          specsEnter.from duration.text, .4, duration.from, '-=0.25'
+          specsEnter.to duration.text, .4, duration.to, '-=0.25'
+
         if $scope.movie.budget and $scope.movie.revenue
           specsEnter.to revenue.whole, 1, {css: strokeDashoffset: revenue.whole.getAttribute 'data-fill-length'}, '-=0.5'
           specsEnter.to revenue.part, 1, {css: strokeDashoffset: revenue.part.getAttribute 'data-fill-length'}, '-=0.25'
-          specsEnter.from revenue.text, .4, revenue.from, '-=0.25'
+          specsEnter.to revenue.text, .4, revenue.to, '-=0.25'
 
 
         tl.to element, 0.1, className: '+=animation-sequence-home'
