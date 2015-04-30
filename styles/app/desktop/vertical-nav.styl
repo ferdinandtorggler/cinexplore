@@ -2,36 +2,39 @@
     position absolute
     top 50%
     transform translateY(-50%)
-    right 20px
+    right 0
     
     li
         overflow hidden
-        width 200px
+        width 300px
         cursor: pointer
         
         &:hover
             .vertical-nav__dot
-                width 5px
+                width 7px
                 height @width
-                margin 8px
+                margin 7px
+                margin-right 24px
 
             .vertical-nav__label
-                display block
+                opacity 1
 
     &__label
         position absolute
-        right 30px
+        right 40px
         padding 4px 6px
         border-radius 2px
         color white
         background rgba(white, .23)
-        font-size 11px
+        font-size 12px
         font-family 'Roboto', sans-serif
-        display none
+        opacity 0
+        transition opacity .2s
 
     &__dot
-        margin 9px
-        width 3px
+        margin 8px
+        margin-right: 25px
+        width 5px
         float: right
         height @width
         opacity .3
