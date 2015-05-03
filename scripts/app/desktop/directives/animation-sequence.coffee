@@ -30,6 +30,13 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
       fadeOut:
         opacity: 0
 
+    specs =
+      svg: document.querySelector '.js-specs-svg'
+      out:
+        transform: 'scale(0)'
+        opacity: 0
+        ease: Back.easeIn
+
     rating = 
       whole: document.querySelector '.js-rating-whole'
       part: document.querySelector '.js-rating-part'
@@ -38,12 +45,18 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         transform: 'scale(0.5)'
         opacity: 0
         ease: Back.easeOut
+      out:
+        transform: 'scale(0)'
+        ease: Back.easeIn
 
     duration = 
       part: document.querySelector '.js-duration-part'
       text: document.querySelector '.js-duration-container'
       to:
         opacity: 1
+      out:
+        opacity: 0
+        transform: 'translateX(100px)'
 
     revenue = 
       whole: document.querySelector '.js-revenue-whole'
@@ -51,6 +64,19 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
       text: document.querySelector '.js-revenue-container'
       to:
         opacity: 1
+      out:
+        opacity: 0
+        transform: 'translateX(-100px)'
+
+    plot =
+      element: document.querySelector '.js-plot'
+      from:
+        opacity: 0
+        transform: 'translateY(100px)'
+      leave:
+        opacity: 0
+        transform: 'translateY(-50px)'
+
 
     preparePath = (path, fillAmount = 1, reverse) ->
       length = path.getTotalLength()
@@ -74,12 +100,15 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         preparePath revenue.part, 1 - $scope.movie.budget / $scope.movie.revenue, yes
         preparePath revenue.whole, 1, yes
 
-        tl = new Timeline();
+        tl = new Timeline()
 
-        homeEnter = new Timeline();
-        homeLeave = new Timeline();
-        specsEnter = new Timeline();
-        specsLeave = new Timeline();
+        homeEnter = new Timeline()
+        homeLeave = new Timeline()
+        specsEnter = new Timeline()
+        specsLeave = new Timeline()
+        plotEnter = new Timeline()
+        plotLeave = new Timeline()
+        galleryEnter = new Timeline()
 
         homeEnter.set header.element, header.in
         homeEnter.from headline.element, 1, headline.from, .75
@@ -102,6 +131,13 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
           specsEnter.to revenue.part, 1, {css: strokeDashoffset: revenue.part.getAttribute 'data-fill-length'}, '-=0.25'
           specsEnter.to revenue.text, .4, revenue.to, '-=0.25'
 
+        specsLeave.to revenue.text, .3, revenue.out, 'specs'
+        specsLeave.to duration.text, .3, duration.out, 'specs'
+        specsLeave.to rating.text, .3, rating.out, 'specs'
+        specsLeave.to specs.svg, .3, specs.out, 'specs+0.5'
+
+        plotEnter.from plot.element, .5, plot.from
+        plotLeave.to plot.element, .2, plot.leave
 
         tl.to element, 0.1, className: '+=animation-sequence-home'
         tl.add 'before-home'
@@ -119,7 +155,15 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         tl.add 'after-specs'
         tl.to element, 0.1, className: '-=animation-sequence-specs'
 
+        tl.to element, 0.1, className: '+=animation-sequence-plot'
+        tl.add 'before-plot'
+        tl.add plotEnter
+        tl.add 'plot'
+        tl.add plotLeave
+        tl.add 'after-plot'
+        tl.to element, 0.1, className: '-=animation-sequence-plot'
+
         $scope.$on 'vertical-nav', (event, data) -> tl.tweenTo data.target
-        tl.tweenTo 'home'
+        tl.seek 'plot'
 
         window.tl = tl

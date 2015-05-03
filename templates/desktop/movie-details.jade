@@ -20,7 +20,7 @@
 
 .specs
 
-    svg(width='425px', height='326px', viewbox='0 0 425 326')
+    svg.js-specs-svg(width='425px', height='326px', viewbox='0 0 425 326')
       g(transform='translate(-471, -232)')
         g(transform='translate(474, 235)')
           path.specs__rating-path.specs__rating-path--whole.js-rating-whole(d='M209,320 C270.303607,320 320,270.303607 320,209 C320,147.696393 270.303607,98 209,98 C147.696393,98 98,147.696393 98,209 C98,270.303607 147.696393,320 209,320 Z', fill-opacity='0', fill='#FFFFFF')
@@ -42,6 +42,8 @@
         .specs__revenue {{movie.revenue | currency:$:0}}
 
 
+.plot
+    .plot__text.js-plot {{movie.overview}}
 
 
 .gallery
@@ -63,4 +65,7 @@ vertical-nav.vertical-nav
             .vertical-nav__dot
         li(vn-target='specs', ng-class='{"vertical-nav__active": verticalNav.active == "specs"}')
             .vertical-nav__label Info
+            .vertical-nav__dot
+        li(vn-target='plot', ng-class='{"vertical-nav__active": verticalNav.active == "plot"}')
+            .vertical-nav__label Plot
             .vertical-nav__dot
