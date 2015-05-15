@@ -6,7 +6,7 @@
     
     li
         overflow hidden
-        width 300px
+        width 200px
         cursor: pointer
         
         &:hover
@@ -18,6 +18,7 @@
 
             .vertical-nav__label
                 opacity 1
+                background rgba(white, .23)
 
     &__label
         position absolute
@@ -25,11 +26,14 @@
         padding 4px 6px
         border-radius 2px
         color white
-        background rgba(white, .23)
+        background rgba(white, 0)
         font-size 12px
         font-family 'Roboto', sans-serif
-        opacity 0
-        transition opacity .2s
+        opacity .23
+        transition background .2s, opacity .2s
+
+        .vertical-nav__active &
+            opacity 1
 
     &__dot
         margin 8px

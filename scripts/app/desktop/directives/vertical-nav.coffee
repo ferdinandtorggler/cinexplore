@@ -19,7 +19,10 @@ angular.module('Cinexplore').directive 'verticalNav', ->
 
     navTo = (target) ->
       return unless target
-      $scope.$emit 'vertical-nav', target: target
+      $scope.$emit 'vertical-nav',
+        current: $scope.verticalNav.active
+        target: target
+        reverse: (navTargets.indexOf target) < (navTargets.indexOf $scope.verticalNav.active)
       $scope.verticalNav.active = target
 
     nextTarget = -> 
@@ -34,7 +37,8 @@ angular.module('Cinexplore').directive 'verticalNav', ->
       
     navItems.forEach (bullet) ->
       bullet.addEventListener 'click', ->
-        $scope.$apply -> navTo bullet.getAttribute 'vn-target'
+        target = bullet.getAttribute 'vn-target'
+        $scope.$apply -> navTo target
 
     lock = off
     handle = (e) ->
