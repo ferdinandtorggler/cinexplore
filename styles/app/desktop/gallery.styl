@@ -1,0 +1,42 @@
+.gallery
+  position absolute
+  top 0
+  bottom 0
+  left 0
+  right 0
+
+  swiper
+    width 900px
+
+  .swiper-slide
+    position relative
+
+    li
+      box-sizing border-box
+      display inline-block
+      padding 10px
+      width 20%
+
+  &__page
+    position absolute
+    top 50%
+    left 0
+    right 0
+    transform translateY(-50%)
+    display flex
+    flex-wrap wrap
+    align-content flex-start
+    flex-direction column
+    margin auto
+    width 900px
+    height 540px
+
+  &__thumbnail
+    background-size cover
+    background-position center
+    padding-bottom 100%
+    cursor pointer
+    transition all .2s
+
+    &:hover
+      transform scale(1.1) !important // tweenmax transform sets inline styles

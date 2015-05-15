@@ -4,16 +4,20 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
 
     element = $element[0]
 
-    backgroundImage = 
+    backgroundImage =
       element: document.querySelector '.js-background-image'
-      to: 
-        opacity: .23
+      gallery:
+        filter: 'blur(30px)'
+        ease: Ease.easeIn
 
-    headline = 
+    headline =
       element: document.querySelector '.js-headline'
-      from: 
+      from:
         opacity: 0
         transform: 'translateY(-70px)'
+      gallery:
+        opacity: 0
+        transform: 'translateY(-10px)'
 
     header =
       element: document.querySelector '.js-header'
@@ -22,7 +26,7 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
       up:
         top: '25%'
 
-    tagline = 
+    tagline =
       element: document.querySelector '.js-tagline'
       from:
         opacity: 0
@@ -37,7 +41,7 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         opacity: 0
         ease: Back.easeIn
 
-    rating = 
+    rating =
       whole: document.querySelector '.js-rating-whole'
       part: document.querySelector '.js-rating-part'
       text: document.querySelector '.js-rating-text'
@@ -47,9 +51,8 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         ease: Back.easeOut
       out:
         transform: 'scale(0)'
-        ease: Back.easeIn
 
-    duration = 
+    duration =
       part: document.querySelector '.js-duration-part'
       text: document.querySelector '.js-duration-container'
       to:
@@ -58,7 +61,7 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         opacity: 0
         transform: 'translateX(100px)'
 
-    revenue = 
+    revenue =
       whole: document.querySelector '.js-revenue-whole'
       part: document.querySelector '.js-revenue-part'
       text: document.querySelector '.js-revenue-container'
@@ -75,8 +78,19 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         transform: 'translateY(100px)'
       leave:
         opacity: 0
-        transform: 'translateY(-50px)'
+        transform: 'translateY(-20px)'
 
+    gallery =
+      element: document.querySelector '.js-gallery'
+      thumbnailElements: '.js-thumbnail'
+      thumbnails:
+        transform: 'scale(0.8)'
+        opacity: 0
+        ease: Back.easeOut
+      enter:
+        transform: 'translateY(100%)'
+
+    console.log gallery.thumbnailElements
 
     preparePath = (path, fillAmount = 1, reverse) ->
       length = path.getTotalLength()
@@ -115,21 +129,20 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         homeEnter.from tagline.element, .5, tagline.from, '-=0.5'
 
         homeLeave.to tagline.element, .25, tagline.fadeOut, 0
+        homeLeave.to header.element, .25, header.up, 0
 
-        specsEnter.to backgroundImage.element, 1, backgroundImage.to, 0
-        specsEnter.to header.element, .5, header.up, 0
-        specsEnter.from rating.text, .3, rating.from
-        specsEnter.from rating.whole, .3, rating.from, '-=.3'
-        specsEnter.to rating.part, 1, css: strokeDashoffset: rating.part.getAttribute 'data-fill-length'
+        specsEnter.from rating.text, .15, rating.from
+        specsEnter.from rating.whole, .15, rating.from, '-=.15'
+        specsEnter.to rating.part, .5, css: strokeDashoffset: rating.part.getAttribute 'data-fill-length'
 
         if $scope.movie.runtime
-          specsEnter.to duration.part, 1, {css: strokeDashoffset: duration.part.getAttribute 'data-fill-length'}, '-=0.75'
-          specsEnter.to duration.text, .4, duration.to, '-=0.25'
+          specsEnter.to duration.part, .5, {css: strokeDashoffset: duration.part.getAttribute 'data-fill-length'}, '-=0.75'
+          specsEnter.to duration.text, .2, duration.to, '-=0.25'
 
         if $scope.movie.budget and $scope.movie.revenue
-          specsEnter.to revenue.whole, 1, {css: strokeDashoffset: revenue.whole.getAttribute 'data-fill-length'}, '-=0.5'
-          specsEnter.to revenue.part, 1, {css: strokeDashoffset: revenue.part.getAttribute 'data-fill-length'}, '-=0.25'
-          specsEnter.to revenue.text, .4, revenue.to, '-=0.25'
+          specsEnter.to revenue.whole, .5, {css: strokeDashoffset: revenue.whole.getAttribute 'data-fill-length'}, '-=0.5'
+          specsEnter.to revenue.part, .5, {css: strokeDashoffset: revenue.part.getAttribute 'data-fill-length'}, '-=0.25'
+          specsEnter.to revenue.text, .2, revenue.to, '-=0.25'
 
         specsLeave.to revenue.text, .3, revenue.out, 'specs'
         specsLeave.to duration.text, .3, duration.out, 'specs'
@@ -137,7 +150,12 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         specsLeave.to specs.svg, .3, specs.out, 'specs+0.5'
 
         plotEnter.from plot.element, .5, plot.from
+        plotLeave.to headline.element, .2, headline.gallery
         plotLeave.to plot.element, .2, plot.leave
+
+        galleryEnter.from gallery.element, .5, gallery.enter, 'before-gallery'
+        galleryEnter.to backgroundImage.element, .75, backgroundImage.gallery, 'before-gallery'
+        galleryEnter.staggerFrom gallery.thumbnailElements, 0.1, gallery.thumbnails, 0.1, 'before-gallery'
 
         tl.to element, 0.1, className: '+=animation-sequence-home'
         tl.add 'before-home'
@@ -163,7 +181,28 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         tl.add 'after-plot'
         tl.to element, 0.1, className: '-=animation-sequence-plot'
 
-        $scope.$on 'vertical-nav', (event, data) -> tl.tweenTo data.target
-        tl.seek 'plot'
+        tl.to element, 0.1, className: '+=animation-sequence-gallery'
+        tl.add 'before-gallery'
+        tl.add galleryEnter
+        tl.add 'gallery'
+#        tl.add galleryLeave
+        tl.add 'after-gallery'
+        tl.to element, 0.1, className: '-=animation-sequence-gallery'
+
+        $scope.$on 'vertical-nav', (event, data) ->
+
+          prefixLabel = (prefix, label) -> prefix + '-' + label
+
+          sectionEndPrefix = if data.reverse then 'before' else 'after'
+          sectionStartPrefix = if data.reverse then 'after' else 'before'
+          tl.tweenTo prefixLabel(sectionEndPrefix, data.current), onComplete: ->
+            tl.seek prefixLabel(sectionStartPrefix, data.target)
+            tl.tweenTo data.target
+
+
+        tl.tweenTo 'home'
+
+#        tl.seek 'before-gallery'
+#        tl.tweenTo 'gallery'
 
         window.tl = tl

@@ -7,7 +7,6 @@
     background black
     overflow auto
     z-index 5
-    
 
 .detail-header
     position relative
@@ -19,7 +18,7 @@
         .detail-header__infos
             transform translateY(-10px)
             opacity 0
-            
+
         .detail-header__icons
             transform translateY(20px)
             opacity 0
@@ -31,26 +30,21 @@
     &__image
         width 100%
         height 100%
-        opacity .35
         background-position center
         background-size cover
         transition opacity 1s linear, filter .4s ease-out
 
-        .detail-header--hi-res-loaded &
-            opacity 0
-
-        &--hi-res
+        &--hi-res, &--blurred
             position absolute
             top 0
             right 0
             left 0
             bottom 0
-            opacity 0
-            transition opacity 1s linear, filter .4s ease-out
+            transition all 1.5s
 
-            .detail-header--hi-res-loaded &
-                opacity .35
-            
+        &--blurred
+            filter: blur(20px)
+
     &__infos
         position absolute
         top 30%
@@ -68,7 +62,7 @@
         text-transform uppercase
         letter-spacing 10px
         text-shadow rgba(0,0,0,.5) 0 2 4px
-        
+
         &:after
             position: absolute
             bottom -35px
@@ -80,7 +74,7 @@
             height 1px
             background white
             opacity 0
-            transition opacity .2s
+            transition opacity .1s
             
         .animation-sequence-home &:after
             opacity .3
@@ -126,28 +120,27 @@
             fill white
             margin-bottom 10px
             transition transform .1s ease-out
-            
-.gallery
-    height 100%
-    position relative
-    
-    &__control
-        position: absolute
-        transform translateY(-50%)
-        top 50%
-        width 120px
-        height @width
-        border-radius 50%
-        background-color black
-        opacity .3
-        z-index 2 // idangrous sets z-index to 1
-        transition opacity .3s
-        
-        &:hover
-            opacity .5
 
-        &--next
-            right 30px
 
-        &--prev
-            left 30px
+// opacity settings at different sections
+.detail-header__image--low-res,
+.detail-header__image--hi-res
+    opacity .23
+
+    .animation-sequence-home &
+        opacity .35
+
+    .animation-sequence-gallery &
+        opacity 0
+
+.detail-header__image--blurred
+    opacity 0
+
+    .animation-sequence-gallery &
+        opacity .23
+
+// opacity settings depending on image quality
+.detail-header:not(.hi-res-loaded) .detail-header__image--hi-res,
+.hi-res-loaded .detail-header__image--low-res
+    opacity 0
+

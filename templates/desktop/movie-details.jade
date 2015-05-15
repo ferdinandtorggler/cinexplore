@@ -3,14 +3,17 @@
     .trailer(ng-if='movie.videos.trailers.length && trailerPlaying')
 
         iframe(ng-src='{{ movie.videos.trailers[0].key | youtubeUrl }}', autoplay="1")
-    .detail-header__image(
+    .detail-header__image.detail-header__image--low-res(
         style='background-image: url({{ movie.backdrop_path | imagePath:"780" }})'
     )
     .detail-header__image.detail-header__image--hi-res.js-background-image(
         style='background-image: url({{ movie.backdrop_path | imagePath }})'
-        add-class-on-load='detail-header--hi-res-loaded'
+        add-class-on-load='hi-res-loaded'
         acol-target='.detail-header'
         acol-src='{{ movie.backdrop_path | imagePath }}'
+    )
+    .detail-header__image.detail-header__image--blurred(
+        style='background-image: url({{ movie.backdrop_path | imagePath }})'
     )
 
     .detail-header__infos.js-header
@@ -46,17 +49,27 @@
     .plot__text.js-plot {{movie.overview}}
 
 
-.gallery
-    swiper.image-swiper.swiper-container(s-var='swiper', s-options='{loop: true}')
+.gallery.js-gallery
+    swiper.gallery__swiper.swiper-container(
+        s-var='swiper'
+        s-options='{loop: true}'
+    )
         ul.swiper-wrapper
-            li.swiper-slide(
-                ng-repeat='image in movie.images.backdrops'
-                ng-hide='$first'
-                style='background-image: url({{image.file_path | imagePath }})'
-            )
+            li.swiper-slide(ng-repeat='chunk in movie.images.chunked')
+                ul.gallery__page
+                    li(ng-repeat='image in chunk')
+                        .gallery__thumbnail.js-thumbnail(
+                            style='background-image: url({{image.file_path | imagePath:500 }})'
+                        )
 
-    button.gallery__control.gallery__control--prev(swiper-control='swiper', sc-action='prev')
-    button.gallery__control.gallery__control--next(swiper-control='swiper', sc-action='next')
+    button.gallery__control.gallery__control--prev(
+        swiper-control='swiper'
+        sc-action='prev'
+    )
+    button.gallery__control.gallery__control--next(
+        swiper-control='swiper'
+        sc-action='next'
+    )
 
 vertical-nav.vertical-nav
     ul
@@ -68,4 +81,7 @@ vertical-nav.vertical-nav
             .vertical-nav__dot
         li(vn-target='plot', ng-class='{"vertical-nav__active": verticalNav.active == "plot"}')
             .vertical-nav__label Plot
+            .vertical-nav__dot
+        li(vn-target='gallery', ng-class='{"vertical-nav__active": verticalNav.active == "gallery"}')
+            .vertical-nav__label Gallery
             .vertical-nav__dot

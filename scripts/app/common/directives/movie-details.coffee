@@ -18,6 +18,18 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
   templateUrl: 'movie-details.html'
   link: (scope, elem, attrs) ->
 
+    chunk = (array, chunk) ->
+      i = 0
+      j = array.length
+      chunked = []
+      i = 0
+      j = array.length
+      while i < j
+        temparray = array.slice i, i + chunk
+        chunked.push temparray
+        i += chunk
+      return chunked
+
     setUIColor = (color) ->
       return unless Colors.isValidHex color
       Colors.setUIColor color
@@ -45,6 +57,7 @@ angular.module('Cinexplore').directive 'movieDetails', ($timeout, $parse, $filte
       Movies.detail(id).success (movie) ->
         scope.movie = movie
         scope.movie.images.all = scope.movie.images.posters[0..0].concat scope.movie.images.backdrops
+        scope.movie.images.chunked = chunk scope.movie.images.all, 15
         scope.movie.videos.trailers = scope.movie.videos.results.filter (video) -> video.type is 'Trailer'
         scope.loaded = yes
         scope.loading = no
