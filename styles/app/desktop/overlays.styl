@@ -1,6 +1,6 @@
 .overlay
-    background-color color-primary
-    
+    z-index 100
+
     &__close
         position absolute
         top 0
@@ -11,3 +11,11 @@
         height @width
         fill color-lightest
         z-index 1
+
+
+.container
+    transition all .3s
+
+.overlay-open .container
+    filter blur(10px)
+    transition all .1s

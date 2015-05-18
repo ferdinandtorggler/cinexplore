@@ -19,6 +19,7 @@ angular.module('Cinexplore').directive 'overlay', ($animate, Overlays) ->
       $scope.overlay.visible = show
       method = if show then 'addClass' else 'removeClass'
       $animate[method] $element, 'overlay-visible'
+      document.querySelector('body').classList[if show then 'add' else 'remove'] 'overlay-open'
 
     $scope.$watch Overlays.current, (currentOverlay) ->
       $scope.overlay.data = Overlays.currentData()

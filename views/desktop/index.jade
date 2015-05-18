@@ -29,8 +29,6 @@ html
         .container.container--movie-list
             movie-list.movie-list
         overlay.overlay(overlay-name='search')
-            .search
-                input(type='search', placeholder='Start typing')
-
+            include search
         movie-details.detail-view.expand-movie-animation(if-view='detail.movie', animation-sequence)
         person-details.detail-view.fade(if-view='detail.person')

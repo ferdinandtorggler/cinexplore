@@ -23,6 +23,7 @@ require '../common/directives/movie-list'
 require '../common/directives/movie-details'
 require '../common/directives/show-on-image-loaded'
 require '../common/directives/color-from-image'
+require '../common/directives/search'
 
 require '../common/services/movies'
 require '../common/services/view'

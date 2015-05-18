@@ -1,24 +1,31 @@
 .search
-    padding 20px 40px
-    
-    input
-        background none
-        border none
-        outline none
-        font-size 90px
-        text-transform uppercase
-        font-family 'Montserrat'
-        -webkit-appearance textfield
-        color color-lightest
-        
-        &::-webkit-input-placeholder
-           color #2E434C
+  position fixed
+  left 0
+  right 0
+  height 100%
+  z-index 1
+  padding: 50px
+  transition height .2s
+  background-color rgba(#000, .8)
 
-        &:-moz-placeholder
-           color #2E434C  
+  input
+      background none
+      border none
+      outline none
+      font-size 90px
+      text-transform uppercase
+      font-family 'Montserrat'
+      -webkit-appearance textfield
+      color color-lightest
 
-        &::-moz-placeholder
-           color #2E434C  
+      &::-webkit-input-placeholder
+         color #2E434C
 
-        &:-ms-input-placeholder
-           color #2E434C  
+      &:-moz-placeholder
+         color #2E434C
+
+      &::-moz-placeholder
+         color #2E434C
+
+      &:-ms-input-placeholder
+         color #2E434C

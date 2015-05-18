@@ -6,7 +6,7 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
 
     backgroundImage =
       element: document.querySelector '.js-background-image'
-      gallery:
+      blur:
         filter: 'blur(30px)'
         ease: Ease.easeIn
 
@@ -153,9 +153,9 @@ angular.module('Cinexplore').directive 'animationSequence', ($timeout, Timeline)
         plotLeave.to headline.element, .2, headline.gallery
         plotLeave.to plot.element, .2, plot.leave
 
-        galleryEnter.from gallery.element, .5, gallery.enter, 'before-gallery'
-        galleryEnter.to backgroundImage.element, .75, backgroundImage.gallery, 'before-gallery'
-        galleryEnter.staggerFrom gallery.thumbnailElements, 0.1, gallery.thumbnails, 0.1, 'before-gallery'
+        galleryEnter.to backgroundImage.element, .75, backgroundImage.blur, 0
+        galleryEnter.staggerFrom gallery.thumbnailElements, 0.1, gallery.thumbnails, 0.1, 0
+        galleryEnter.from gallery.element, .5, gallery.enter, 0
 
         tl.to element, 0.1, className: '+=animation-sequence-home'
         tl.add 'before-home'

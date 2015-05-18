@@ -1,0 +1,20 @@
+search.search
+    input.search__input(
+        type='search'
+        placeholder='Start Typing'
+        ng-model='search.query'
+        gain-focus
+    )
+    ul.list.list--dividers.list--ellipsis
+        li(
+            ng-repeat="result in movies"
+            navigate='/movie/{{result.id}}'
+            n-data='{{ {movie: result} }}'
+            ripple
+        )
+            .list__thumbnail(
+                style="background-image: url({{result.poster_path | imagePath:'185'}})"
+            )
+            .list__text
+                span.list__main-line {{result.title}}
+                sub.list__sub-line {{result.release_date | date:'yyyy'}}
