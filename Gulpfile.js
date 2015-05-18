@@ -39,14 +39,9 @@ var styles = {
 
 var scripts = {
     all: 'scripts/**/*.coffee',
-    mobile: {
-      src: 'scripts/app/mobile/**/*.coffee',
-      app: 'scripts/app/mobile/app.coffee'
-    },
-    desktop: {
-      src: 'scripts/app/desktop/**/*.coffee',
-      app: 'scripts/app/desktop/app.coffee'
-    },
+    app: 'scripts/app/app.coffee',
+    mobile: 'scripts/app/mobile/**/*.coffee',
+    desktop: 'scripts/app/desktop/**/*.coffee',
     common: 'scripts/app/common/**/*.coffee',
     vendor: 'scripts/vendor/**/*.js',
     dest: 'public/scripts/'
@@ -157,8 +152,8 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    processScripts([scripts.mobile.app, scripts.common, scripts.mobile.src], 'mobile.js');
-    processScripts([scripts.desktop.app, scripts.common, scripts.desktop.src], 'desktop.js');
+    processScripts([scripts.app, scripts.common, scripts.mobile], 'mobile.js');
+    processScripts([scripts.app, scripts.common, scripts.desktop], 'desktop.js');
 });
 
 gulp.task('lint-coffeescript', function () {
