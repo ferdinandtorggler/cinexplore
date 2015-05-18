@@ -13,8 +13,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var autoprefix = require('gulp-autoprefixer');
-var browserify = require('gulp-browserify');
-var rename = require('gulp-rename');
+var coffee = require('gulp-coffee');
 var jade = require('gulp-jade');
 var sourcemaps = require('gulp-sourcemaps');
 var svgsprite = require('gulp-svg-sprite');
@@ -48,6 +47,7 @@ var scripts = {
       src: 'scripts/app/desktop/**/*.coffee',
       app: 'scripts/app/desktop/app.coffee'
     },
+    common: 'scripts/app/common/**/*.coffee',
     vendor: 'scripts/vendor/**/*.js',
     dest: 'public/scripts/'
 };
@@ -94,28 +94,25 @@ var processScripts = function (src, outputName) {
       .pipe(uglify())
       .pipe(gulp.dest(scripts.dest));
 
-    return gulp.src(src, { read: false })
-      .pipe(browserify({
-        transform: ['coffeeify'],
-        extensions: ['.coffee']
-      })).on('error', gutil.log)
-      // .pipe(gulpif(!argv.production, sourcemaps.init() ))
-      .pipe(rename(outputName))
+    return gulp.src(src)
+      .pipe(gulpif(!argv.production, sourcemaps.init() ))
+      .pipe(coffee({ bare: true }))
+      .pipe(concat(outputName))
       .pipe(ngAnnotate({
         add: true
       }))
       .pipe(uglify())
-      // .pipe(gulpif(!argv.production, sourcemaps.write() ))
+      .pipe(gulpif(!argv.production, sourcemaps.write() ))
       .pipe(gulp.dest(scripts.dest))
       .pipe(livereload());
 };
 
 var processTemplates = function (src, outputName) {
-  return gulp.src(src)
-      .pipe(jade())
-      .pipe(templateCache(outputName, {standalone: true}))
-      .pipe(gulp.dest(templates.dest))
-      .pipe(livereload());
+    return gulp.src(src)
+        .pipe(jade())
+        .pipe(templateCache(outputName, {standalone: true}))
+        .pipe(gulp.dest(templates.dest))
+        .pipe(livereload());
 };
 
 gulp.task('clean', function () {
@@ -160,8 +157,8 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    processScripts(scripts.mobile.app, 'mobile.js');
-    processScripts(scripts.desktop.app, 'desktop.js');
+    processScripts([scripts.mobile.app, scripts.common, scripts.mobile.src], 'mobile.js');
+    processScripts([scripts.desktop.app, scripts.common, scripts.desktop.src], 'desktop.js');
 });
 
 gulp.task('lint-coffeescript', function () {
@@ -201,7 +198,7 @@ gulp.task('build', ['styles', 'scripts', 'templates', 'icons', 'fonts', 'images'
 gulp.task('quality', [
                         'check-unused-css',
                         'lint-coffeescript',
-                    ])
+                    ]);
 gulp.task('default', [  'build',
                         'connect',
                         'watch'
