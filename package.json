@@ -7,6 +7,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "coffee-script": "^1.9.2",
     "coffeeify": "^1.0.0",
     "event-stream": "^3.3.0",
     "express": "^4.12.3",
