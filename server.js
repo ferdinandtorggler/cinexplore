@@ -19,7 +19,7 @@ app.set('view engine', 'jade');
 app.use(device.capture());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
+app.get('/*', function (req, res) {
     if (req.device.type === 'desktop') {
         res.render('desktop/index');
     } else {

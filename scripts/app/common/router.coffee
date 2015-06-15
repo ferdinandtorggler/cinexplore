@@ -1,4 +1,4 @@
-angular.module('Cinexplore').config ($routeProvider) ->
+angular.module('Cinexplore').config ($routeProvider, $locationProvider) ->
 
   routes = [
 
@@ -54,3 +54,4 @@ angular.module('Cinexplore').config ($routeProvider) ->
 
   routes.forEach (routeConfig) -> $routeProvider.when routeConfig.route, routeConfig.data
   $routeProvider.otherwise redirectTo: 'movies/category/popular'
+  $locationProvider.html5Mode on
